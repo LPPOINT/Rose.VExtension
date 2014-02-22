@@ -5,29 +5,13 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rose.VExtension.Client.Extensions.Chrome", "Rose.VExtension.Client.Extensions.Chrome\Rose.VExtension.Client.Extensions.Chrome.csproj", "{9D141603-1A9D-4EEC-82D8-C473EA436839}"
 EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Rose.VExtension.Model", "Rose.VExtension.Model\Rose.VExtension.Model.modelproj", "{A4200E9F-01CB-4A0C-A585-0D63AE2E99BC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rose.VExtension.PluginSystem", "Rose.VExtension.PluginSystem\Rose.VExtension.PluginSystem.csproj", "{EB6DD852-3ED1-4FC3-8A7A-CB229ECA5DF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rose.VExtension.Server", "Rose.VExtension.Server\Rose.VExtension.Server.csproj", "{89BA3334-AF2F-4856-9542-BB0E028925E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rose.VExtension.PluginSystem.ConsoleTest", "Rose.VExtension.PluginSystem.ConsoleTest\Rose.VExtension.PluginSystem.ConsoleTest.csproj", "{D5B9F45D-19D7-4D0B-BB50-2F3F65EF9671}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rose.VExtension.PluginSystem.UnitTest", "Rose.VExtension.PluginSystem.UnitTest\Rose.VExtension.PluginSystem.UnitTest.csproj", "{CD1601F3-72BE-471F-9DF0-48323952B2F0}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7812E2B2-E261-4A99-A2AC-0E52E79C86F8}"
-	ProjectSection(SolutionItems) = preProject
-		IntegrationTests.testsettings = IntegrationTests.testsettings
-		UnitTests.testsettings = UnitTests.testsettings
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{12BA2183-1D3F-45B9-B444-2E7CEBC57359}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{4BE7891C-DBED-4BB6-8825-3F7186AB9B7B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VisualStudio", "VisualStudio", "{EB5E9398-FC55-4FE8-BD6D-45942F06C8DB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rose.VExtension.CSPluginTemplate", "Rose.VExtension.CSPluginTemplate\Rose.VExtension.CSPluginTemplate.csproj", "{9F015C5B-8871-470C-B770-AE729F389356}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +23,6 @@ Global
 		{9D141603-1A9D-4EEC-82D8-C473EA436839}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D141603-1A9D-4EEC-82D8-C473EA436839}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D141603-1A9D-4EEC-82D8-C473EA436839}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A4200E9F-01CB-4A0C-A585-0D63AE2E99BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4200E9F-01CB-4A0C-A585-0D63AE2E99BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4200E9F-01CB-4A0C-A585-0D63AE2E99BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4200E9F-01CB-4A0C-A585-0D63AE2E99BC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB6DD852-3ED1-4FC3-8A7A-CB229ECA5DF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB6DD852-3ED1-4FC3-8A7A-CB229ECA5DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB6DD852-3ED1-4FC3-8A7A-CB229ECA5DF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,30 +31,13 @@ Global
 		{89BA3334-AF2F-4856-9542-BB0E028925E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89BA3334-AF2F-4856-9542-BB0E028925E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89BA3334-AF2F-4856-9542-BB0E028925E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D5B9F45D-19D7-4D0B-BB50-2F3F65EF9671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5B9F45D-19D7-4D0B-BB50-2F3F65EF9671}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5B9F45D-19D7-4D0B-BB50-2F3F65EF9671}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5B9F45D-19D7-4D0B-BB50-2F3F65EF9671}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD1601F3-72BE-471F-9DF0-48323952B2F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD1601F3-72BE-471F-9DF0-48323952B2F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD1601F3-72BE-471F-9DF0-48323952B2F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD1601F3-72BE-471F-9DF0-48323952B2F0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F015C5B-8871-470C-B770-AE729F389356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F015C5B-8871-470C-B770-AE729F389356}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F015C5B-8871-470C-B770-AE729F389356}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F015C5B-8871-470C-B770-AE729F389356}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9D141603-1A9D-4EEC-82D8-C473EA436839} = {4BE7891C-DBED-4BB6-8825-3F7186AB9B7B}
-		{EB5E9398-FC55-4FE8-BD6D-45942F06C8DB} = {4BE7891C-DBED-4BB6-8825-3F7186AB9B7B}
-		{D5B9F45D-19D7-4D0B-BB50-2F3F65EF9671} = {7812E2B2-E261-4A99-A2AC-0E52E79C86F8}
-		{CD1601F3-72BE-471F-9DF0-48323952B2F0} = {7812E2B2-E261-4A99-A2AC-0E52E79C86F8}
-		{A4200E9F-01CB-4A0C-A585-0D63AE2E99BC} = {7812E2B2-E261-4A99-A2AC-0E52E79C86F8}
 		{89BA3334-AF2F-4856-9542-BB0E028925E1} = {12BA2183-1D3F-45B9-B444-2E7CEBC57359}
 		{EB6DD852-3ED1-4FC3-8A7A-CB229ECA5DF4} = {12BA2183-1D3F-45B9-B444-2E7CEBC57359}
-		{9F015C5B-8871-470C-B770-AE729F389356} = {EB5E9398-FC55-4FE8-BD6D-45942F06C8DB}
 	EndGlobalSection
 EndGlobal
