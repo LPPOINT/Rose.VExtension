@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Rose.VExtension.PluginSystem.Reservation;
 
-namespace Rose.VExtension.Server.Models
+namespace Rose.VExtension.Server.Models.DbInteraction
 {
     public interface IPluginsRepository : IPluginsReservationRepository
     {

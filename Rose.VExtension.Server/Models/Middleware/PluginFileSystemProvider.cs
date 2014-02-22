@@ -1,6 +1,7 @@
 ﻿using Rose.VExtension.PluginSystem.FileSystem;
+using Rose.VExtension.Server.Models.DbInteraction;
 
-namespace Rose.VExtension.Server.Models
+namespace Rose.VExtension.Server.Models.Middleware
 {
 
     public interface IPluginFileSystemProvider

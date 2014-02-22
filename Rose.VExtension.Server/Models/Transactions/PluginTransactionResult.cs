@@ -1,4 +1,4 @@
-﻿namespace Rose.VExtension.Server.Models
+﻿namespace Rose.VExtension.Server.Models.Transactions
 {
     public class PluginTransactionResult
     {

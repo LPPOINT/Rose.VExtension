@@ -2,6 +2,7 @@
 using System.IO;
 using Rose.VExtension.PluginSystem.FileSystem;
 using Rose.VExtension.PluginSystem.Resources;
+using Rose.VExtension.Server.Models.DbInteraction;
 
 namespace Rose.VExtension.Server.Models
 {

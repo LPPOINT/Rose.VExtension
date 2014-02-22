@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
 using Rose.VExtension.Server.Models;
+using Rose.VExtension.Server.Models.DbInteraction;
+using Rose.VExtension.Server.Models.Transactions;
 
 namespace Rose.VExtension.Server.Controllers
 {

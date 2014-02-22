@@ -1,4 +1,6 @@
-﻿namespace Rose.VExtension.Server.Models
+﻿using Rose.VExtension.Server.Models.DbInteraction;
+
+namespace Rose.VExtension.Server.Models
 {
 
     /// <summary>

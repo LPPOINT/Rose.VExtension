@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Rose.VExtension.Server.Models
+namespace Rose.VExtension.Server.Models.DbInteraction
 {
     public class PluginsRepository : IPluginsRepository
     {

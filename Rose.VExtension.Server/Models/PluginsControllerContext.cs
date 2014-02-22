@@ -1,4 +1,7 @@
-﻿namespace Rose.VExtension.Server.Models
+﻿using Rose.VExtension.Server.Models.DbInteraction;
+using Rose.VExtension.Server.Models.Transactions;
+
+namespace Rose.VExtension.Server.Models
 {
     public class PluginsControllerContext
     {

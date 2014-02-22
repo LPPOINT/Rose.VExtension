@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Rose.VExtension.Server.Models
+namespace Rose.VExtension.Server.Models.DbInteraction
 {
     public static class PluginRepositoryExtensions
     {
-        public static Models.PluginLocation GetPluginStatus(this IPluginsRepository repository, string pluginId)
+        public static PluginLocation GetPluginStatus(this IPluginsRepository repository, string pluginId)
         {
             var plugin = repository.GetPlugin(pluginId);
 
@@ -13,7 +13,7 @@ namespace Rose.VExtension.Server.Models
                 return plugin.Location;
             }
 
-            return Models.PluginLocation.Undefined;
+            return PluginLocation.Undefined;
         }
         public static string GetPluginName(this IPluginsRepository repository, string pluginId)
         {

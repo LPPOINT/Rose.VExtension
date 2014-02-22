@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using NLog;
+using Rose.VExtension.Server.Models.DbInteraction;
+using Rose.VExtension.Server.Models.Middleware;
 
 namespace Rose.VExtension.Server.Models
 {

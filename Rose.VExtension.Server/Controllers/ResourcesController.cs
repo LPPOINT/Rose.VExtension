@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Rose.VExtension.PluginSystem.FileSystem;
 using Rose.VExtension.Server.Models;
+using Rose.VExtension.Server.Models.Middleware;
 
 namespace Rose.VExtension.Server.Controllers
 {

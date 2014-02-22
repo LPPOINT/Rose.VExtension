@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using Rose.VExtension.PluginSystem.Transactions;
+using Rose.VExtension.Server.Models.DbInteraction;
+using Rose.VExtension.Server.Models.Middleware;
 
-namespace Rose.VExtension.Server.Models
+namespace Rose.VExtension.Server.Models.Transactions
 {
     public static class PluginTransactorExtensions
     {

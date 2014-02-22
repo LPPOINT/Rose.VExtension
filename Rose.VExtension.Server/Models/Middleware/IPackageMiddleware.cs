@@ -3,16 +3,18 @@ using System.Globalization;
 using System.IO;
 using Rose.VExtension.PluginSystem.Activation;
 using Rose.VExtension.PluginSystem.Packing;
+using Rose.VExtension.Server.Models.DbInteraction;
+using LocalStoragePluginPackage = Rose.VExtension.PluginSystem.Packing.LocalStoragePluginPackage;
 
-namespace Rose.VExtension.Server.Models
+namespace Rose.VExtension.Server.Models.Middleware
 {
     public class PackageMiddleware : IPluginComponentMiddleware<IPluginPackage, PluginPackage>
     {
         public IPluginPackage CreateBase(PluginPackage entity)
         {
-            if (entity is LocalStoragePluginPackage)
+            if (entity is Models.DbInteraction.LocalStoragePluginPackage)
             {
-                var ls = entity as LocalStoragePluginPackage;
+                var ls = entity as Models.DbInteraction.LocalStoragePluginPackage;
                 return new PluginSystem.Packing.LocalStoragePluginPackage(ls.RootPath, PacckageType.ZipFile);
             }
             if (entity is StreamPackage)
@@ -72,7 +74,7 @@ namespace Rose.VExtension.Server.Models
             if (@base is PluginSystem.Packing.LocalStoragePluginPackage)
             {
                 var ls = @base as PluginSystem.Packing.LocalStoragePluginPackage;
-                return new LocalStoragePluginPackage
+                return new Models.DbInteraction.LocalStoragePluginPackage
                        {
                            RootPath = ls.URI
                        };
