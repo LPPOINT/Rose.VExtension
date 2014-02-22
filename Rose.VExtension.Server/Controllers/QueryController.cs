@@ -39,7 +39,7 @@ namespace Rose.VExtension.Server.Controllers
 
 
 
-        public async Task<ActionResult> Index(PluginRequestModel request)
+        public ActionResult Index(PluginRequestModel request)
         {
 
             request = PluginRequestModel.CreateDefault();
@@ -60,7 +60,7 @@ namespace Rose.VExtension.Server.Controllers
 
                 try
                 {
-                    var responseResult = await executor.ExecutePluginAsync(pluginRequest, pluginId); // Здесь происходит ассинхронное выполнение запроса
+                    var responseResult =  executor.ExecutePlugin(pluginRequest, pluginId); // Здесь происходит ассинхронное выполнение запроса
                     response = responseResult.Response;
                 }
                 catch (Exception e)
