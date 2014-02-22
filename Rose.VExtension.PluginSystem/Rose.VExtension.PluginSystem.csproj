@@ -106,6 +106,7 @@
     <Compile Include="Console\ConsoleResponse.cs" />
     <Compile Include="Console\IConsolableDomain.cs" />
     <Compile Include="Console\IConsoleCommandParser.cs" />
+    <Compile Include="Packing\ExtractionException.cs" />
     <Compile Include="Packing\IPluginPackageProvider.cs" />
     <Compile Include="Packing\LocalStoragePackageProvider.cs" />
     <Compile Include="Packing\StreamPackageProvider.cs" />

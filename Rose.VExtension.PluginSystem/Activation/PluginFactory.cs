@@ -131,7 +131,7 @@ namespace Rose.VExtension.PluginSystem.Activation
             }
             catch (Exception e)
             {
-                throw new Exception("Ошибка извлечения плагина из пакета в файловую систему");
+                throw new ExtractionException("Ошибка извлечения плагина из пакета в файловую систему", e);
             }
         }
 
