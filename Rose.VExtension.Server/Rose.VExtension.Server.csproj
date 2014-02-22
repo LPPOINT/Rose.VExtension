@@ -189,6 +189,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\PluginsAreaRegistration.cs" />
+    <Compile Include="Controllers\FileSystemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PluginsController.cs" />
     <Compile Include="Controllers\PluginsDebugController.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="Models\PluginsSyncResult.cs" />
     <Compile Include="Models\PluginTransactionResult.cs" />
     <Compile Include="Models\PluginTransactor.cs" />
+    <Compile Include="Models\PluginTransactorExtensions.cs" />
     <Compile Include="Models\RequestResultBuilder.cs" />
     <Compile Include="Models\ResourceToken.cs">
       <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
@@ -329,6 +331,7 @@
     <Content Include="Views\Shared\SettingsVisualizers\SwitchSettingsControlView.cshtml" />
     <Content Include="Views\Shared\SettingsVisualizers\TextSettingsControlView.cshtml" />
     <Content Include="Views\web.config" />
+    <Content Include="Views\FileSystem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

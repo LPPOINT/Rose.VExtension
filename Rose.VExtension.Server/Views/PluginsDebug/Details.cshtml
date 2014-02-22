@@ -10,6 +10,8 @@
 <p>@Model.Id</p>
 <p>@Model.PluginPackage.ToString()</p>
 
+<a class="btn btn-primary" href="@Url.Action("Index", "FileSystem", new RouteValueDictionary() {{"pluginId", Model.Id}})">Файловая система</a>
+
 <form method="POST" action="@Url.Action("Settings")">
     <input type="hidden" name="pluginId" value="@Model.Id" />
     <input type="submit" value="Настройки" class="btn btn-primary" />

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace Rose.VExtension.PluginSystem.FileSystem
 {
@@ -12,6 +13,10 @@ namespace Rose.VExtension.PluginSystem.FileSystem
         void RemoveItem(IPluginFileSystemItem item);
         Stream GetItemStream(IPluginFileSystemItem item);
         bool ContainsItem(IPluginFileSystemItem item);
+
+        IEnumerable<IPluginFileSystemItem> EnumerateItems();
+        IEnumerable<IPluginFileSystemItem> EnumerateItems(string path);
+
 
     }
 }

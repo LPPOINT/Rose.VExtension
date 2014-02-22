@@ -32,11 +32,13 @@ namespace Rose.VExtension.PluginSystem.Activation
 
             Check.NotNull(fileSystem);
 
-            var manifestFileStream = fileSystem.GetItemStream(FileSystemItem.GetXMLManifestFile());
-            var manifest = new XMLManifest(XDocument.Load(manifestFileStream));
-            var config = manifest.CreateConfiguration();
-            manifestFileStream.Dispose();
-            return ToRunnable(fileSystem, config, package);
+            using (var manifestFileStream = fileSystem.GetItemStream(FileSystemItem.GetXMLManifestFile()))
+            {
+                var manifest = new XMLManifest(XDocument.Load(manifestFileStream));
+                var config = manifest.CreateConfiguration();
+                manifestFileStream.Dispose();
+                return ToRunnable(fileSystem, config, package);
+            }
         }
 
         public Plugin ToRunnable(IPluginFileSystem fileSystem, IPluginConfiguration pluginPluginConfiguration, IPluginPackage package = null)
@@ -71,15 +73,17 @@ namespace Rose.VExtension.PluginSystem.Activation
                 var service = new ZipPluginPackageService();
                 using (var archiveStream = package.GetStream())
                 {
-                    var manifestFile = service.UnpackXMLManifest(archiveStream);
-                    var packageFileSystem = service.GetFileSystem(archiveStream);
-                    var manifest = new XMLManifest(XDocument.Load(manifestFile));
-                    var configuration = manifest.CreateConfiguration();
-                    var scheme = new PluginUnpackingScheme(configuration, packageFileSystem);
-                
-                    service.Unpack(archiveStream, fileSystem, scheme);
+                    using (var manifestFile = service.UnpackXMLManifest(archiveStream))
+                    {
+                        var packageFileSystem = service.GetFileSystem(archiveStream);
+                        var manifest = new XMLManifest(XDocument.Load(manifestFile));
+                        var configuration = manifest.CreateConfiguration();
+                        var scheme = new PluginUnpackingScheme(configuration, packageFileSystem);
 
-                    return configuration;
+                        service.Unpack(archiveStream, fileSystem, scheme);
+
+                        return configuration;
+                    }
 
                 }
             }

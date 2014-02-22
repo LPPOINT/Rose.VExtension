@@ -1,0 +1,41 @@
+﻿@model Rose.VExtension.PluginSystem.Plugin
+
+@{
+    ViewBag.Title = "FileSystem debug";
+    Layout = "~/Views/Shared/_DebugLayout.cshtml";
+}
+
+<h2>FileSystem debug</h2>
+
+<h1>Файловая система для плагина @Model.Name</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <td>Тип:</td>
+        <td>@Model.FileSystem.GetType()</td>
+    </tr>
+    <tr>
+        <td>Создана:</td>
+        <td>@Model.FileSystem.IsExist</td>
+    </tr>
+</table>
+
+<h2>Файлы</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Имя</td>
+            <td>Путь</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var file in Model.FileSystem.EnumerateItems())
+        {
+            <tr>
+                <td><a href="@Url.Action("OpenFile", new RouteValueDictionary {{"filePath", file.Uri}, {"pluginId", Model.Id}})">@file.Name</a></td>
+                <td>@file.Uri</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -10,6 +10,15 @@ namespace Rose.VExtension.Server.Controllers
         protected static readonly IPluginTransactor transactor = new PluginTransactor(repository);
         protected static readonly IPluginsCollection collection = new PluginsCollection();
 
+        public PluginsController()
+        {
+            if (transactor.Out == null)
+            {
+                transactor.Out = collection;
+                transactor.ShouldInspectCollection = true;
+            }
+        }
+
         protected void AddAreaDataToken()
         {
             try

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 
@@ -34,7 +35,42 @@ namespace Rose.VExtension.PluginSystem.FileSystem
 
         public bool ContainsItem(IPluginFileSystemItem item)
         {
-            return GetItemStream(item) != null;
+            using (var stream = GetItemStream(item))
+            {
+                if (stream != null)
+                    return true;
+                return false;
+            }
+        }
+
+        public IEnumerable<IPluginFileSystemItem> EnumerateItems()
+        {
+            return EnumerateItems(string.Empty);
+        }
+
+        public IEnumerable<IPluginFileSystemItem> EnumerateItems(string path)
+        {
+            var files = Directory.EnumerateFiles(RootFolder);
+            var res = new List<IPluginFileSystemItem>();
+
+            foreach (var file in files)
+            {
+                if(path == string.Empty || file.StartsWith(path))
+                    res.Add(new FileSystemItem(file));
+            }
+
+            var dirs = Directory.GetDirectories(RootFolder);
+            foreach (var dir in dirs)
+            {
+                var inner = Directory.GetFiles(dir);
+                foreach (var s in inner)
+                {
+                    if (path == string.Empty || s.StartsWith(path))
+                        res.Add(new FileSystemItem(s));
+                }
+            }
+
+            return res;
         }
 
         private Stream ReadFile(string uri)

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -45,6 +46,16 @@ namespace Rose.VExtension.PluginSystem.FileSystem
             return stream;
         }
         public bool ContainsItem(IPluginFileSystemItem item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<IPluginFileSystemItem> EnumerateItems()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<IPluginFileSystemItem> EnumerateItems(string path)
         {
             throw new System.NotImplementedException();
         }
