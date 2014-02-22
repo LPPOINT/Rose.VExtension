@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Rose.VExtension.Server.Models.Plugin>
+
+@{
+    ViewBag.Title = "Plugins";
+    Layout = "~/Views/Shared/_DebugLayout.cshtml";
+}
+
+
+<h1>Плагины</h1>
+<form enctype="multipart/form-data" action="@Url.Action("AddPlugin")" method="POST">
+    <input name="upFile" type="file"/>
+    <input type="submit"/>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Имя</td>
+            <td>Статус</td>
+            <td>Действия</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var plugin in Model)
+        {
+            <tr>
+                <td>
+                    @plugin.Id
+                </td>
+                <td>
+                    @plugin.Name
+                </td>
+                <td>
+                    @plugin.Location
+                </td>
+                <td>
+                    
+                    <form action="@Url.Action("RemovePlugin")">
+                        <input type="hidden" name="pluginId" value="@plugin.Id"/>
+                        <input value="Удалить плагин" class="btn btn-danger" type="submit" />
+                    </form>
+                    
+                    <form action="@Url.Action("Details")">
+                        <input type="hidden" name="pluginId" value="@plugin.Id" />
+                        <input value="Details" class="btn btn-primary" type="submit" />
+                    </form>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form method="POST" action="@Url.Action("Sync")">
+    <input type="submit" value="Синхронизироать плагины" class="btn btn-primary"/>
+</form>

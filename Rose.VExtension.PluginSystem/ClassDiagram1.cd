@@ -1,0 +1,975 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Rose.VExtension.PluginSystem.Activation.AssembliesConfigItemWrapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAEBAAAAAAAQAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\AssembliesConfigItemWrapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.InitializationModule" Collapsed="true">
+    <Position X="15.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\InitializationModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.FileSystemPluginActivationContext" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\IPluginActivationContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.PackagePluginActivationContext" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAgAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\IPluginActivationContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.PlatformConfigWrapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\PlatformConfigWrapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.PluginAssembly" Collapsed="true">
+    <Position X="20.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Activation\PluginAssembly.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.PluginFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAQABAA=</HashCode>
+      <FileName>Activation\PluginFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.PluginFactoryModule" Collapsed="true">
+    <Position X="19" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\PluginFactoryModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.PluginInitializationException" Collapsed="true">
+    <Position X="20.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\PluginInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.PluginInitializer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAQAAA=</HashCode>
+      <FileName>Activation\PluginInitializer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.Platforms.CSPluginPlatform" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAABASAEAAACAAAAAAAAAQAAAAAAAAQ=</HashCode>
+      <FileName>Activation\Platforms\CSPluginPlatform.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.Platforms.JSPluginPlatform" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAEBAAAAAAAAAAAAQAABAAAAAA=</HashCode>
+      <FileName>Activation\Platforms\JSPluginPlatform.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.Platforms.PlatformAttribute" Collapsed="true">
+    <Position X="15.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\Platforms\PlatformAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.Platforms.PluginControllerInitializationException" Collapsed="true">
+    <Position X="12" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\Platforms\PluginControllerInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.Platforms.PluginControllerInitializer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\Platforms\PluginControllerInitializer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.Platforms.PluginPlatformProvider" Collapsed="true">
+    <Position X="12" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Activation\Platforms\PluginPlatformProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Activation.Platforms.RazorPluginPlatform" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAQAEAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Activation\Platforms\RazorPluginPlatform.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Common.SerializableDictionary&lt;TKey, TValue&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAABAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Common\SerializableDictionary.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Common.TypeSelector" Collapsed="true">
+    <Position X="22.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\TypeSelector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Configuration.ConfigurationItem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEgAAAAAAQAAAQAQAAAAAAAAACAAAAAAAgAA=</HashCode>
+      <FileName>Configuration\ConfigurationItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Configuration.ConfigurationItemContent" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAAAAEAAAACAAABAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Configuration\ConfigurationItemContent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Configuration.ConfigurationSyntax" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCwAAAAAAAAQAAAACAAAAgAAAAAAACAAAAAAAACAAAA=</HashCode>
+      <FileName>Configuration\ConfigurationSyntax.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Configuration.ConfigurationItemExtensions" Collapsed="true">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgACAAAAAAAAAAAAAAEAAAAIAIAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\IConfigurationItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Configuration.WrapperException" Collapsed="true">
+    <Position X="13.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\IConfigurationItemWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Configuration.UnexpectedConfigItemForWrappingException" Collapsed="true">
+    <Position X="24.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\IConfigurationItemWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Configuration.ConfigurationNavigator&lt;TWrapperType&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\IConfigurationNavigator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Configuration.ManifestParseException" Collapsed="true">
+    <Position X="3.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\IManifest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Configuration.MetaItemWrapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAEAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\MetaItemWrapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Configuration.PluginConfiguration" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgBAAAAAEAAAAAAQAAAAAAAEAACAAAAAAIQAAA=</HashCode>
+      <FileName>Configuration\PluginConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Configuration.XMLManifestParseException" Collapsed="true">
+    <Position X="3.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Configuration\XMLManifest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Configuration.XMLManifest" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAICAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\XMLManifest.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.FileSystem.BlobPluginFileSystem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAACAAAgCCEAAAGAAAAAAAAAAA=</HashCode>
+      <FileName>FileSystem\BlobPluginFileSystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.FileSystem.FileSystemItem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAgAAAAQAAAAAQAABCAAAAEAAAAA=</HashCode>
+      <FileName>FileSystem\FileSystemItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.FileSystem.LocalPluginFileSystem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAACCAAgCAAAAAGAAAACAAAAAQ=</HashCode>
+      <FileName>FileSystem\LocalPluginFileSystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.FileSystem.PluginContentFile" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAACAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>FileSystem\PluginContentFile.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.JavascriptConstatns" Collapsed="true">
+    <Position X="17.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAEAAAAAAAAAAIAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Javascript\JavascriptConstatns.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.JavascriptContextExtensions" Collapsed="true">
+    <Position X="19" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Javascript\JavascriptContextExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.JavascriptInjectionException" Collapsed="true">
+    <Position X="22.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Javascript\JavascriptInjector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.JavascriptInjector" Collapsed="true">
+    <Position X="24.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAgAgAAAABAggAAAwAAAAAAACAAAAgAAAAAA=</HashCode>
+      <FileName>Javascript\JavascriptInjector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.JavascriptModule" Collapsed="true">
+    <Position X="12" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Javascript\JavascriptModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.JavascriptSourceProvider" Collapsed="true">
+    <Position X="15.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Javascript\JavascriptSourceProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.Log.JavascriptLogManager" Collapsed="true">
+    <Position X="10.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Javascript\Log\JavascriptLogManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.Log.JavascriptNLogger" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAABAAAAAAABAAAAAAAEAEAAA=</HashCode>
+      <FileName>Javascript\Log\JavascriptNLogger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.Wrappers.JavascriptWrapper" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Javascript\Wrappers\IJavascriptWrapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.Wrappers.NotWrappedAttribute" Collapsed="true">
+    <Position X="10.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Javascript\Wrappers\NotWrappedAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.Wrappers.PluginWrapper" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Javascript\Wrappers\PluginWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.Wrappers.RequestWrapper" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Javascript\Wrappers\RequestWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.Wrappers.ResponseWrapper" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Javascript\Wrappers\ResponseWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Javascript.Wrappers.WrapperAttribute" Collapsed="true">
+    <Position X="12" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Javascript\Wrappers\WrapperAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Packing.ZipPluginPackageFileSystem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Packing\IPluginPackageFileSystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Packing.PluginPackageFileSystemExtension" Collapsed="true">
+    <Position X="24.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Packing\IPluginPackageFileSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Packing.PluginPackageServiceExtensions" Collapsed="true">
+    <Position X="10.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Packing\IPluginPackageService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Packing.PluginUnpackingScheme" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAI=</HashCode>
+      <FileName>Packing\IPluginUnpackingScheme.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Packing.LocalStoragePluginPackage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAQBAAAAAAAA=</HashCode>
+      <FileName>Packing\LocalStoragePluginPackage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Packing.StreamPluginPackage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAIAAAAAQBAAAAAAAA=</HashCode>
+      <FileName>Packing\StreamPluginPackage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Packing.ZipPluginPackageService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Packing\ZipPluginPackageService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Plugin" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAACAACAAAQAEgAAAAAQAAgAAAKAAmAAAAAAAggA=</HashCode>
+      <FileName>Plugin.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Reservation.PluginReservator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAAgAAQAAE=</HashCode>
+      <FileName>Reservation\IPluginReservator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Reservation.PluginCollectionReservationRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAEAAAAQAAAAAAAAAAAAAAAAABBA=</HashCode>
+      <FileName>Reservation\IPluginsReservationRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Reservation.PluginReservationManager" Collapsed="true">
+    <Position X="17.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAKAAAAAAAAAAAAAABAAAAAAoAAAAAAAA=</HashCode>
+      <FileName>Reservation\PluginReservationManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Resources.PluginResourcesProvider" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAAAAAAAAAAEAAAAAAAAAAAAACAAAAAUAAAAAAAAAAA=</HashCode>
+      <FileName>Resources\IPluginResourcesProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Resources.PluginDataNinjectModule" Collapsed="true">
+    <Position X="15.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Resources\PluginDataNinjectModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Resources.PluginResourceAccessToken" Collapsed="true">
+    <Position X="20.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAABAACAAAAAAAAAAAAABAAAEAACAAAAAABAAA=</HashCode>
+      <FileName>Resources\PluginResourceAccessToken.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Resources.PluginResourcesTokenGenerator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Resources\PluginResourcesTokenGenerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Runtime.JavascriptDomainException" Collapsed="true">
+    <Position X="20.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Runtime\JavascriptDomain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Runtime.JavascriptDomain" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Runtime\JavascriptDomain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Runtime.PluginDomain" Collapsed="true">
+    <Position X="6.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Runtime\PluginDomain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Runtime.PluginRequest" Collapsed="true">
+    <Position X="13.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Runtime\PluginRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Runtime.PluginRequestFilter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Runtime\PluginRequestFilter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Runtime.PluginResponse" Collapsed="true">
+    <Position X="10.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Runtime\PluginResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Runtime.RazorDomainModel" Collapsed="true">
+    <Position X="10.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAEAAAAAAgAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Runtime\RazorDomain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Runtime.RazorDomain" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Runtime\RazorDomain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Storage.PluginStorageException" Collapsed="true">
+    <Position X="13.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Storage\PluginStorage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Storage.PluginStorage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAgAAwFAAAQgAAAUAgAgBgAAGAAAAAAAAAAE=</HashCode>
+      <FileName>Storage\PluginStorage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Storage.PluginStorageItem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAEAAACEAAAAgAAAAAQA=</HashCode>
+      <FileName>Storage\PluginStorageItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Storage.PluginStorageItemEventArgs" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Storage\PluginStorageItemEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Storage.PluginStorageItemUpdatedEventArgs" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Storage\PluginStorageItemEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Storage.PluginStorageItemRemovedEventArgs" Collapsed="true">
+    <Position X="2.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Storage\PluginStorageItemEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Transactions.FileSystemTransactionNode" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Transactions\FileSystemTransactionNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Transactions.PluginTransaction" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Transactions\IPluginTransaction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Transactions.PackageTransactionNode" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACEAAAAAAAAAIAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Transactions\PackageTransactionNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Transactions.RAMTransactionNode" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Transactions\RAMTransactionNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Transactions.TransactionBuilder" Collapsed="true">
+    <Position X="20.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACABAAAIAAAAAAAAACAEACAAAAAAA=</HashCode>
+      <FileName>Transactions\TransactionBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.UserSettings.ControlNameAttribute" Collapsed="true">
+    <Position X="22.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserSettings\ControlNameAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.UserSettings.SettingsControlActivator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>UserSettings\ISettingsControlActivator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.UserSettings.ListSettingsControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>UserSettings\ListSettingsControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.UserSettings.PasswordSettingsControl" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserSettings\PasswordSettingsControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.UserSettings.SwitchSettingsControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>UserSettings\SwitchSettingsControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.UserSettings.TextSettingsControl" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>UserSettings\TextSettingsControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.UserSettings.UserSettingsCollection" Collapsed="true">
+    <Position X="10.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAACAAgAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserSettings\UserSettingsCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.UserSettings.XDocumentSettingsSource" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserSettings\XDocumentSettingsSource.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Validation.PluginValidationException" Collapsed="true">
+    <Position X="20.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validation\PluginValidationException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rose.VExtension.PluginSystem.Validation.PluginValidator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validation\PluginValidator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="Rose.VExtension.PluginSystem.Activation.IPluginActivationContext" Collapsed="true">
+    <Position X="22.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\IPluginActivationContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Activation.IPluginControllerInitializer" Collapsed="true">
+    <Position X="10.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\IPluginControllerInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Activation.IPluginFactory" Collapsed="true">
+    <Position X="12" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Activation\IPluginFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Activation.IPluginInitializer" Collapsed="true">
+    <Position X="17.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Activation\IPluginInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Activation.Platforms.IPluginPlatform" Collapsed="true">
+    <Position X="10.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAEAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Activation\Platforms\IPluginPlatform.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Configuration.IConfigurationSyntax" Collapsed="true">
+    <Position X="15.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCwAAAAAAAAQAAAACAAAAgAAAAAAACAAAAAAAACAAAA=</HashCode>
+      <FileName>Configuration\ConfigurationSyntax.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Configuration.IConfigurationItem" Collapsed="true">
+    <Position X="10.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAQAAAQAQAAAAAAAAACAAAAAAAgAA=</HashCode>
+      <FileName>Configuration\IConfigurationItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Configuration.IConfigurationItemWrapper" Collapsed="true">
+    <Position X="12" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\IConfigurationItemWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Configuration.IConfigurationNavigator" Collapsed="true">
+    <Position X="13.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\IConfigurationNavigator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Configuration.IManifest" Collapsed="true">
+    <Position X="20.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\IManifest.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Configuration.IPluginConfiguration" Collapsed="true">
+    <Position X="24.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAEAAAAAAAAAAAAAAEAACAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\IPluginConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.FileSystem.IPluginFileSystem" Collapsed="true">
+    <Position X="13.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAgCAAAAAGAAAAAAAAAAA=</HashCode>
+      <FileName>FileSystem\IPluginFileSystem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.FileSystem.IPluginFileSystemItem" Collapsed="true">
+    <Position X="15.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>FileSystem\IPluginFileSystemItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Javascript.Log.IJavascriptLogger" Collapsed="true">
+    <Position X="17.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAABAAAAAAABAAAAAAAEAEAAA=</HashCode>
+      <FileName>Javascript\Log\IJavascriptLogger.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Javascript.Wrappers.IJavascriptWrapper" Collapsed="true">
+    <Position X="19" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Javascript\Wrappers\IJavascriptWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Packing.IPluginPackage" Collapsed="true">
+    <Position X="19" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAQBAAAAAAAA=</HashCode>
+      <FileName>Packing\IPluginPackage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Packing.IPluginPackageFileSystem" Collapsed="true">
+    <Position X="20.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Packing\IPluginPackageFileSystem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Packing.IPluginPackageService" Collapsed="true">
+    <Position X="22.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Packing\IPluginPackageService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Packing.IPluginUnpackingScheme" Collapsed="true">
+    <Position X="13.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Packing\IPluginUnpackingScheme.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Permissions.IPluginPermissions" Collapsed="true">
+    <Position X="24.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Permissions\IPluginPermissions.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Reservation.IPluginReservator" Collapsed="true">
+    <Position X="13.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAAgAAQAAE=</HashCode>
+      <FileName>Reservation\IPluginReservator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Reservation.IPluginsReservationRepository" Collapsed="true">
+    <Position X="19" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAAAABBA=</HashCode>
+      <FileName>Reservation\IPluginsReservationRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Resources.IPluginResourcesProvider" Collapsed="true">
+    <Position X="15.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAA=</HashCode>
+      <FileName>Resources\IPluginResourcesProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Resources.IPluginResourceTokenGenerator" Collapsed="true">
+    <Position X="17.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Resources\IPluginResourceTokenGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Runtime.IPluginRequestFilter" Collapsed="true">
+    <Position X="12" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Runtime\IPluginRequestFilter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Storage.IPluginStorage" Collapsed="true">
+    <Position X="20.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAgAAwEAAAAAAAAUAgAgAgAAGAAAAAAAAAAA=</HashCode>
+      <FileName>Storage\IPluginStorage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Storage.IPluginStorageItem" Collapsed="true">
+    <Position X="22.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAEAAAAAAAAAgAAAAAQA=</HashCode>
+      <FileName>Storage\IPluginStorageItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Transactions.IPluginTransaction" Collapsed="true">
+    <Position X="24.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Transactions\IPluginTransaction.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Transactions.IPluginTransactionExecutor" Collapsed="true">
+    <Position X="10.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Transactions\IPluginTransactionExecutor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Transactions.IPluginTransactionNode" Collapsed="true">
+    <Position X="12" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Transactions\IPluginTransactionNode.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.UserSettings.ISettingsControl" Collapsed="true">
+    <Position X="17.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserSettings\ISettingsControl.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.UserSettings.ISettingsControlActivator" Collapsed="true">
+    <Position X="19" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserSettings\ISettingsControlActivator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.UserSettings.ISettingsSource" Collapsed="true">
+    <Position X="20.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserSettings\ISettingsSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.UserSettings.ITitleableSettingsControl" Collapsed="true">
+    <Position X="22.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserSettings\ITitleableSettingsControl.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.UserSettings.IValueableSettingsControl&lt;TType&gt;" Collapsed="true">
+    <Position X="24.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>UserSettings\IValueableSettingsControl.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rose.VExtension.PluginSystem.Validation.IPluginValidator" Collapsed="true">
+    <Position X="15.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validation\IPluginValidator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Rose.VExtension.PluginSystem.Activation.PacckageType" Collapsed="true">
+    <Position X="10.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\PluginFactory.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Rose.VExtension.PluginSystem.Activation.PluginStatus" Collapsed="true">
+    <Position X="13.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAgAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\PluginStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Rose.VExtension.PluginSystem.Activation.Platforms.PlatformType" Collapsed="true">
+    <Position X="12" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAACAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activation\Platforms\IPluginPlatform.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

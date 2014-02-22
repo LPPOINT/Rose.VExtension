@@ -1,0 +1,22 @@
+// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+/**
+ * Global variable containing the query we'd like to pass to Flickr. In this
+ * case, kittens!
+ *
+ * @type {string}
+ */
+
+document.addEventListener('DOMContentLoaded', function () {
+
+});
+
+chrome.tabs.getSelected(null, function (tab) {
+    chrome.tabs.sendRequest(tab.id, { method: "getText" }, function (response) {
+        if (response.method == "getText") {
+            document.getElementById("htmlwillbehere").innerText = response.data.substring(0, 40);
+        }
+    });
+});

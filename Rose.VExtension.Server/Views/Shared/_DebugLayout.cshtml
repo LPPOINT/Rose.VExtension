@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+        <link href="~/Content/bootstrap-responsive.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    </head>
+
+@{
+    if (ViewBag.ActiveNavbarItem == null)
+    {
+        ViewBag.ActiveNavbarItem = 1;
+    }
+}
+
+    <body>
+        
+        
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container" style="width: auto; padding: 0 20px;">
+                    <a class="brand" href="#">Отладка</a>
+                    <ul class="nav">
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container">
+            @RenderBody()
+        </div>
+    </body>
+</html>

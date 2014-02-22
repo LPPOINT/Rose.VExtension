@@ -1,0 +1,17 @@
+﻿@using Rose.VExtension.Server.Models.SettingsVisualization
+
+@model Rose.VExtension.PluginSystem.Plugin
+
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_DebugLayout.cshtml";
+}
+
+
+<hr/>
+
+@foreach (var setting in Model.Settings)
+{
+    @Html.PluginSettings(setting)
+    <hr/>
+}

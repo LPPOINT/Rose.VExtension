@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Plugins.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="PluginsTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Plugins" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="PluginsContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Plugins" EntityType="Plugins.Plugin" cg:GetterAccess="Internal" />
+          <EntitySet Name="ResourceTokens" EntityType="Plugins.ResourceToken" />
+          <AssociationSet Name="PluginResourceToken" Association="Plugins.PluginResourceToken">
+            <End Role="Plugin" EntitySet="Plugins" />
+            <End Role="ResourceToken" EntitySet="ResourceTokens" />
+          </AssociationSet>
+          <EntitySet Name="StorageItems" EntityType="Plugins.StorageItem" />
+          <AssociationSet Name="PluginStorageItem" Association="Plugins.PluginStorageItem">
+            <End Role="Plugin" EntitySet="Plugins" />
+            <End Role="StorageItem" EntitySet="StorageItems" />
+          </AssociationSet>
+          <EntitySet Name="PluginAssociationSet" EntityType="Plugins.PluginAssociation" />
+          <EntitySet Name="TestSet" EntityType="Plugins.Test" />
+          <AssociationSet Name="TestPlugin" Association="Plugins.TestPlugin">
+            <End Role="Test" EntitySet="TestSet" />
+            <End Role="Plugin" EntitySet="Plugins" />
+          </AssociationSet>
+          <EntitySet Name="PluginFileSystems" EntityType="Plugins.PluginFileSystem" />
+          <AssociationSet Name="PluginPluginFileSystem" Association="Plugins.PluginPluginFileSystem">
+            <End Role="Plugin" EntitySet="Plugins" />
+            <End Role="PluginFileSystem" EntitySet="PluginFileSystems" />
+          </AssociationSet>
+          <EntitySet Name="PluginPackages" EntityType="Plugins.PluginPackage" />
+          <AssociationSet Name="PluginPluginPackage" Association="Plugins.PluginPluginPackage">
+            <End EntitySet="Plugins" Role="Plugin" />
+            <End EntitySet="PluginPackages" Role="PluginPackage" />
+          </AssociationSet>
+          </EntityContainer>
+        <EnumType Name="PluginLocation" >
+          <Member Name="InRam" />
+          <Member Name="InFileSystem" />
+          <Member Name="InPackage" />
+          <Member Name="Undefined" />
+        </EnumType>
+        <EntityType Name="Plugin" cg:TypeAccess="Public">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Location" Type="Plugins.PluginLocation" Nullable="false" />
+          <NavigationProperty Name="ResourceTokens" Relationship="Plugins.PluginResourceToken" FromRole="Plugin" ToRole="ResourceToken" />
+          <NavigationProperty Name="StorageItems" Relationship="Plugins.PluginStorageItem" FromRole="Plugin" ToRole="StorageItem" />
+          <Property Name="Version" Type="String" Nullable="false" />
+          <NavigationProperty Name="Test" Relationship="Plugins.TestPlugin" FromRole="Plugin" ToRole="Test" />
+          <NavigationProperty Name="PluginFileSystem" Relationship="Plugins.PluginPluginFileSystem" FromRole="Plugin" ToRole="PluginFileSystem" />
+          <NavigationProperty Name="PluginPackage" Relationship="Plugins.PluginPluginPackage" FromRole="Plugin" ToRole="PluginPackage" />
+        </EntityType>
+        <EntityType Name="ResourceToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Plugin" Relationship="Plugins.PluginResourceToken" FromRole="ResourceToken" ToRole="Plugin" />
+          <Property Name="PluginId" Type="String" Nullable="false" />
+          <Property Name="ResourceName" Type="String" Nullable="false" />
+          <Property Name="Lifetime" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="PluginResourceToken">
+          <End Type="Plugins.Plugin" Role="Plugin" Multiplicity="1" />
+          <End Type="Plugins.ResourceToken" Role="ResourceToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plugin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResourceToken">
+              <PropertyRef Name="PluginId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StorageItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" />
+          <NavigationProperty Name="Plugin" Relationship="Plugins.PluginStorageItem" FromRole="StorageItem" ToRole="Plugin" />
+          <Property Name="PluginId" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="PluginStorageItem">
+          <End Type="Plugins.Plugin" Role="Plugin" Multiplicity="1" />
+          <End Type="Plugins.StorageItem" Role="StorageItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plugin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StorageItem">
+              <PropertyRef Name="PluginId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PluginAssociation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Seed" Type="String" Nullable="false" />
+          <Property Name="PluginId" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Plugin" Relationship="Plugins.TestPlugin" FromRole="Test" ToRole="Plugin" />
+        </EntityType>
+        <Association Name="TestPlugin">
+          <End Type="Plugins.Test" Role="Test" Multiplicity="*" />
+          <End Type="Plugins.Plugin" Role="Plugin" Multiplicity="1" />
+        </Association>
+        <EntityType Name="PluginFileSystem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PluginId" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LocalPluginFileSystem" BaseType="Plugins.PluginFileSystem" >
+          <Property Name="RootFolder" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="PluginPluginFileSystem">
+          <End Type="Plugins.Plugin" Role="Plugin" Multiplicity="1" />
+          <End Type="Plugins.PluginFileSystem" Role="PluginFileSystem" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="PluginPackage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="PluginId" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="PluginPluginPackage">
+          <End Type="Plugins.Plugin" Multiplicity="1" Role="Plugin" />
+          <End Type="Plugins.PluginPackage" Multiplicity="0..1" Role="PluginPackage" />
+        </Association>
+        <EntityType Name="LocalStoragePluginPackage" BaseType="Plugins.PluginPackage">
+          <Property Name="RootPath" Nullable="false" Type="String" />
+        </EntityType>
+        <EntityType Name="StreamPackage" BaseType="Plugins.PluginPackage" >
+          <Property Name="StreamFileUri" Type="String" Nullable="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Plugins" />
+        <Alias Key="Target" Value="Plugins.Store" />
+        <EntityContainerMapping CdmEntityContainer="PluginsContainer" StorageEntityContainer="PluginsTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

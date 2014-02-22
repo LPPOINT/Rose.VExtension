@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EB6DD852-3ED1-4FC3-8A7A-CB229ECA5DF4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rose.VExtension.PluginSystem</RootNamespace>
+    <AssemblyName>Rose.VExtension.PluginSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\..\..\..\Downloads\HtmlAgilityPack.1.4.6 (2)\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=3.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WindowsAzure.Storage.3.0.2.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Noesis.Javascript">
+      <HintPath>..\..\..\..\..\Desktop\Noesis.Javascript v0.7 - Binaries\Noesis.Javascript v0.7 - Binaries\.Net4.0\x86\Noesis.Javascript.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.4.1\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activation\ActivationInfo.cs" />
+    <Compile Include="Activation\ActivationStepAttribute.cs" />
+    <Compile Include="Activation\ActivationStepName.cs" />
+    <Compile Include="Activation\AssembliesConfigItemWrapper.cs" />
+    <Compile Include="Activation\IActivationStepService.cs" />
+    <Compile Include="Activation\Platforms\PlatformAttribute.cs" />
+    <Compile Include="Activation\Platforms\RazorPluginPlatform.cs" />
+    <Compile Include="Activation\PluginCoreStepProvider.cs" />
+    <Compile Include="Common\Check.cs" />
+    <Compile Include="Common\ExceptionExtensions.cs" />
+    <Compile Include="Configuration\ConfigItemNotFoundException.cs" />
+    <Compile Include="Console\ConsoleCommand.cs" />
+    <Compile Include="Console\ConsoleCommandArgument.cs" />
+    <Compile Include="Console\ConsoleCommandArgumentsCollection.cs" />
+    <Compile Include="Console\ConsoleCommandParser.cs" />
+    <Compile Include="Console\ConsoleResponse.cs" />
+    <Compile Include="Console\IConsolableDomain.cs" />
+    <Compile Include="Console\IConsoleCommandParser.cs" />
+    <Compile Include="Packing\IPluginPackageProvider.cs" />
+    <Compile Include="Packing\LocalStoragePackageProvider.cs" />
+    <Compile Include="Packing\StreamPackageProvider.cs" />
+    <Compile Include="Packing\StreamPluginPackage.cs" />
+    <Compile Include="Reservation\IPluginReservator.cs" />
+    <Compile Include="Reservation\IPluginsReservationRepository.cs" />
+    <Compile Include="Activation\Platforms\CSPluginPlatform.cs" />
+    <Compile Include="Activation\IPluginActivationContext.cs" />
+    <Compile Include="Activation\IPluginControllerInitializer.cs" />
+    <Compile Include="Activation\Platforms\IPluginPlatform.cs" />
+    <Compile Include="Activation\Platforms\JSPluginPlatform.cs" />
+    <Compile Include="Activation\PlatformConfigWrapper.cs" />
+    <Compile Include="Activation\PluginAssembly.cs" />
+    <Compile Include="Activation\Platforms\PluginControllerStepProvider.cs" />
+    <Compile Include="Activation\Platforms\PluginPlatformProvider.cs" />
+    <Compile Include="Activation\PluginStatus.cs" />
+    <Compile Include="Configuration\ConfigurationItemContent.cs" />
+    <Compile Include="Configuration\MetaItemWrapper.cs" />
+    <Compile Include="Configuration\PluginConfiguration.cs" />
+    <Compile Include="Configuration\ConfigurationItem.cs" />
+    <Compile Include="Configuration\ConfigurationSyntax.cs" />
+    <Compile Include="Configuration\IPluginConfiguration.cs" />
+    <Compile Include="Configuration\IConfigurationItem.cs" />
+    <Compile Include="Configuration\IConfigurationItemWrapper.cs" />
+    <Compile Include="Configuration\IConfigurationNavigator.cs" />
+    <Compile Include="Configuration\IManifest.cs" />
+    <Compile Include="Configuration\XMLManifest.cs" />
+    <Compile Include="Resources\IPluginResourcesProvider.cs" />
+    <Compile Include="Resources\IPluginResourceTokenGenerator.cs" />
+    <Compile Include="Resources\PluginDataNinjectModule.cs" />
+    <Compile Include="Resources\PluginResourceAccessToken.cs" />
+    <Compile Include="Resources\PluginResourcesTokenGenerator.cs" />
+    <Compile Include="FileSystem\BlobPluginFileSystem.cs" />
+    <Compile Include="FileSystem\FileSystemItem.cs" />
+    <Compile Include="FileSystem\IPluginFileSystem.cs" />
+    <Compile Include="FileSystem\IPluginFileSystemItem.cs" />
+    <Compile Include="FileSystem\LocalPluginFileSystem.cs" />
+    <Compile Include="FileSystem\PluginContentFile.cs" />
+    <Compile Include="Activation\IPluginInitializer.cs" />
+    <Compile Include="Activation\IPluginFactory.cs" />
+    <Compile Include="Javascript\Log\IJavascriptLogger.cs" />
+    <Compile Include="Javascript\JavascriptConstatns.cs" />
+    <Compile Include="Javascript\JavascriptContextExtensions.cs" />
+    <Compile Include="Javascript\Log\JavascriptLogManager.cs" />
+    <Compile Include="Javascript\JavascriptModule.cs" />
+    <Compile Include="Javascript\Log\JavascriptNLogger.cs" />
+    <Compile Include="Javascript\Wrappers\IJavascriptWrapper.cs" />
+    <Compile Include="Javascript\Wrappers\NotWrappedAttribute.cs" />
+    <Compile Include="Javascript\Wrappers\PluginWrapper.cs" />
+    <Compile Include="Javascript\Wrappers\RequestWrapper.cs" />
+    <Compile Include="Javascript\Wrappers\ResponseWrapper.cs" />
+    <Compile Include="Javascript\Wrappers\WrapperAttribute.cs" />
+    <Compile Include="Packing\IPluginPackage.cs" />
+    <Compile Include="Packing\IPluginPackageFileSystem.cs" />
+    <Compile Include="Packing\IPluginPackageService.cs" />
+    <Compile Include="Packing\IPluginUnpackingScheme.cs" />
+    <Compile Include="Packing\LocalStoragePluginPackage.cs" />
+    <Compile Include="Packing\ZipPluginPackageService.cs" />
+    <Compile Include="Activation\PluginInitializer.cs" />
+    <Compile Include="Activation\PluginFactory.cs" />
+    <Compile Include="Activation\PluginFactoryModule.cs" />
+    <Compile Include="Permissions\IPluginPermissions.cs" />
+    <Compile Include="Reservation\PluginReservationManager.cs" />
+    <Compile Include="Common\SerializableDictionary.cs" />
+    <Compile Include="Runtime\IPluginRequestFilter.cs" />
+    <Compile Include="Runtime\JavascriptDomain.cs" />
+    <Compile Include="Javascript\JavascriptInjector.cs" />
+    <Compile Include="Javascript\JavascriptSourceProvider.cs" />
+    <Compile Include="Runtime\PluginRequestFilter.cs" />
+    <Compile Include="Runtime\RazorDomain.cs" />
+    <Compile Include="Storage\IPluginStorage.cs" />
+    <Compile Include="Storage\IPluginStorageItem.cs" />
+    <Compile Include="Plugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runtime\PluginDomain.cs" />
+    <Compile Include="Runtime\PluginRequest.cs" />
+    <Compile Include="Runtime\PluginResponse.cs" />
+    <Compile Include="Storage\PluginStorage.cs" />
+    <Compile Include="Storage\PluginStorageItem.cs" />
+    <Compile Include="Storage\PluginStorageItemEventArgs.cs" />
+    <Compile Include="Transactions\FileSystemTransactionNode.cs" />
+    <Compile Include="Transactions\IPluginTransaction.cs" />
+    <Compile Include="Transactions\IPluginTransactionExecutor.cs" />
+    <Compile Include="Transactions\IPluginTransactionNode.cs" />
+    <Compile Include="Transactions\PackageTransactionNode.cs" />
+    <Compile Include="Transactions\RAMTransactionNode.cs" />
+    <Compile Include="Transactions\TransactionBuilder.cs" />
+    <Compile Include="UserSettings\ControlNameAttribute.cs" />
+    <Compile Include="UserSettings\ISettingsControlActivator.cs" />
+    <Compile Include="UserSettings\ISettingsProfile.cs" />
+    <Compile Include="UserSettings\ISettingsSource.cs" />
+    <Compile Include="UserSettings\IValueableSettingsControl.cs" />
+    <Compile Include="UserSettings\ISettingsControl.cs" />
+    <Compile Include="UserSettings\ITitleableSettingsControl.cs" />
+    <Compile Include="UserSettings\ListSettingsControl.cs" />
+    <Compile Include="UserSettings\PasswordSettingsControl.cs" />
+    <Compile Include="UserSettings\SwitchSettingsControl.cs" />
+    <Compile Include="UserSettings\TextSettingsControl.cs" />
+    <Compile Include="UserSettings\UserSettingsCollection.cs" />
+    <Compile Include="UserSettings\XDocumentSettingsSource.cs" />
+    <Compile Include="Validation\IPluginValidator.cs" />
+    <Compile Include="Validation\PluginValidationException.cs" />
+    <Compile Include="Validation\PluginValidator.cs" />
+    <Compile Include="Activation\InitializationModule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Permissions\PermissionSection.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

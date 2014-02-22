@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+
+  "name": "VK Extension",
+  "description": "This extension demonstrates a browser action with kittens.",
+  "version": "1.0",
+
+  "permissions": [
+	"https://vk.com/*",
+	"tabs",
+	"storage" 
+  ],
+
+  "browser_action": {
+    "default_icon": "img/icon.png",
+    "default_popup": "popup.html"
+  },
+
+   "background": {
+    "scripts": [  
+	  "jquery.js",
+      "background.js"
+    ]
+  },
+
+   "content_scripts": [
+    {
+      "matches": ["http://vk.com/*"],
+      "js": ["content.js"],
+	  "run_at": "document_end"
+    }
+  ]
+
+}
