@@ -18,6 +18,7 @@ namespace Rose.VExtension.Server.Models.DbInteraction
         public PluginsContainer()
             : base("name=PluginsContainer")
         {
+
             Plugins = Set<Plugin>();
         }
     
