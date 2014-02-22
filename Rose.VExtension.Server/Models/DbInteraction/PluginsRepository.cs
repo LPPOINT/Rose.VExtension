@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Rose.VExtension.Server.Models.DbInteraction
 {
@@ -46,9 +48,23 @@ namespace Rose.VExtension.Server.Models.DbInteraction
 
         }
 
+        private static readonly Random random = new Random((int)DateTime.Now.Ticks);
+        private string RandomString(int size)
+        {
+            return Guid.NewGuid().ToString("N").Substring(0, size);
+        }
+
         public string GenerateNewId()
         {
-            return Guid.NewGuid().ToString();
+            string randomStr;
+            do
+            {
+                randomStr = RandomString(9);
+
+            } while (IsAssociatedId(randomStr));
+
+            return randomStr;
+
         }
 
         #endregion
