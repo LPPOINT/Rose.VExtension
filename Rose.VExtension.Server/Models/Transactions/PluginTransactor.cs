@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using NLog;
 using Rose.VExtension.PluginSystem.Activation;
 using Rose.VExtension.PluginSystem.Transactions;
 using Rose.VExtension.Server.Models.DbInteraction;
@@ -62,7 +63,6 @@ namespace Rose.VExtension.Server.Models.Transactions
 
         public IPluginsCollection Out { get; set; }
         public bool ShouldInspectCollection { get; set; }
-
         public bool ShouldInspectCollectionInternal
         {
             get { return ShouldInspectCollection && Out != null; }
@@ -140,7 +140,13 @@ namespace Rose.VExtension.Server.Models.Transactions
                             var fs = transaction.From as FileSystemTransactionNode;
                             var packageMiddleware = new PackageMiddleware();
                             var package = packageMiddleware.CreateBase(pluginEntity.PluginPackage);
-                            var plugin = factory.ToRunnable(fs.FileSystem, package);
+                            var handler = new LogInitializationHandler(LogManager.GetCurrentClassLogger());
+                            var plugin = factory.ToRunnable(fs.FileSystem, package, handler);
+
+                            if (handler.ContainsFatalExceptions())
+                            {
+                                throw handler.CreateInitializationException();
+                            }
 
                             Repository.SetPluginLocation(plugin.Id, PluginLocation.InRam);
 

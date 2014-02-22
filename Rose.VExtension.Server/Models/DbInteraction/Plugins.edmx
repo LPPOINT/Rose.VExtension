@@ -40,6 +40,11 @@
             <End EntitySet="Plugins" Role="Plugin" />
             <End EntitySet="PluginPackages" Role="PluginPackage" />
           </AssociationSet>
+          <EntitySet Name="TransactionSet" EntityType="Plugins.Transaction" />
+          <AssociationSet Name="PluginTransaction" Association="Plugins.PluginTransaction">
+            <End Role="Plugin" EntitySet="Plugins" />
+            <End Role="Transaction" EntitySet="TransactionSet" />
+          </AssociationSet>
           </EntityContainer>
         <EnumType Name="PluginLocation" >
           <Member Name="InRam" />
@@ -60,6 +65,7 @@
           <NavigationProperty Name="Test" Relationship="Plugins.TestPlugin" FromRole="Plugin" ToRole="Test" />
           <NavigationProperty Name="PluginFileSystem" Relationship="Plugins.PluginPluginFileSystem" FromRole="Plugin" ToRole="PluginFileSystem" />
           <NavigationProperty Name="PluginPackage" Relationship="Plugins.PluginPluginPackage" FromRole="Plugin" ToRole="PluginPackage" />
+          <NavigationProperty Name="Transactions" Relationship="Plugins.PluginTransaction" FromRole="Plugin" ToRole="Transaction" />
         </EntityType>
         <EntityType Name="ResourceToken">
           <Key>
@@ -155,6 +161,26 @@
         <EntityType Name="StreamPackage" BaseType="Plugins.PluginPackage" >
           <Property Name="StreamFileUri" Type="String" Nullable="false" />
         </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Plugin" Relationship="Plugins.PluginTransaction" FromRole="Transaction" ToRole="Plugin" />
+          <Property Name="PluginId" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="PluginTransaction">
+          <End Type="Plugins.Plugin" Role="Plugin" Multiplicity="1" />
+          <End Type="Plugins.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plugin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="PluginId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

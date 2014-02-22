@@ -19,6 +19,7 @@ namespace Rose.VExtension.Server.Models.DbInteraction
             this.ResourceTokens = new HashSet<ResourceToken>();
             this.StorageItems = new HashSet<StorageItem>();
             this.Test = new HashSet<Test>();
+            this.Transactions = new HashSet<Transaction>();
         }
     
         public string Id { get; set; }
@@ -31,5 +32,6 @@ namespace Rose.VExtension.Server.Models.DbInteraction
         public virtual ICollection<Test> Test { get; set; }
         public virtual PluginFileSystem PluginFileSystem { get; set; }
         public virtual PluginPackage PluginPackage { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

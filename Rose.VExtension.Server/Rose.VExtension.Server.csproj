@@ -198,6 +198,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DbInteraction\Transaction.cs">
+      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Middleware\IFileSystemMiddleware.cs" />
     <Compile Include="Models\Middleware\IPackageMiddleware.cs" />
     <Compile Include="Models\Middleware\IPluginComponentMiddleware.cs" />
@@ -251,6 +254,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Models\DbInteraction\PluginsRepository.cs" />
+    <Compile Include="Models\Transactions\LogInitializationHandler.cs" />
     <Compile Include="Models\Transactions\PluginsSyncResult.cs" />
     <Compile Include="Models\Transactions\PluginTransactionResult.cs" />
     <Compile Include="Models\Transactions\PluginTransactor.cs" />

@@ -23,6 +23,8 @@
         <InheritanceConnector EntityType="Plugins.LocalStoragePluginPackage" />
         <EntityTypeShape EntityType="Plugins.StreamPackage" Width="1.5" PointX="7.375" PointY="8.25" />
         <InheritanceConnector EntityType="Plugins.StreamPackage" />
+        <EntityTypeShape EntityType="Plugins.Transaction" Width="1.5" PointX="12" PointY="7.25" />
+        <AssociationConnector Association="Plugins.PluginTransaction" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
