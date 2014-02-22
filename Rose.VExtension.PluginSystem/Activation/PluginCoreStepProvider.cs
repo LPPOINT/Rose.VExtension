@@ -34,7 +34,7 @@ namespace Rose.VExtension.PluginSystem.Activation
             catch (Exception e)
             {
                 plugin.Version = new Version(1, 1, 1, 1);
-                LogManager.GetCurrentClassLogger().WarnException("Не удалось определить версию плагина", e);
+                throw new ActivationStepException("Не удалось разобрать версию плагина", e, ActivationStepName.VersionActivation);
             }
         }
 
@@ -50,8 +50,7 @@ namespace Rose.VExtension.PluginSystem.Activation
             }
             catch (Exception e)
             {
-                plugin.Meta = new Dictionary<string, string>();
-                LogManager.GetCurrentClassLogger().Warn("Ошибка инициализации мета-информации плагина", e);
+                throw new ActivationStepException("Не удалось разобрать мета-информации о плагине", e, ActivationStepName.MetaActivation);
             }
         }
 
@@ -64,7 +63,7 @@ namespace Rose.VExtension.PluginSystem.Activation
             }
             catch (Exception e)
             {
-                throw new PluginInitializationException("Не удалось инициализировать хранилище плагина", e);
+                throw new ActivationStepException("Не удалось инициализировать хранилище плагина", e, ActivationStepName.StorageActivation, true);
             }
         }
 
@@ -88,7 +87,7 @@ namespace Rose.VExtension.PluginSystem.Activation
             }
             catch (Exception e)
             {
-                throw new PluginInitializationException("Не удалось определить резервацию плагина", e);
+                throw new ActivationStepException("Не удалось определить резервацию плагина", e, ActivationStepName.ReservationActivation);
             }
         }
 
@@ -105,7 +104,7 @@ namespace Rose.VExtension.PluginSystem.Activation
             }
             catch (ConfigItemNotFoundException e)
             {
-                throw new PluginInitializationException("В файле конфигурации не определено имя плагина", e);
+                throw new ActivationStepException("В файле конфигурации не определено имя плагина", e, ActivationStepName.NameActivation, true);
             }
             catch (Exception e)
             {
@@ -135,7 +134,7 @@ namespace Rose.VExtension.PluginSystem.Activation
                     }
                     catch (Exception e)
                     {
-                        throw new PluginInitializationException("Не удалось загрузить файл пользовательских настроек плагина", e);
+                        throw new ActivationStepException("Не удалось загрузить файл пользовательских настроек плагина", e, ActivationStepName.SettingsActivation);
                     }
                 }
             }

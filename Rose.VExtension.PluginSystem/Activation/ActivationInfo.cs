@@ -12,15 +12,17 @@ namespace Rose.VExtension.PluginSystem.Activation
             
         }
 
-        public ActivationInfo(IPluginValidator validator, IConfigurationSyntax syntax, IPluginsReservationRepository reservationRepository)
+        public ActivationInfo(IPluginValidator validator, IConfigurationSyntax syntax, IPluginsReservationRepository reservationRepository, IPluginInitializationHandler initializationHandler)
         {
             Validator = validator;
             Syntax = syntax;
             ReservationRepository = reservationRepository;
+            ActivationHandler = initializationHandler;
         }
 
         public IPluginValidator Validator { get; set; }
         public IConfigurationSyntax Syntax { get; set; }
         public IPluginsReservationRepository ReservationRepository { get; set; }
+        public IPluginInitializationHandler ActivationHandler { get; set; }
     }
 }

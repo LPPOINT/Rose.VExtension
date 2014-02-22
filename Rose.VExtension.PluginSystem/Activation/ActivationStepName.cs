@@ -14,6 +14,9 @@ namespace Rose.VExtension.PluginSystem.Activation
         MetaActivation,
         StorageActivation,
         ReservationActivation,
-        SettingsActivation
+        SettingsActivation,
+        ConfigurationActivation,
+        FileSystemActivation,
+        PackageActivation
     }
 }

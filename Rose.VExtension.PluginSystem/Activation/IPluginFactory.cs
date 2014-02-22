@@ -14,14 +14,14 @@ namespace Rose.VExtension.PluginSystem.Activation
         /// </summary>
         /// <param name="fileSystem"></param>
         /// <returns></returns>
-        Plugin ToRunnable(IPluginFileSystem fileSystem, IPluginPackage package = null);
+        Plugin ToRunnable(IPluginFileSystem fileSystem, IPluginPackage package = null, IPluginInitializationHandler initializationHandler = null);
         /// <summary>
         /// Загружает плагин из заданной файловой системы плагина, используя заданную конфигурацию
         /// </summary>
         /// <param name="fileSystem">Файловая система плагина</param>
         /// <param name="pluginPluginConfiguration">Конфигурация плагина</param>
         /// <returns></returns>
-        Plugin ToRunnable(IPluginFileSystem fileSystem, IPluginConfiguration pluginPluginConfiguration, IPluginPackage package = null);
+        Plugin ToRunnable(IPluginFileSystem fileSystem, IPluginConfiguration pluginPluginConfiguration, IPluginPackage package = null, IPluginInitializationHandler initializationHandler = null);
 
         /// <summary>
         /// Распаковывает пакет с плагином в заданную файловую систему

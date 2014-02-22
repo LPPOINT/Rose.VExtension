@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Ninject;
 using Rose.VExtension.PluginSystem.Activation.Platforms;
 using Rose.VExtension.PluginSystem.Configuration;
@@ -10,16 +12,24 @@ namespace Rose.VExtension.PluginSystem.Activation
 
     public class PluginInitializationException : Exception
     {
-        public PluginInitializationException()
+
+        public IEnumerable<ActivationStepException> ActivationErrorHandler { get; private set; }
+
+        public PluginInitializationException(IEnumerable<ActivationStepException> activationErrorHandler = null)
         {
+            ActivationErrorHandler = activationErrorHandler;
         }
 
-        public PluginInitializationException(string message) : base(message)
+        public PluginInitializationException(string message, IEnumerable<ActivationStepException> activationErrorHandler = null)
+            : base(message)
         {
+            ActivationErrorHandler = activationErrorHandler;
         }
 
-        public PluginInitializationException(string message, Exception innerException) : base(message, innerException)
+        public PluginInitializationException(string message, Exception innerException, IEnumerable<ActivationStepException> activationErrorHandler = null)
+            : base(message, innerException)
         {
+            ActivationErrorHandler = activationErrorHandler;
         }
     }
 
@@ -37,7 +47,7 @@ namespace Rose.VExtension.PluginSystem.Activation
 
         public IPluginsReservationRepository ReservationRepository { get; private set; }
 
-        public void InitializePlugin(Plugin plugin)
+        public void InitializePlugin(Plugin plugin, IPluginInitializationHandler handler)
         {
 
             try
@@ -46,11 +56,15 @@ namespace Rose.VExtension.PluginSystem.Activation
 
                 try
                 {
+
+                    if(handler == null) // Хандлер скорее всего не инициализирован, тогда просто создаем локальный экземпляр
+                        handler = new PluginInitializationHandler();
+
                     var kernel = new StandardKernel(new InitializationModule());
                     var validator = kernel.Get<IPluginValidator>();
                     var syntax = kernel.Get<IConfigurationSyntax>();
 
-                    activationInfo = new ActivationInfo(validator, syntax, ReservationRepository);
+                    activationInfo = new ActivationInfo(validator, syntax, ReservationRepository, handler);
                 }
                 catch (Exception e)
                 {
@@ -73,6 +87,7 @@ namespace Rose.VExtension.PluginSystem.Activation
 
 
                 activator.Activate(plugin, activationInfo, order);
+
             }
             catch (ActivationStepException e)
             {

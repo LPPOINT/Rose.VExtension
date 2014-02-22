@@ -86,11 +86,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activation\ActivationErrorHandler.cs" />
     <Compile Include="Activation\ActivationInfo.cs" />
     <Compile Include="Activation\ActivationStepAttribute.cs" />
     <Compile Include="Activation\ActivationStepName.cs" />
     <Compile Include="Activation\AssembliesConfigItemWrapper.cs" />
     <Compile Include="Activation\IActivationStepService.cs" />
+    <Compile Include="Activation\IPluginInitializationHandler.cs" />
     <Compile Include="Activation\Platforms\PlatformAttribute.cs" />
     <Compile Include="Activation\Platforms\RazorPluginPlatform.cs" />
     <Compile Include="Activation\PluginCoreStepProvider.cs" />

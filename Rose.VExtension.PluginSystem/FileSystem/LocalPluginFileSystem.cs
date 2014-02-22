@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 
 namespace Rose.VExtension.PluginSystem.FileSystem
 {
@@ -51,24 +52,11 @@ namespace Rose.VExtension.PluginSystem.FileSystem
         public IEnumerable<IPluginFileSystemItem> EnumerateItems(string path)
         {
             var files = Directory.EnumerateFiles(RootFolder);
-            var res = new List<IPluginFileSystemItem>();
 
-            foreach (var file in files)
-            {
-                if(path == string.Empty || file.StartsWith(path))
-                    res.Add(new FileSystemItem(file));
-            }
+            var res = (from file in files where path == string.Empty || file.StartsWith(path) select new FileSystemItem(file)).Cast<IPluginFileSystemItem>().ToList();
 
             var dirs = Directory.GetDirectories(RootFolder);
-            foreach (var dir in dirs)
-            {
-                var inner = Directory.GetFiles(dir);
-                foreach (var s in inner)
-                {
-                    if (path == string.Empty || s.StartsWith(path))
-                        res.Add(new FileSystemItem(s));
-                }
-            }
+            res.AddRange((from dir in dirs from s in Directory.GetFiles(dir) where path == string.Empty || s.StartsWith(path) select new FileSystemItem(s)));
 
             return res;
         }

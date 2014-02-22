@@ -6,10 +6,21 @@ using System.Reflection;
 namespace Rose.VExtension.PluginSystem.Activation
 {
 
-    public class ActivationStepException : PluginInitializationException
+    /// <summary>
+    /// Возникает при ошибки во время активации плагина
+    /// </summary>
+    public class ActivationStepException : Exception
     {
 
+        /// <summary>
+        /// Имя шага, во время которого произошла ошибка
+        /// </summary>
         public ActivationStepName StepName { get; private set; }
+
+        /// <summary>
+        /// Флаг, указывающий, следует ли прекратить дальнейшую активацию плагина после возниктовения исключения
+        /// </summary>
+        public bool IsFatal { get; private set; }
 
         public ActivationStepException()
             : base("Во время выполнения шага активации произошла ошибка")
@@ -17,18 +28,34 @@ namespace Rose.VExtension.PluginSystem.Activation
             
         }
 
-        public ActivationStepException(ActivationStepName stepName): base(String.Format("Во время выполнения шага активации '{0}' произошла ошибка", stepName))
+        public ActivationStepException(string message) : base(message)
         {
+            
+        }
+
+        public ActivationStepException(bool isFatal)
+            : base("Во время выполнения шага активации произошла ошибка")
+        {
+            IsFatal = isFatal;
+        }
+
+        public ActivationStepException(ActivationStepName stepName, bool isFatal = false): base(String.Format("Во время выполнения шага активации '{0}' произошла ошибка", stepName))
+        {
+            IsFatal = isFatal;
             StepName = stepName;
         }
 
-        public ActivationStepException(string message, ActivationStepName stepName) : base(message)
+        public ActivationStepException(string message, ActivationStepName stepName, bool isFatal = false)
+            : base(message)
         {
+            IsFatal = isFatal;
             StepName = stepName;
         }
 
-        public ActivationStepException(string message, Exception innerException, ActivationStepName stepName) : base(message, innerException)
+        public ActivationStepException(string message, Exception innerException, ActivationStepName stepName, bool isFatal = false)
+            : base(message, innerException)
         {
+            IsFatal = isFatal;
             StepName = stepName;
         }
     }
@@ -161,22 +188,41 @@ namespace Rose.VExtension.PluginSystem.Activation
 
         public void Activate(Plugin plugin, ActivationInfo info,  ActivationOrder order)
         {
+            info.ActivationHandler.OnActivationStarted();
             foreach (var step in order)
             {
                 var action = GetActivationActionForStep(step);
                 if (action == null)
-                    throw new ActivationStepException(String.Format("Не найден обработчик шага '{0}'", step), step);
+                    info.ActivationHandler.OnException(new ActivationStepException(String.Format("Не найден обработчик шага '{0}'", step), step));
 
                 try
                 {
                     action(plugin, info);
+                    info.ActivationHandler.OnStepComplite(new ActivationStepCompliteEventArgs(step));
+                }
+                catch (ActivationStepException e)
+                {
+                    info.ActivationHandler.OnException(e);
+                    if (e.IsFatal)
+                        return;
                 }
                 catch (Exception e)
-                {  
-                    throw new ActivationStepException(String.Format("Во время выполнения шага '{0}' произошла ошибка", step), e, step);
+                {
+
+                    if (e.InnerException is ActivationStepException)
+                    {
+                        var innerActivationException = e.InnerException as ActivationStepException;
+                        info.ActivationHandler.OnException(innerActivationException);
+                    }
+                    else
+                    {
+                        var activationException = new ActivationStepException(e.Message, step);
+                        info.ActivationHandler.OnException(activationException);
+                    }
                 }
 
             }
+            info.ActivationHandler.OnActivationEnded();
         }
     }
 
