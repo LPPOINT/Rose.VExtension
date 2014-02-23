@@ -1,0 +1,1 @@
+﻿SELECT * FROM Plugins Where Id = (SELECT PluginId FROM StorageItems) ORDER BY Version
