@@ -5,25 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4907777743bb47bea4a31b4fdf194242" Name="Diagram1" ZoomLevel="81" >
-        <EntityTypeShape EntityType="Plugins.Plugin" Width="1.5" PointX="7.25" PointY="1.625" />
+        <EntityTypeShape EntityType="Plugins.Plugin" Width="1.5" PointX="8.25" PointY="0.75" />
         <EntityTypeShape EntityType="Plugins.ResourceToken" Width="1.5" PointX="2.25" PointY="1.625" />
         <AssociationConnector Association="Plugins.PluginResourceToken" />
-        <EntityTypeShape EntityType="Plugins.StorageItem" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="Plugins.StorageItem" Width="1.5" PointX="6.875" PointY="4.75" />
         <AssociationConnector Association="Plugins.PluginStorageItem" />
         <EntityTypeShape EntityType="Plugins.PluginAssociation" Width="1.5" PointX="11.125" PointY="4.25" />
-        <EntityTypeShape EntityType="Plugins.Test" Width="1.5" PointX="2.375" PointY="4.375" />
-        <AssociationConnector Association="Plugins.TestPlugin" />
         <EntityTypeShape EntityType="Plugins.PluginFileSystem" Width="1.5" PointX="14.375" PointY="1" />
         <EntityTypeShape EntityType="Plugins.LocalPluginFileSystem" Width="1.5" PointX="14.375" PointY="4" />
         <InheritanceConnector EntityType="Plugins.LocalPluginFileSystem" />
         <AssociationConnector Association="Plugins.PluginPluginFileSystem" />
         <EntityTypeShape EntityType="Plugins.PluginPackage" PointX="4.5" PointY="6" Width="1.5" />
         <AssociationConnector Association="Plugins.PluginPluginPackage" />
-        <EntityTypeShape EntityType="Plugins.LocalStoragePluginPackage" PointX="4.25" PointY="8.125" Width="1.5" />
+        <EntityTypeShape EntityType="Plugins.LocalStoragePluginPackage" PointX="4.25" PointY="8.25" Width="1.5" />
         <InheritanceConnector EntityType="Plugins.LocalStoragePluginPackage" />
         <EntityTypeShape EntityType="Plugins.StreamPackage" Width="1.5" PointX="7.375" PointY="8.25" />
         <InheritanceConnector EntityType="Plugins.StreamPackage" />
-        <EntityTypeShape EntityType="Plugins.Transaction" Width="1.5" PointX="12" PointY="7.25" />
+        <EntityTypeShape EntityType="Plugins.Transaction" Width="1.5" PointX="12.75" PointY="7.25" />
         <AssociationConnector Association="Plugins.PluginTransaction" />
       </Diagram>
     </edmx:Diagrams>

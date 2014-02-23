@@ -18,20 +18,18 @@ namespace Rose.VExtension.Server.Models.DbInteraction
         public PluginsContainer()
             : base("name=PluginsContainer")
         {
-
             Plugins = Set<Plugin>();
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //throw new UnintentionalCodeFirstException();
+            throw new UnintentionalCodeFirstException();
         }
     
         internal virtual DbSet<Plugin> Plugins { get; set; }
         public virtual DbSet<ResourceToken> ResourceTokens { get; set; }
         public virtual DbSet<StorageItem> StorageItems { get; set; }
         public virtual DbSet<PluginAssociation> PluginAssociationSet { get; set; }
-        public virtual DbSet<Test> TestSet { get; set; }
         public virtual DbSet<PluginFileSystem> PluginFileSystems { get; set; }
         public virtual DbSet<PluginPackage> PluginPackages { get; set; }
         public virtual DbSet<Transaction> TransactionSet { get; set; }

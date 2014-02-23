@@ -198,8 +198,48 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DbInteraction\LocalPluginFileSystem.cs">
+      <DependentUpon>Plugins.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbInteraction\LocalStoragePluginPackage.cs">
+      <DependentUpon>Plugins.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbInteraction\Plugin.cs">
+      <DependentUpon>Plugins.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbInteraction\PluginAssociation.cs">
+      <DependentUpon>Plugins.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbInteraction\PluginFileSystem.cs">
+      <DependentUpon>Plugins.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbInteraction\PluginLocation.cs">
+      <DependentUpon>Plugins.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbInteraction\PluginPackage.cs">
+      <DependentUpon>Plugins.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbInteraction\Plugins.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Plugins.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbInteraction\Plugins.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Plugins.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbInteraction\ResourceToken.cs">
+      <DependentUpon>Plugins.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbInteraction\StorageItem.cs">
+      <DependentUpon>Plugins.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbInteraction\StreamPackage.cs">
+      <DependentUpon>Plugins.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DbInteraction\Transaction.cs">
-      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
+      <DependentUpon>Plugins.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Middleware\IFileSystemMiddleware.cs" />
     <Compile Include="Models\Middleware\IPackageMiddleware.cs" />
@@ -211,30 +251,9 @@
     <Compile Include="Models\DbInteraction\IPluginsRepository.cs" />
     <Compile Include="Models\Transactions\IPluginTransactor.cs" />
     <Compile Include="Models\IRequestResutBuilder.cs" />
-    <Compile Include="Models\DbInteraction\LocalPluginFileSystem.cs">
-      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DbInteraction\LocalStoragePluginPackage.cs">
-      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DbInteraction\Plugin.cs">
-      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DbInteraction\PluginAssociation.cs">
-      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\PluginConnection.cs" />
-    <Compile Include="Models\DbInteraction\PluginFileSystem.cs">
-      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Middleware\PluginFileSystemProvider.cs" />
     <Compile Include="Models\PluginFileSystemResourcesProvider.cs" />
-    <Compile Include="Models\DbInteraction\PluginLocation.cs">
-      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DbInteraction\PluginPackage.cs">
-      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DbInteraction\PluginRepositoryExtensions.cs" />
     <Compile Include="Models\PluginRequestModel.cs" />
     <Compile Include="Models\DbInteraction\Plugins.Designer.cs">
@@ -243,16 +262,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Models\PluginsControllerContext.cs" />
-    <Compile Include="Models\DbInteraction\PluginsDbContextGenerator.Context.cs">
-      <DependentUpon>PluginsDbContextGenerator.Context.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Models\DbInteraction\PluginsDbContextGenerator.cs">
-      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Models\DbInteraction\PluginsRepository.cs" />
     <Compile Include="Models\Transactions\LogInitializationHandler.cs" />
     <Compile Include="Models\Transactions\PluginsSyncResult.cs" />
@@ -260,23 +269,11 @@
     <Compile Include="Models\Transactions\PluginTransactor.cs" />
     <Compile Include="Models\Transactions\PluginTransactorExtensions.cs" />
     <Compile Include="Models\RequestResultBuilder.cs" />
-    <Compile Include="Models\DbInteraction\ResourceToken.cs">
-      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SettingsVisualization\ISettingsControlVisualizer.cs" />
     <Compile Include="Models\SettingsVisualization\ISettingsVisualizatorsInitializer.cs" />
     <Compile Include="Models\SettingsVisualization\SettingsControlVisualizer.cs" />
     <Compile Include="Models\SettingsVisualization\SettingsVisualizatorsInitializer.cs" />
     <Compile Include="Models\SettingsVisualization\SettingsVisualizersHtmlHelperExtensions.cs" />
-    <Compile Include="Models\DbInteraction\StorageItem.cs">
-      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DbInteraction\StreamPackage.cs">
-      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DbInteraction\Test.cs">
-      <DependentUpon>PluginsDbContextGenerator.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup1.cs" />
   </ItemGroup>
@@ -287,6 +284,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\DbInteraction\Plugins.edmx.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\DbInteraction\Plugins.edmx">
@@ -296,13 +294,15 @@
     <Content Include="Models\DbInteraction\Plugins.edmx.diagram">
       <DependentUpon>Plugins.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\DbInteraction\PluginsDbContextGenerator.Context.tt">
+    <Content Include="Models\DbInteraction\Plugins.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PluginsDbContextGenerator.Context.cs</LastGenOutput>
+      <LastGenOutput>Plugins.Context.cs</LastGenOutput>
+      <DependentUpon>Plugins.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\DbInteraction\PluginsDbContextGenerator.tt">
+    <Content Include="Models\DbInteraction\Plugins.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PluginsDbContextGenerator.cs</LastGenOutput>
+      <LastGenOutput>Plugins.cs</LastGenOutput>
+      <DependentUpon>Plugins.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\vkfull.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -318,7 +318,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="ServerLog.txt" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
