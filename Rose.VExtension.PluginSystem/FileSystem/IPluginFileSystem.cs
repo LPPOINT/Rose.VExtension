@@ -7,8 +7,6 @@ namespace Rose.VExtension.PluginSystem.FileSystem
     {
         bool IsExist { get; }
 
-        
-
         void AddItem(IPluginFileSystemItem item, Stream stream);
         void RemoveItem(IPluginFileSystemItem item);
         Stream GetItemStream(IPluginFileSystemItem item);
@@ -19,4 +17,18 @@ namespace Rose.VExtension.PluginSystem.FileSystem
 
 
     }
+
+    public static class PluginFileSystemExtensions
+    {
+        public static bool ContainsLogoFile(this IPluginFileSystem fileSystem)
+        {
+            return fileSystem.ContainsItem(FileSystemItem.GetLogoItem());
+        }
+
+        public static IPluginFileSystemItem GetDefaultLogoItem(this IPluginFileSystem fileSystem)
+        {
+            return FileSystemItem.GetLogoItem();
+        }
+    }
+
 }

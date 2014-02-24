@@ -4,13 +4,12 @@ using System.IO;
 using System.Text;
 
 using Rose.VExtension.PluginSystem.Activation;
-using Rose.VExtension.PluginSystem.Activation.Platforms;
 using Rose.VExtension.PluginSystem.Configuration;
 using Rose.VExtension.PluginSystem.FileSystem;
 using Rose.VExtension.PluginSystem.Packing;
 using Rose.VExtension.PluginSystem.Permissions;
 using Rose.VExtension.PluginSystem.Resources;
-using Rose.VExtension.PluginSystem.Runtime;
+using Rose.VExtension.PluginSystem.Runtime.RequestHandeling;
 using Rose.VExtension.PluginSystem.Storage;
 using Rose.VExtension.PluginSystem.UserSettings;
 
@@ -22,10 +21,23 @@ namespace Rose.VExtension.PluginSystem
     /// </summary>
     public sealed class Plugin : IDisposable
     {
+
+
+        public Plugin()
+        {
+            Logo = new PluginLogoProvider(this);
+        }
+
         /// <summary>
         /// GUID плагина
         /// </summary>
         public string Id { get; set; }
+
+
+        /// <summary>
+        /// Поставщик логотипа для плагина
+        /// </summary>
+        public IPluginLogoProvider Logo { get; private set; }
 
         /// <summary>
         /// Имя плагина
@@ -47,15 +59,11 @@ namespace Rose.VExtension.PluginSystem
         /// </summary>
         public IPluginPackage Package { get; set; }
 
-        /// <summary>
-        /// Контроллер, отвечающий за логику выполнения плагина 
-        /// </summary>
-        public PluginDomain Domain { get; set; }
 
         /// <summary>
-        /// Платформа, на которой расположен плагин
+        /// Контроллер, обрабатывающий входящий запрос
         /// </summary>
-        public IPluginPlatform Platform { get; set; }
+        public IPluginRequestController Controller { get; set; }
 
         /// <summary>
         /// Файловая система плагина. Предоставляет доступ к файлам в каталоге, в котором расположен плагин
@@ -97,9 +105,6 @@ namespace Rose.VExtension.PluginSystem
  
             builder.AppendFormat("ID: {0}\n", Id);
             builder.AppendFormat("Name: {0}\n", Name);
-            builder.AppendFormat("Domain: {0}\n", Domain);
-            builder.AppendFormat("Package: {0}\n", Platform);
-            builder.AppendFormat("Platform: {0}\n", Platform);
             builder.AppendFormat("FileSystem: {0}", FileSystem);
 
             return builder.ToString();
@@ -171,14 +176,6 @@ namespace Rose.VExtension.PluginSystem
             if (FileSystem is IDisposable)
             {
                 (FileSystem as IDisposable).Dispose();
-            }
-            if (Domain is IDisposable)
-            {
-                (Domain as IDisposable).Dispose();
-            }
-            if (Platform is IDisposable)
-            {
-                (Platform as IDisposable).Dispose();
             }
 
         }

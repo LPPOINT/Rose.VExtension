@@ -55,5 +55,22 @@ namespace Rose.VExtension.PluginSystem.FileSystem
         {
             return new FileSystemItem(settings);
         }
+
+        public static IPluginFileSystemItem GetLogoItem(string logoName)
+        {
+
+            if(!Path.HasExtension(logoName))
+                return new FileSystemItem( logoName + "." + "png");
+
+            return new FileSystemItem(logoName);
+        }
+        public static IPluginFileSystemItem GetLogoItem(string name, string logoExtension)
+        {
+            return new FileSystemItem(name + "." + logoExtension);
+        }
+        public static IPluginFileSystemItem GetLogoItem()
+        {
+            return GetLogoItem("Logo");
+        }
     }
 }

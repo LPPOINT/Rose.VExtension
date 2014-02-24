@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ninject;
-using Rose.VExtension.PluginSystem.Activation.Platforms;
+using Rose.VExtension.PluginSystem.Activation.RuntimeActivation;
 using Rose.VExtension.PluginSystem.Configuration;
 using Rose.VExtension.PluginSystem.Reservation;
 using Rose.VExtension.PluginSystem.Validation;

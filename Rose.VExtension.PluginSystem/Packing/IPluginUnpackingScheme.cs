@@ -29,6 +29,12 @@ namespace Rose.VExtension.PluginSystem.Packing
             Add(FileSystemItem.GetXMLManifestFile());
 
             var settingsNode = pluginPluginConfiguration.RootItem.Content.FirstOrDefault(pair => pair.Key == "Settings").Value;
+            var logoNode = pluginPluginConfiguration.RootItem.Content.FirstOrDefault(pair => pair.Key == "Logo").Value;
+
+            if (!string.IsNullOrWhiteSpace(logoNode))
+            {
+                Add(FileSystemItem.GetLogoItem(logoNode));
+            }
 
             if (!string.IsNullOrWhiteSpace(settingsNode))
             {

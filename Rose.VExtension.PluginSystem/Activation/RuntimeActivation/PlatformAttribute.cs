@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Rose.VExtension.PluginSystem.Activation.Platforms
+namespace Rose.VExtension.PluginSystem.Activation.RuntimeActivation
 {
     public class PlatformAttribute : Attribute
     {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Rose.VExtension.PluginSystem.Configuration
@@ -18,23 +19,36 @@ namespace Rose.VExtension.PluginSystem.Configuration
 
         public IConfigurationItem RootItem { get;  set; }
 
-        private IConfigurationItem SearchInItem(IConfigurationItem item, string uri)
+        private IEnumerable<IConfigurationItem> SearchInItem(IConfigurationItem item, string uri)
         {
             if (item.Uri == uri)
-                return item;
-            return item.InnerItems.Select(inner => SearchInItem(inner, uri)).FirstOrDefault(result => result != null);
+                return new List<IConfigurationItem>() {item};
+            return item.InnerItems.Where(configurationItem => configurationItem.Uri == uri);
         }
         public IConfigurationItem GetItem(string path)
         {
             try
             {
-                return SearchInItem(RootItem, path);
+                return SearchInItem(RootItem, path).FirstOrDefault();
             }
             catch 
             {
                 throw new ConfigItemNotFoundException();
             }
         }
+
+        public IEnumerable<IConfigurationItem> GetItems(string path)
+        {
+            try
+            {
+                return SearchInItem(RootItem, path);
+            }
+            catch
+            {
+                throw new ConfigItemNotFoundException();
+            }
+        }
+
         public string GetItemValue(string path)
         {
             try

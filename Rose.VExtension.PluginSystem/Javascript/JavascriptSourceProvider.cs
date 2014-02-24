@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Rose.VExtension.PluginSystem.Activation;
-using Rose.VExtension.PluginSystem.Activation.Platforms;
+using Rose.VExtension.PluginSystem.Activation.RuntimeActivation;
 using Rose.VExtension.PluginSystem.FileSystem;
 
 namespace Rose.VExtension.PluginSystem.Javascript

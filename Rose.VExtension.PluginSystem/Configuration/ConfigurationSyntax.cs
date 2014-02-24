@@ -48,6 +48,8 @@ namespace Rose.VExtension.PluginSystem.Configuration
         /// Путь до узла фильтров страниц плагина на платформе <see cref="Activation.Platforms.RazorPluginPlatform"/>
         /// </summary>
         string RazorPagesFilters { get; }
+
+        string RequestHandler { get; }
     }
 
     public class ConfigurationSyntax : IConfigurationSyntax
@@ -83,6 +85,7 @@ namespace Rose.VExtension.PluginSystem.Configuration
         public string JSEntryFunction { get { return PlatformItem + "EntryFunction"; } }
         public string ManifestVersionItem { get { return "Manifest/ManifestVersion"; }}
         public string RazorPagesFilters { get { return PlatformItem + "Filters/"; } }
+        public string RequestHandler { get { return "Manifest/RequestHandler/"; } }
     }
 
 }

@@ -1,5 +1,5 @@
 ﻿using Ninject.Modules;
-using Rose.VExtension.PluginSystem.Activation.Platforms;
+using Rose.VExtension.PluginSystem.Activation.RuntimeActivation;
 using Rose.VExtension.PluginSystem.Packing;
 
 namespace Rose.VExtension.PluginSystem.Activation

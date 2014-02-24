@@ -7,7 +7,7 @@ namespace Rose.VExtension.PluginSystem.Configuration
     {
         public bool ContainsKey(string key)
         {
-            return this.Any(pair => pair.Key == key);
+            return this.Any(pair => pair.Key.ToLower() == key.ToLower());
         }
 
         public void Add(string key, string value)

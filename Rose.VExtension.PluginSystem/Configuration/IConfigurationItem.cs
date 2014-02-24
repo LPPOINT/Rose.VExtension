@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Rose.VExtension.PluginSystem.Configuration;
 
@@ -38,7 +39,7 @@ namespace Rose.VExtension.PluginSystem.Configuration
 
         public static KeyValuePair<string, string> GetContentPair(this IConfigurationItem item, string name)
         {
-            var val =  item.Content.FirstOrDefault(pair => pair.Key == name);
+            var val =  item.Content.FirstOrDefault(pair => String.Equals(pair.Key, name, StringComparison.CurrentCultureIgnoreCase));
             if(val.Value == null)
                 throw new ConfigItemNotFoundException();
             return val;

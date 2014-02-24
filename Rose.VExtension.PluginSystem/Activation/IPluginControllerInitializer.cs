@@ -7,7 +7,7 @@
     public interface IPluginControllerInitializer
     {
         /// <summary>
-        /// При переопределении инициализирует свойство <see cref="Plugin.Domain"/> заданного экземпляря класса <see cref="Plugin"/>
+        /// При переопределении инициализирует свойство <see cref="Plugin.Activity"/> заданного экземпляря класса <see cref="Plugin"/>
         /// </summary>
         /// <param name="plugin">Плагин, для которого требуется инициализировать контроллер</param>
         void InitializeController(Plugin plugin, ActivationInfo info);
