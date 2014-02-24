@@ -191,12 +191,17 @@
     <Compile Include="Common\PluginsAreaRegistration.cs" />
     <Compile Include="Controllers\FileSystemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PluginControlController.cs" />
     <Compile Include="Controllers\PluginsController.cs" />
     <Compile Include="Controllers\PluginsDebugController.cs" />
     <Compile Include="Controllers\QueryController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbInteraction\Automation\IRepositoryEntityController.cs" />
+    <Compile Include="Models\DbInteraction\BrowserExtensionType.cs">
+      <DependentUpon>Plugins.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DbInteraction\LocalPluginFileSystem.cs">
       <DependentUpon>Plugins.tt</DependentUpon>
@@ -249,6 +254,7 @@
     <Compile Include="Models\IPluginsExecutor.cs" />
     <Compile Include="Models\IPluginsPhysicalStatusProvider.cs" />
     <Compile Include="Models\DbInteraction\IPluginsRepository.cs" />
+    <Compile Include="Models\PluginViewModel.cs" />
     <Compile Include="Models\Transactions\IPluginTransactor.cs" />
     <Compile Include="Models\IRequestResutBuilder.cs" />
     <Compile Include="Models\PluginConnection.cs" />
@@ -278,6 +284,7 @@
     <Compile Include="Startup1.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Common\Sql\SQLQuery1.sql" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\favicon.ico" />
@@ -338,9 +345,13 @@
     <Content Include="Views\Shared\SettingsVisualizers\TextSettingsControlView.cshtml" />
     <Content Include="Views\web.config" />
     <Content Include="Views\FileSystem\Index.cshtml" />
+    <Content Include="Views\PluginControl\_PluginControlLayout.cshtml" />
+    <Content Include="Views\PluginControl\_PluginControlPanelItem.cshtml" />
+    <Content Include="Views\PluginControl\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Users\" />
     <Folder Include="Views\Plugin\" />
     <Folder Include="Views\Query\" />
     <Folder Include="Views\Request\" />

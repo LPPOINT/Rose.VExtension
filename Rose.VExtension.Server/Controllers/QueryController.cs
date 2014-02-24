@@ -40,11 +40,12 @@ namespace Rose.VExtension.Server.Controllers
         }
 
 
-
         public ActionResult Index(PluginRequestModel request)
         {
 
             request = PluginRequestModel.CreateDefault();
+
+
 
             var statusProvider = new PluginsPhysicalStatusProvider(Repository, Collection);
 

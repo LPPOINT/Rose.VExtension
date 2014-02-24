@@ -74,28 +74,9 @@ namespace Rose.VExtension.Server.Models
 
         private PluginExecutionResult Run(PluginRequest request, PluginSystem.Plugin plugin)
         {
-            var domain = plugin.Domain;
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
 
-            PluginResponse response;
 
-            try
-            {
-                response = domain.Execute(request);
-            }
-            catch (Exception e)
-            {
-                throw new PluginExecutionException("Во время выполнения плагина произошла ошибка. Подробнее в InnerException.", e);
-            }
-
-            if (response == null)
-                throw new PluginExecutionException("Контроллер плагина не вернул ответ");
-
-            stopwatch.Stop();
-            var time = stopwatch.Elapsed;
-
-            return new PluginExecutionResult(response, time);
+            return null;
         }
 
         public PluginExecutionResult ExecutePlugin(PluginRequest request, string pluginId)

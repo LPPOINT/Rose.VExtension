@@ -386,6 +386,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EnumType Name="BrowserExtensionType">
+          <Member Name="Chrome" />
+        </EnumType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

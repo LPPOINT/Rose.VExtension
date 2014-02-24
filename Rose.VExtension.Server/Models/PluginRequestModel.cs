@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using HtmlAgilityPack;
 using Rose.VExtension.PluginSystem.Runtime;
+using Rose.VExtension.Server.Models.DbInteraction;
 
 namespace Rose.VExtension.Server.Models
 {
@@ -132,6 +133,8 @@ namespace Rose.VExtension.Server.Models
             return request;
 
         }
+
+
 
     }
 }

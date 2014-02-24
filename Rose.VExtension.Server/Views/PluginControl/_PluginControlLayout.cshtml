@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+        <link href="~/Content/bootstrap-responsive.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/Site.css" rel="stylesheet" />
+    </head>
+
+@{
+    if (ViewBag.PluginName == null)
+    {
+        ViewBag.PluginName = string.Empty;
+    }
+}
+
+    <body>
+        <div class="plugin-control-head">
+            <h1>Управление плагином @ViewBag.PluginName</h1>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td class="plugin-control-panel">
+                        @for (var i = 0; i < 5; i++)
+                        {
+                            @Html.Partial("_PluginControlPanelItem");
+                        }
+                    </td>
+                    <td class="plugin-control-body">
+                        @RenderBody()
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

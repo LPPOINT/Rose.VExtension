@@ -11,7 +11,6 @@ namespace Rose.VExtension.Server
     {
         public void Configuration(IAppBuilder app)
         {
-
         }
     }
 }
