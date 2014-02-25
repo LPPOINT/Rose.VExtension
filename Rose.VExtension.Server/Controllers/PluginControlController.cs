@@ -23,7 +23,7 @@ namespace Rose.VExtension.Server.Controllers
                 transactor.ShouldInspectCollection = true;
             }
 
-            var pluginEntity = repository.GetPlugin(id);
+            var pluginEntity = repository.PluginContext.GetEntity(id);
 
             if (pluginEntity == null)
                 return HttpNotFound();

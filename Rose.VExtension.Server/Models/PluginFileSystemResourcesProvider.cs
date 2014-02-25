@@ -43,7 +43,7 @@ namespace Rose.VExtension.Server.Models
                 ResourceName = accessToken.ResourceName
             };
 
-            Repository.AddResourceAccessToken(at);
+            Repository.ResourceAccessTokenContext.AddEntity(at);
 
             accessToken.Url = "/Resources/" + at.Id;
 

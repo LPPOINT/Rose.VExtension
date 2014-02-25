@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Rose.VExtension.PluginSystem.FileSystem;
 using Rose.VExtension.Server.Models;
 using Rose.VExtension.Server.Models.Middleware;
@@ -11,7 +12,7 @@ namespace Rose.VExtension.Server.Controllers
         private IPluginFileSystem GetPluginFileSystem(string pluginId)
         {
             var middleware = new FileSystemMiddleware();
-            var fileSystemEntity = repository.GetPluginFileSystemByPluginId(pluginId);
+            var fileSystemEntity = repository.FileSystemContext.GetEntitiesByPluginId(pluginId).FirstOrDefault();
 
             if (fileSystemEntity != null)
             {
@@ -28,7 +29,7 @@ namespace Rose.VExtension.Server.Controllers
 
             AddAreaDataToken();
 
-            var accesToken = repository.GetResourceAccessToken(id);
+            var accesToken = repository.ResourceAccessTokenContext.GetEntity(id);
 
             if(accesToken == null)
                 return new HttpNotFoundResult();

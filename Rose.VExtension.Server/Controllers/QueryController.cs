@@ -35,7 +35,7 @@ namespace Rose.VExtension.Server.Controllers
 
         private IEnumerable<string> GetPluginsForRequest(PluginRequestModel request)
         {
-            return (from plugin in Repository.Plugins select plugin.Id).ToList(); // Все плагины в репозитории
+            return (from plugin in Repository.PluginContext.All select plugin.Id).ToList(); // Все плагины в репозитории
 
         }
 

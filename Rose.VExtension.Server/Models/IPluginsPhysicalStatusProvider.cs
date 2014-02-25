@@ -52,7 +52,7 @@ namespace Rose.VExtension.Server.Models
             {
                 if(LoadedPlugins.Any(plugin => plugin.Id == pluginId))
                     return PluginLocation.InRam;
-                var entity = Repository.GetPlugin(pluginId);
+                var entity = Repository.PluginContext.GetEntity(pluginId);
 
                 if(entity == null)
                     return PluginLocation.Undefined;

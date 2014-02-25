@@ -79,19 +79,19 @@ namespace Rose.VExtension.Server.Models
 
         private void StorageOnStorageCleared(object sender, EventArgs eventArgs)
         {
-            Repository.ClearPluginStorageItems(ControlPlugin.Id);
+            Repository.StorageContext.RemoveEntitiesByPluginId(ControlPlugin.Id);
         }
         private void StorageOnItemUpdated(object sender, PluginStorageItemUpdatedEventArgs pluginStorageItemUpdatedEventArgs)
         {
-            Repository.SetStorageItemValue(ControlPlugin.Id, pluginStorageItemUpdatedEventArgs.Item.Name, pluginStorageItemUpdatedEventArgs.NewValue);
+            Repository.StorageContext.SetItemValue(ControlPlugin.Id, pluginStorageItemUpdatedEventArgs.Item.Name, pluginStorageItemUpdatedEventArgs.NewValue);
         }
         private void StorageOnItemRemoved(object sender, PluginStorageItemRemovedEventArgs pluginStorageItemRemovedEventArgs)
         {
-            Repository.RemoveStorageItem(ControlPlugin.Id, pluginStorageItemRemovedEventArgs.Item.Name);
+            Repository.StorageContext.RemoveItemByName(ControlPlugin.Id, pluginStorageItemRemovedEventArgs.Item.Name);
         }
         private void StorageOnItemAdded(object sender, PluginStorageItemEventArgs pluginStorageItemEventArgs)
         {
-            Repository.AddStorageItem(ControlPlugin.Id, pluginStorageItemEventArgs.Item.Name, pluginStorageItemEventArgs.Item.Value);
+            Repository.StorageContext.AddEntity(pluginStorageItemEventArgs.Item.Name, pluginStorageItemEventArgs.Item.Value, ControlPlugin.Id);
         }
 
         public void Close()
@@ -134,7 +134,7 @@ namespace Rose.VExtension.Server.Models
         private void SyncronizeStorages()
         {
             var systemStorage = ControlPlugin.Storage;
-            var entityStorage = Repository.GetStorageItemsForPlugin(PluginEntity.Id);
+            var entityStorage = Repository.StorageContext.GetEntitiesByPluginId(PluginEntity.Id);
 
             systemStorage.IsEventsEnabled = false;
 
@@ -142,7 +142,7 @@ namespace Rose.VExtension.Server.Models
             {
                 if (entityStorage.All(storageItem => storageItem.Name != item.Name))
                 {
-                    Repository.AddStorageItem(PluginEntity.Id, item.Name, item.Value);
+                    Repository.StorageContext.AddEntity(item.Name, item.Value, PluginEntity.Id);
                 }
             }
 
@@ -173,7 +173,7 @@ namespace Rose.VExtension.Server.Models
             entity.Name = plugin.Name;
             entity.Version = plugin.Version.ToString();
 
-            repository.AddPlugin(entity);
+            repository.PluginContext.AddEntity(entity);
 
             var fsMiddleware = new FileSystemMiddleware();
             var fileSystem = fsMiddleware.CreateEntity(plugin.FileSystem);
@@ -185,8 +185,8 @@ namespace Rose.VExtension.Server.Models
 
             package.PluginId = plugin.Id;
 
-            repository.AddPluginFileSystem(fileSystem);
-            repository.AddPluginPackage(package);
+            repository.FileSystemContext.AddEntity(fileSystem);
+            repository.PackageContext.AddEntity(package);
 
             foreach (var item in plugin.Storage)
             {
@@ -197,7 +197,7 @@ namespace Rose.VExtension.Server.Models
                                      PluginId = plugin.Id
                                  };
 
-               repository.AddStorageItem(itemEntity);
+               repository.StorageContext.AddEntity(itemEntity);
                entity.StorageItems.Add(itemEntity);
 
             }
@@ -223,17 +223,17 @@ namespace Rose.VExtension.Server.Models
         {
             try
             {
-                repository.ClearResourceAccessTokensForPlugin(pluginId);
-                repository.RemovePluginFileSystemByPluginId(pluginId);
-                repository.RemovePluginPackageByPluginId(pluginId);
-                repository.ClearStorageItemsForPlugin(pluginId);
+                repository.ResourceAccessTokenContext.RemoveEntitiesByPluginId(pluginId);
+                repository.FileSystemContext.RemoveEntitiesByPluginId(pluginId);
+                repository.PackageContext.RemoveEntitiesByPluginId(pluginId);
+                repository.StorageContext.RemoveEntitiesByPluginId(pluginId);
 
-                repository.RemovePlugin(pluginId);
+                repository.PluginContext.RemoveEntity(pluginId);
                 RemoveConnection(pluginId);
             }
             catch (Exception e)
             {
-                throw new PluginConnectionException("Не удалосьсь сбросить соединение с плагином");
+                throw new PluginConnectionException("Не удалосьсь сбросить соединение с плагином", e);
             }
         }
 

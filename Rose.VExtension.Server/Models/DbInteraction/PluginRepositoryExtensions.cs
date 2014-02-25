@@ -6,7 +6,7 @@ namespace Rose.VExtension.Server.Models.DbInteraction
     {
         public static PluginLocation GetPluginStatus(this IPluginsRepository repository, string pluginId)
         {
-            var plugin = repository.GetPlugin(pluginId);
+            var plugin = repository.PluginContext.GetEntity(pluginId);
 
             if (plugin != null)
             {
@@ -17,7 +17,7 @@ namespace Rose.VExtension.Server.Models.DbInteraction
         }
         public static string GetPluginName(this IPluginsRepository repository, string pluginId)
         {
-            var plugin = repository.GetPlugin(pluginId);
+            var plugin = repository.PluginContext.GetEntity(pluginId);
 
             if (plugin != null)
             {
@@ -28,7 +28,7 @@ namespace Rose.VExtension.Server.Models.DbInteraction
         }
         public static Version GetPluginVersion(this IPluginsRepository repository, string pluginId)
         {
-            var plugin = repository.GetPlugin(pluginId);
+            var plugin = repository.PluginContext.GetEntity(pluginId);
 
             if (plugin != null)
             {

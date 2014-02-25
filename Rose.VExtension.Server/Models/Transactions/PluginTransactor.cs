@@ -88,9 +88,9 @@ namespace Rose.VExtension.Server.Models.Transactions
                             var plugin = factory.ToRunnable(transaction.To.FileSystem, config,
                                 packageTransaction.Package);
 
-                            Repository.SetPluginLocation(plugin.Id, PluginLocation.InRam);
+                            Repository.PluginContext.SetPluginLocation(plugin.Id, PluginLocation.InRam);
 
-                            var pluginEntity = Repository.GetPlugin(plugin.Id);
+                            var pluginEntity = Repository.PluginContext.GetEntity(plugin.Id);
 
                             if (pluginEntity != null)
                             {
@@ -118,7 +118,7 @@ namespace Rose.VExtension.Server.Models.Transactions
                     if (transaction.To.Status == PluginStatus.InFileSystem)
                     {
                         factory.ToFileSystem(packageTransaction.FileSystem, packageTransaction.Package);
-                        Repository.SetPluginLocation(transaction.To.PluginId, PluginLocation.InFileSystem);
+                        Repository.PluginContext.SetPluginLocation(transaction.To.PluginId, PluginLocation.InFileSystem);
 
                         var id = transaction.To.PluginId;
                         RemovePluginIfNecessary(id);
@@ -136,7 +136,7 @@ namespace Rose.VExtension.Server.Models.Transactions
                             if(string.IsNullOrWhiteSpace(transaction.From.PluginId))
                                 throw new PluginTransactionException("При транзакции плагина из файловой системы в управляемую память ожидается, что плагин был уже зарегестрирован");
 
-                            var pluginEntity = Repository.GetPlugin(transaction.From.PluginId);
+                            var pluginEntity = Repository.PluginContext.GetEntity(transaction.From.PluginId);
                             var fs = transaction.From as FileSystemTransactionNode;
                             var packageMiddleware = new PackageMiddleware();
                             var package = packageMiddleware.CreateBase(pluginEntity.PluginPackage);
@@ -148,7 +148,7 @@ namespace Rose.VExtension.Server.Models.Transactions
                                 throw handler.CreateInitializationException();
                             }
 
-                            Repository.SetPluginLocation(plugin.Id, PluginLocation.InRam);
+                            Repository.PluginContext.SetPluginLocation(plugin.Id, PluginLocation.InRam);
 
                             if (pluginEntity != null)
                             {
@@ -202,7 +202,7 @@ namespace Rose.VExtension.Server.Models.Transactions
             try
             {
                 var transactionResults = new List<PluginTransactionResult>();
-                var plugins = Repository.Plugins;
+                var plugins = Repository.PluginContext.All;
                 var missed = 0;
 
                 foreach (var pluginEntity in plugins)
@@ -304,7 +304,7 @@ namespace Rose.VExtension.Server.Models.Transactions
         }
         private void SyncronizePluginByPhysical(Plugin pluginEntity, PluginLocation physicalStatus)
         {
-            Repository.SetPluginLocation(pluginEntity.Id, physicalStatus);
+            Repository.PluginContext.SetPluginLocation(pluginEntity.Id, physicalStatus);
         }
     }
 }

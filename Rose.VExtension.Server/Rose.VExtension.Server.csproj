@@ -200,6 +200,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DbInteraction\Automation\IRepositoryEntityController.cs" />
+    <Compile Include="Models\DbInteraction\Automation\RepositoryFileSystemController.cs" />
+    <Compile Include="Models\DbInteraction\Automation\RepositoryPackageController.cs" />
+    <Compile Include="Models\DbInteraction\Automation\RepositoryPluginController.cs" />
+    <Compile Include="Models\DbInteraction\Automation\RepositoryStorageController.cs" />
     <Compile Include="Models\DbInteraction\BrowserExtensionType.cs">
       <DependentUpon>Plugins.tt</DependentUpon>
     </Compile>

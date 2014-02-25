@@ -44,12 +44,12 @@ namespace Rose.VExtension.Server.Controllers
         public ActionResult Index()
         {
             AddAreaDataToken();
-            return View(repository.Plugins);
+            return View(repository.PluginContext.All);
         }
 
         public ActionResult Details(string pluginId)
         {
-            var plugin = repository.GetPlugin(pluginId);
+            var plugin = repository.PluginContext.GetEntity(pluginId);
             if (plugin == null)
                 return HttpNotFound();
             return View(plugin);
@@ -57,7 +57,7 @@ namespace Rose.VExtension.Server.Controllers
 
         public ActionResult AddStorageItem(string pluginId, string name, string value)
         {
-            repository.AddStorageItem(pluginId, name, value);
+            repository.StorageContext.AddEntity(name, value, pluginId);
 
             return RedirectToAction("Index");
 
@@ -65,7 +65,7 @@ namespace Rose.VExtension.Server.Controllers
 
         public ActionResult DeleteStorageItem(string pluginId, string name)
         {
-            repository.RemoveStorageItem(pluginId, name);
+            repository.StorageContext.RemoveItemByName(pluginId, name);
 
             return RedirectToAction("Index");
         }

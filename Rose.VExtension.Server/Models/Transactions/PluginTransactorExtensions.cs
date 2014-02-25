@@ -17,7 +17,7 @@ namespace Rose.VExtension.Server.Models.Transactions
         /// <returns></returns>
         public static PluginSystem.Plugin GetPlugin(this IPluginTransactor transactor, string pluginId)
         {
-            var plugin = transactor.Repository.GetPlugin(pluginId);
+            var plugin = transactor.Repository.PluginContext.GetEntity(pluginId);
             if(plugin.Location == PluginLocation.Undefined)
                 return null;
             if (plugin.Location == PluginLocation.InRam)
