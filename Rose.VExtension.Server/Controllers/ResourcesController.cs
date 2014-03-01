@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Rose.VExtension.PluginSystem.FileSystem;
 using Rose.VExtension.Server.Models;
@@ -44,9 +45,16 @@ namespace Rose.VExtension.Server.Controllers
             if(fileSystem == null)
                 return new HttpNotFoundResult();
 
-            var stream = fileSystem.GetItemStream(FileSystemItem.GetResourceItem(accesToken.ResourceName));
+            try
+            {
+                var stream = fileSystem.GetItemStream(FileSystemItem.GetResourceItem(accesToken.ResourcePath));
 
-            return new FileStreamResult(stream, "image/jpg");
+                return new FileStreamResult(stream, "image/jpg");
+            }
+            catch (ResourceAccessDeniedException e)
+            {
+                return HttpNotFound(String.Format("Access to resource '{0}' is denied", accesToken.ResourcePath));
+            }
 
         }
 	}

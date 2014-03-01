@@ -11,6 +11,7 @@ namespace Rose.VExtension.PluginSystem.Activation
         NameActivation,
         VersionActivation,
         ControllerActivation,
+        PermissionsActivation,
         MetaActivation,
         StorageActivation,
         ReservationActivation,

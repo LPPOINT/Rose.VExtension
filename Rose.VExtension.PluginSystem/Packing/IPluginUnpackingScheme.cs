@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Rose.VExtension.PluginSystem.Common;
 using Rose.VExtension.PluginSystem.Configuration;
 using Rose.VExtension.PluginSystem.FileSystem;
 
@@ -17,11 +18,16 @@ namespace Rose.VExtension.PluginSystem.Packing
 
         private void Add(IPluginFileSystemItem item)
         {
+            Check.NotNull(item);
             ItemsSourceScheme.Add(item.Uri, item);
         }
 
         public PluginUnpackingScheme(IPluginConfiguration pluginPluginConfiguration, IPluginPackageFileSystem pluginPackageFileSystem)
         {
+
+            Check.NotNull(pluginPluginConfiguration);
+            Check.NotNull(pluginPackageFileSystem);
+
             PluginPackageFileSystem = pluginPackageFileSystem;
             PluginPluginConfiguration = pluginPluginConfiguration;
             ItemsSourceScheme = new Dictionary<string, IPluginFileSystemItem>();

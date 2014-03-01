@@ -1,9 +1,9 @@
 ﻿using NLog;
-using Rose.VExtension.PluginSystem.Javascript.Wrappers;
+
 
 namespace Rose.VExtension.PluginSystem.Javascript.Log
 {
-    [NotWrapped]
+
     public class JavascriptNLogger : IJavascriptLogger
     {
         public void Trace(string message)

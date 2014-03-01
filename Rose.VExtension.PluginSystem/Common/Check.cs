@@ -70,6 +70,27 @@ namespace Rose.VExtension.PluginSystem.Common
             }
         }
 
+        public static void IsTrue(bool value, Exception exception)
+        {
+            if(!value)
+                ThrowException(exception);
+        }
+        public static void IsFalse(bool value, Exception exception)
+        {
+            IsTrue(!value, exception);
+        }
+
+        public static void Wrap(Action action, Exception throwIfFail)
+        {
+            try
+            {
+                action();
+            }
+            catch 
+            {
+                ThrowException(throwIfFail);
+            }
+        }
 
     }
 }

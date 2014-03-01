@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
+using NLog;
 
 namespace Rose.VExtension.PluginSystem.Activation
 {
@@ -168,5 +170,47 @@ namespace Rose.VExtension.PluginSystem.Activation
             return new PluginInitializationException("Во время активации плагина произошла одна илм несколько ошибок. Их список можно посмотреть в свойстве ErrorHandler текущего экземпляра исключения", handler.Exceptions);
         }
 
+    }
+
+    /// <summary>
+    /// Обработчик активации, записывающий сообщения об активации в заданный логгер
+    /// </summary>
+    public class LogInitializationHandler : PluginInitializationHandler
+    {
+        public LogInitializationHandler(Logger logger)
+        {
+            Logger = logger;
+            stopwatch = new Stopwatch();
+        }
+
+        public Logger Logger { get; private set; }
+
+        private Stopwatch stopwatch;
+
+        public override void OnActivationStarted()
+        {
+            stopwatch.Restart();
+            base.OnActivationStarted();
+            Logger.Info("Активация плагина начата");
+        }
+
+        public override void OnActivationEnded()
+        {
+            stopwatch.Stop();
+            base.OnActivationEnded();
+            Logger.Info("Активация плагина завершена за {0} сек.\n Ошибок: {1}\n Выполнено шагов активации: {2}", stopwatch.Elapsed.TotalSeconds, exceptions.Count, steps.Count);
+        }
+
+        public override void OnStepComplite(ActivationStepCompliteEventArgs eventArgs)
+        {
+            base.OnStepComplite(eventArgs);
+            Logger.Info("Завершено выполнение шага активации '" + eventArgs.StepName + "'.");
+        }
+
+        public override void OnException(ActivationStepException exception)
+        {
+            base.OnException(exception);
+            Logger.ErrorException("Обнаружена ошибка активации шага " +exception.StepName+ ": " + exception.Message , exception);
+        }
     }
 }

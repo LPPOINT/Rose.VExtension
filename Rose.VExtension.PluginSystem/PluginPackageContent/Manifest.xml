@@ -5,11 +5,21 @@
   <Version>1.0.0.0</Version> <!-- Версия плагина (можно не указывать)-->
   <Settings>Settings.xml</Settings> <!--Xml-файл с настройками плагина (можно не указывать)-->
   <Logo>Logo.png</Logo> <!--Файл с логотипом плагина. Если не указать, будет выбран файл Logo.png-->
+
+  <Permissions>
+    <Permission>ContentPermission</Permission>
+    <Permission name="ItemPermission">
+      <PermissionConfiguration1Name>PermissionConfiguration1Value</PermissionConfiguration1Name>
+    </Permission>
+  </Permissions>
   
   <RequestHandler> <!--Обработчик запросов. Должен быть минимум один-->
     <Filter> <!--Фильтр запросов-->
       <Template>AllRequests</Template> <!--Имя шаблона запросов. Шаблон запроса - класс, имеющий аттрибут FilterTemplateAttribute и реализованный от интерфейса IPluginRequestFilterTemplate-->
     </Filter>
+    <Args>
+      <Include>CurrentDate</Include>
+    </Args>
     <Activity> <!--Деятельность плагина, выполняемая, когда придет запрос, завалидированный фильтром родительского обработчика-->
       <Name>Simple activity</Name> <!--Имя деятельности. Можно не указывать-->
       <Type>JS</Type> <!--Имя платформы деятельности (CS, JS, Razor)-->
@@ -17,5 +27,7 @@
       <EntryFunction>hello</EntryFunction> <!--Регистрация функции, которая будет вызвана при начале выполнения плагина-->
     </Activity>
   </RequestHandler>
+
+
   
 </Manifest> 

@@ -13,9 +13,11 @@
     <EntitySet Name="PluginFileSystems" EntityType="Plugins.Store.PluginFileSystems" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PluginPackages" EntityType="Plugins.Store.PluginPackages" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TransactionSet" EntityType="Plugins.Store.TransactionSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="Plugins.Store.Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PluginFileSystems_LocalPluginFileSystem" EntityType="Plugins.Store.PluginFileSystems_LocalPluginFileSystem" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PluginPackages_LocalStoragePluginPackage" EntityType="Plugins.Store.PluginPackages_LocalStoragePluginPackage" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PluginPackages_StreamPackage" EntityType="Plugins.Store.PluginPackages_StreamPackage" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserPlugin" EntityType="Plugins.Store.UserPlugin" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="PluginResourceToken" Association="Plugins.Store.PluginResourceToken">
       <End Role="Plugin" EntitySet="Plugins" />
       <End Role="ResourceToken" EntitySet="ResourceTokens" />
@@ -35,6 +37,14 @@
     <AssociationSet Name="PluginTransaction" Association="Plugins.Store.PluginTransaction">
       <End Role="Plugin" EntitySet="Plugins" />
       <End Role="Transaction" EntitySet="TransactionSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPlugin_User" Association="Plugins.Store.FK_UserPlugin_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserPlugin" EntitySet="UserPlugin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPlugin_Plugin" Association="Plugins.Store.FK_UserPlugin_Plugin">
+      <End Role="Plugin" EntitySet="Plugins" />
+      <End Role="UserPlugin" EntitySet="UserPlugin" />
     </AssociationSet>
     <AssociationSet Name="FK_LocalPluginFileSystem_inherits_PluginFileSystem" Association="Plugins.Store.FK_LocalPluginFileSystem_inherits_PluginFileSystem">
       <End Role="PluginFileSystem" EntitySet="PluginFileSystems" />
@@ -64,7 +74,7 @@
     </Key>
     <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="16" />
     <Property Name="PluginId" Type="nvarchar" Nullable="false" MaxLength="16" />
-    <Property Name="ResourceName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ResourcePath" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Lifetime" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="StorageItems">
@@ -107,6 +117,13 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PluginId" Type="nvarchar" Nullable="false" MaxLength="16" />
   </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VkId" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
   <EntityType Name="PluginFileSystems_LocalPluginFileSystem">
     <Key>
       <PropertyRef Name="Id" />
@@ -127,6 +144,14 @@
     </Key>
     <Property Name="StreamFileUri" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserPlugin">
+    <Key>
+      <PropertyRef Name="UserPlugin_Plugin_Id" />
+      <PropertyRef Name="Plugins_Id" />
+    </Key>
+    <Property Name="UserPlugin_Plugin_Id" Type="int" Nullable="false" />
+    <Property Name="Plugins_Id" Type="nvarchar" Nullable="false" MaxLength="16" />
   </EntityType>
   <Association Name="PluginResourceToken">
     <End Role="Plugin" Type="Plugins.Store.Plugins" Multiplicity="1" />
@@ -185,6 +210,30 @@
       </Principal>
       <Dependent Role="Transaction">
         <PropertyRef Name="PluginId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPlugin_User">
+    <End Role="User" Type="Plugins.Store.Users" Multiplicity="1" />
+    <End Role="UserPlugin" Type="Plugins.Store.UserPlugin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPlugin">
+        <PropertyRef Name="UserPlugin_Plugin_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPlugin_Plugin">
+    <End Role="UserPlugin" Type="Plugins.Store.UserPlugin" Multiplicity="*" />
+    <End Role="Plugin" Type="Plugins.Store.Plugins" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Plugin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPlugin">
+        <PropertyRef Name="Plugins_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -262,6 +311,11 @@
             <End Role="Plugin" EntitySet="Plugins" />
             <End Role="Transaction" EntitySet="TransactionSet" />
           </AssociationSet>
+          <EntitySet Name="Users" EntityType="Plugins.User" />
+          <AssociationSet Name="UserPlugin" Association="Plugins.UserPlugin">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Plugin" EntitySet="Plugins" />
+          </AssociationSet>
           </EntityContainer>
         <EnumType Name="PluginLocation" >
           <Member Name="InRam" />
@@ -290,7 +344,7 @@
           <Property Name="Id" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="16" />
           <NavigationProperty Name="Plugin" Relationship="Plugins.PluginResourceToken" FromRole="ResourceToken" ToRole="Plugin" />
           <Property Name="PluginId" Type="String" Nullable="false" MaxLength="16" />
-          <Property Name="ResourceName" Type="String" Nullable="false" />
+          <Property Name="ResourcePath" Type="String" Nullable="false" />
           <Property Name="Lifetime" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="PluginResourceToken">
@@ -389,6 +443,18 @@
         <EnumType Name="BrowserExtensionType">
           <Member Name="Chrome" />
         </EnumType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Plugins" Relationship="Plugins.UserPlugin" FromRole="User" ToRole="Plugin" />
+          <Property Name="VkId" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="UserPlugin">
+          <End Type="Plugins.User" Role="User" Multiplicity="*" />
+          <End Type="Plugins.Plugin" Role="Plugin" Multiplicity="*" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -410,7 +476,7 @@
         <MappingFragment StoreEntitySet="ResourceTokens">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="PluginId" ColumnName="PluginId" />
-          <ScalarProperty Name="ResourceName" ColumnName="ResourceName" />
+          <ScalarProperty Name="ResourcePath" ColumnName="ResourcePath" />
           <ScalarProperty Name="Lifetime" ColumnName="Lifetime" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -476,6 +542,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Plugins.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="VkId" ColumnName="VkId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="PluginPluginFileSystem" TypeName="Plugins.PluginPluginFileSystem" StoreEntitySet="PluginFileSystems">
       <EndProperty Name="Plugin">
         <ScalarProperty Name="Id" ColumnName="PluginPluginFileSystem_PluginFileSystem_Id" />
@@ -490,6 +564,14 @@
       </EndProperty>
       <EndProperty Name="PluginPackage">
         <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserPlugin" TypeName="Plugins.UserPlugin" StoreEntitySet="UserPlugin">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserPlugin_Plugin_Id" />
+      </EndProperty>
+      <EndProperty Name="Plugin">
+        <ScalarProperty Name="Id" ColumnName="Plugins_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

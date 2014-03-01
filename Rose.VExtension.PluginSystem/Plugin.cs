@@ -23,6 +23,11 @@ namespace Rose.VExtension.PluginSystem
     {
 
 
+        /// <summary>
+        /// Создает новый экземпляр плагина. 
+        /// Внимание! Конструктор не инициализирует свойства плагина.
+        /// Для инициализации следует воспользоваться соотсетствующими службами (PluginFactory, ActivationContext, Transactions)
+        /// </summary>
         public Plugin()
         {
             Logo = new PluginLogoProvider(this);
@@ -83,7 +88,7 @@ namespace Rose.VExtension.PluginSystem
         /// <summary>
         /// Сведения о правах плагина
         /// </summary>
-        public IPluginPermissions Permissions { get; set; }
+        public PluginPersmissionCollection Permissions { get; set; }
 
         /// <summary>
         /// Настройки плагина, которые могут быть изменены клиентом. Значения настроек изменяются в зависимости от их значения у клиента

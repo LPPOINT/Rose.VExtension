@@ -64,7 +64,12 @@ namespace Rose.VExtension.Server.Models
                 ControlPlugin.Storage.ItemUpdated += StorageOnItemUpdated;
                 ControlPlugin.Storage.StorageCleared += StorageOnStorageCleared;
 
-                ControlPlugin.ResourcesProvider = new PluginFileSystemResourcesProvider(ControlPlugin.FileSystem, Repository) {PluginId = ControlPlugin.Id};
+                var provider = new PluginFileSystemResourcesProvider(ControlPlugin.FileSystem, Repository) { PluginId = ControlPlugin.Id };
+                provider.InitializeInnoreListByDefault(ControlPlugin);
+
+                ControlPlugin.ResourcesProvider = provider;
+
+
 
                 Syncronize();
 

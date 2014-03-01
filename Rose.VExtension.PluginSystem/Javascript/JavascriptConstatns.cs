@@ -6,5 +6,7 @@
         public static readonly string RequestParametr = "request";
         public static readonly string ResponseParametr = "response";
         public static readonly string LogParametr = "log";
+
+
     }
 }

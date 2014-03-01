@@ -181,7 +181,6 @@ function isEmptyObject(obj) {
     return true;
 }
 
-
 function setTabHtml(tabId, html) {
     chrome.tabs.get(tabId, function (tab) {
         chrome.tabs.sendRequest(tab.id, { method: "setHtml", html: html }, function (response) {
@@ -220,14 +219,16 @@ function sendRequest(access_token, id, requestString, html, exp) {
     console.groupEnd();
 
     var xmlhttp = getXmlHttp();
-    var params =  html;
-    xmlhttp.open('POST', 'http://localhost:19945/clientRequest/Index', true);
+    var params = "UserToken=" + access_token + "&RequestString=" + requestString;
+    //var params = JSON.stringify({ UserToken: access_token, RequestString: requestString, Html: "<html></html>", Timeout: 1488 });
+    xmlhttp.open('POST', 'http://localhost:19945/query', true);
     xmlhttp.setRequestHeader("Content-type", "text/html");
     //xmlhttp.setRequestHeader("Content-length", params.length);
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {;
-                var data = xmlhttp.responseText;
+                var data = xmlhttp.responseXML;
+                console.log(data);
                 parseRespose(data);
             }
         }

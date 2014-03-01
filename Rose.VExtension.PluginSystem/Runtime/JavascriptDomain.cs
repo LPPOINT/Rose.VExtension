@@ -54,25 +54,15 @@ namespace Rose.VExtension.PluginSystem.Runtime
                 var platform = Platform as JSPluginPlatform;
                 var logger = JavascriptLogManager.GetCurrentLogger();
 
-                try
-                {
-
-                    var injector = context.CreateInjector();
-
-                    injector.InjectPlugin(Plugin);
-                    injector.InjectLogger(logger);
-                    injector.InjectRequest(request);
-                    injector.InjectResponse(response);
-
-
-                }
-                catch (Exception e)
-                {
-                    throw new JavascriptDomainException("Ошибка внедрения переменных в javascript-код плагина", e);
-                }
+                context.SetParameter("log", logger);
+                context.SetParameter("request", request);
+                context.SetParameter("response", response);
+                context.SetParameter("plugin", Plugin);
+                context.SetParameter("args", Handler.Arguments.Source);
 
                 try
                 {
+
                     context.Run(script);
                     context.Run(String.Format("{0}();", platform.EntryFunction));
 

@@ -2,6 +2,7 @@
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using Rose.VExtension.PluginSystem.Common;
 
 namespace Rose.VExtension.PluginSystem.Packing
 {
@@ -38,6 +39,9 @@ namespace Rose.VExtension.PluginSystem.Packing
     {
         public static IEnumerable<string> GetFilesInFolder(this IPluginPackageFileSystem fs, string folderName)
         {
+            Check.NotNull(fs);
+            Check.NotNullOrWhiteSpace(folderName);
+
             return fs.Files.Where(s => s.StartsWith(folderName) && s != folderName + "/");
         }
     }

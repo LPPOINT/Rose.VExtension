@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Rose.VExtension.PluginSystem.Runtime;
+using Rose.VExtension.PluginSystem.Runtime.RequestHandeling;
 using Rose.VExtension.Server.Models.DbInteraction;
 using Rose.VExtension.Server.Models.Transactions;
 
@@ -37,12 +39,12 @@ namespace Rose.VExtension.Server.Models
 
     public interface IPluginsExecutor
     {
-        PluginExecutionResult ExecutePlugin(PluginRequest request, string pluginId);
+        PluginExecutionResult ExecutePlugin(PluginRequestModel request, string pluginId);
     }
 
     public interface IPluginAsyncExecutor
     {
-        Task<PluginExecutionResult> ExecutePluginAsync(PluginRequest request, string pluginId);
+        Task<PluginExecutionResult> ExecutePluginAsync(PluginRequestModel request, string pluginId);
     }
 
     public class PluginsExecutor : IPluginsExecutor, IPluginAsyncExecutor
@@ -72,14 +74,26 @@ namespace Rose.VExtension.Server.Models
         /// </summary>
         public IPluginsCollection Plugins { get; private set; }
 
-        private PluginExecutionResult Run(PluginRequest request, PluginSystem.Plugin plugin)
+        private PluginExecutionResult Run(PluginRequestModel request,  PluginSystem.Plugin plugin)
         {
+            var handlers = plugin.Controller.GetHandlersForRequest(request.CreatePluginRequest());
+            var firstHandler = handlers.FirstOrDefault();
+
+            if(firstHandler == null)
+                return new PluginExecutionResult(null, new TimeSpan());
+
+            firstHandler.Arguments.Source = new PluginArgumentsSource(plugin, request, request.CreatePluginRequest());
+
+            var response = firstHandler.Activity.Execute(request.CreatePluginRequest());
+
+            firstHandler.Arguments.Source = null;
+
+            return new PluginExecutionResult(response, new TimeSpan());
 
 
-            return null;
         }
 
-        public PluginExecutionResult ExecutePlugin(PluginRequest request, string pluginId)
+        public PluginExecutionResult ExecutePlugin(PluginRequestModel request, string pluginId)
         {
             var status = Repository.GetPluginStatus(pluginId);
 
@@ -94,7 +108,7 @@ namespace Rose.VExtension.Server.Models
             throw new NotImplementedException();
         }
 
-        public async Task<PluginExecutionResult> ExecutePluginAsync(PluginRequest request, string pluginId)
+        public async Task<PluginExecutionResult> ExecutePluginAsync(PluginRequestModel request, string pluginId)
         {
             return await Task.Run(() => ExecutePlugin(request, pluginId));
         }

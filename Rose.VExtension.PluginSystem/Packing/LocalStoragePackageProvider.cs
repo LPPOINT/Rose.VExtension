@@ -1,4 +1,5 @@
 ﻿using Rose.VExtension.PluginSystem.Activation;
+using Rose.VExtension.PluginSystem.Common;
 
 namespace Rose.VExtension.PluginSystem.Packing
 {
@@ -6,6 +7,7 @@ namespace Rose.VExtension.PluginSystem.Packing
     {
         public LocalStoragePackageProvider(string packagePath)
         {
+            Check.NotNullOrWhiteSpace(packagePath);
             PackagePath = packagePath;
         }
 

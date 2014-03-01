@@ -12,13 +12,16 @@ namespace Rose.VExtension.Server.Models.DbInteraction
     using System;
     using System.Collections.Generic;
     
-    public partial class ResourceToken
+    public partial class User
     {
-        public string Id { get; set; }
-        public string PluginId { get; set; }
-        public string ResourcePath { get; set; }
-        public System.DateTime Lifetime { get; set; }
+        public User()
+        {
+            this.Plugins = new HashSet<Plugin>();
+        }
     
-        public virtual Plugin Plugin { get; set; }
+        public int Id { get; set; }
+        public string VkId { get; set; }
+    
+        public virtual ICollection<Plugin> Plugins { get; set; }
     }
 }

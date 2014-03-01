@@ -12,7 +12,7 @@ namespace Rose.VExtension.Server.Models.DbInteraction
         RepositoryFileSystemController FileSystemContext { get; }
         RepositoryPackageController PackageContext { get; }
         RepositoryPluginComponentEntityController<ResourceToken, string> ResourceAccessTokenContext { get; }
-
+        RepositoryUserController UserContext { get; }
 
 
     }

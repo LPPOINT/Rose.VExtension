@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4907777743bb47bea4a31b4fdf194242" Name="Diagram1" ZoomLevel="63" >
+      <Diagram DiagramId="4907777743bb47bea4a31b4fdf194242" Name="Diagram1" ZoomLevel="82" >
         <EntityTypeShape EntityType="Plugins.Plugin" Width="1.5" PointX="8.25" PointY="0.75" />
         <EntityTypeShape EntityType="Plugins.ResourceToken" Width="1.5" PointX="2.25" PointY="1.625" />
         <AssociationConnector Association="Plugins.PluginResourceToken" />
@@ -23,6 +23,8 @@
         <InheritanceConnector EntityType="Plugins.StreamPackage" />
         <EntityTypeShape EntityType="Plugins.Transaction" Width="1.5" PointX="12.75" PointY="7.25" />
         <AssociationConnector Association="Plugins.PluginTransaction" />
+        <EntityTypeShape EntityType="Plugins.User" Width="1.5" PointX="22.25" PointY="2.125" />
+        <AssociationConnector Association="Plugins.UserPlugin" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -13,7 +13,7 @@ namespace Rose.VExtension.Server.Models
     public class PluginRequestModel : IPluginRequest
     {
         public string MetaString { get; set; }
-        public IDictionary<string, string> Meta
+        public IDictionary<string, string> Headers
         {
             get
             {
@@ -101,16 +101,12 @@ namespace Rose.VExtension.Server.Models
         {
             var result = new PluginRequest
                          {
-                             Attributes = Attributes,
-                             ExtensionId = ExtensionId,
-                             Meta = Meta,
+
+                             Headers = Headers,
                              RequestString = RequestString,
-                             Url = Url,
-                             UserId = UserId,
-                             Html = new HtmlDocument()
+
                          };
 
-            result.Html.LoadHtml(Html);
 
             return result;
         }

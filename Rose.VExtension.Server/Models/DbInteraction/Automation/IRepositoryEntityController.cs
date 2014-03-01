@@ -52,6 +52,7 @@ namespace Rose.VExtension.Server.Models.DbInteraction.Automation
 
         public TEntityIDType GetEntityId(TEntityType entity)
         {
+          
             var prop = entity.GetType().GetProperties().FirstOrDefault(info => info.Name == IdProperty);
             if (prop == null)
                 return default(TEntityIDType);

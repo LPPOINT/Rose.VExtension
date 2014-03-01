@@ -15,7 +15,9 @@ namespace Rose.VExtension.Server.Models.DbInteraction
         public RepositoryStorageController StorageContext { get; private set; }
         public RepositoryFileSystemController FileSystemContext { get; private set; }
         public RepositoryPackageController PackageContext { get; private set; }
-        public RepositoryPluginComponentEntityController<ResourceToken, string> ResourceAccessTokenContext { get; private set; } 
+        public RepositoryPluginComponentEntityController<ResourceToken, string> ResourceAccessTokenContext { get; private set; }
+        public RepositoryUserController UserContext { get; private set; }
+
 
         public PluginsRepository()
         {
@@ -25,6 +27,7 @@ namespace Rose.VExtension.Server.Models.DbInteraction
             ResourceAccessTokenContext = new RepositoryPluginComponentEntityController<ResourceToken, string>(this, db, "Id", "PluginId");
             FileSystemContext = new RepositoryFileSystemController(this, db);
             PackageContext = new RepositoryPackageController(this, db);
+            UserContext = new RepositoryUserController(this, db);
         }
 
         #region IPluginsRepository Implementation

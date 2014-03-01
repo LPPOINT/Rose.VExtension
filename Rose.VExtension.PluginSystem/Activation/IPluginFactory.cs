@@ -5,7 +5,7 @@ using Rose.VExtension.PluginSystem.Packing;
 namespace Rose.VExtension.PluginSystem.Activation
 {
     /// <summary>
-    /// Представляет набор методов для создания экземпляра класса <see cref="Plugin"/>
+    /// Представляет набор методов для создания экземпляра класса <see cref="Plugin"/> и инициализации его свойств
     /// </summary>
     public interface IPluginFactory
     {
@@ -28,7 +28,7 @@ namespace Rose.VExtension.PluginSystem.Activation
         /// </summary>
         /// <param name="fileSystem">Файловая система, в которую будет распакован плагин</param>
         /// <param name="package">Пакет плагина</param>
-        /// <returns></returns>
+        /// <returns>Возвращает конфигурацию плагина, которая может быть использована для более быстрого выполнения метода ToRunnable()</returns>
         IPluginConfiguration ToFileSystem(IPluginFileSystem fileSystem, IPluginPackage package);
 
     }

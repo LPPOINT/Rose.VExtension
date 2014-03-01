@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Rose.VExtension.PluginSystem.Activation;
+using Rose.VExtension.PluginSystem.Common;
 
 namespace Rose.VExtension.PluginSystem.Packing
 {
@@ -7,6 +8,7 @@ namespace Rose.VExtension.PluginSystem.Packing
     {
         public StreamPluginPackage(Stream stream)
         {
+
             Stream = stream;
             Type = PacckageType.ZipFile;
         }

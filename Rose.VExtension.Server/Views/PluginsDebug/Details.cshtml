@@ -1,113 +1,97 @@
-﻿@model Rose.VExtension.Server.Models.DbInteraction.Plugin
+﻿@model Rose.VExtension.Server.Models.PluginViewModel
 
 @{
     ViewBag.Title = "PluginDetails";
     Layout = "~/Views/Shared/_DebugLayout.cshtml";
 }
 
-<h1>@Model.Name</h1>
+<h1>@Model.Plugin.Name</h1>
 <hr/>
-<p>@Model.Id</p>
-<p>@Model.PluginPackage.ToString()</p>
+<p>Идентификатор: @Model.Plugin.Id</p>
 
-<a class="btn btn-primary" href="@Url.Action("Index", "FileSystem", new RouteValueDictionary( ){{"pluginId", Model.Id}})">Файловая система</a>
-<br/>
-<form method="POST" action="@Url.Action("Settings")">
-    <input type="hidden" name="pluginId" value="@Model.Id" />
-    <input type="submit" value="Настройки" class="btn btn-primary" />
-</form>
 
-<table >
-    
+<h1>Файловая система</h1>
+<table class="table table-bordered">
     <thead>
         <tr>
-            <td>
-                <h2>Хранилище</h2>
-            </td>
-            <td>
-                <h2>Ресурсы</h2>
-            </td>
+            <td>Имя</td>
+            <td>Путь</td>
         </tr>
     </thead>
+    <tbody>
+        @{
+            var fileSystem = Model.Plugin.FileSystem;
+        }
+        
+        @foreach (var item in fileSystem.EnumerateItems())
+        {
+            <tr>
+                <td><a href="@Url.Action("OpenFile", "FileSystem", new RouteValueDictionary { { "filePath", item.Uri }, { "pluginId", Model.Enity.Id } })">@item.Name</a></td>
+                <td>@item.Uri</td>
+            </tr>
+        }
 
-    <tr>
-        <td>
-            <table class="table table-bordered">
-                
-                <thead>
-                    <tr>
-                        <td>Имя</td>
-                        <td>Значение</td>
-                        <td>Действия</td>
-                    </tr>
-                </thead>
-                
-                <tbody>
-
-                    @foreach (var item in Model.StorageItems)
-                    {
-                        <tr>
-                            <td>
-                                @item.Name
-                            </td>
-                            <td>
-                                @item.Value
-                            </td>
-                            <td>
-                                <form method="POST" action="@Url.Action("DeleteStorageItem")">
-                                    <input type="hidden" name="pluginId" value="@Model.Id" />
-                                    <input type="hidden" name="name" value="@item.Name" />
-                                    <input type="submit" value="Удалить" class="btn btn-danger" />
-                                </form>
-                            </td>
-                        </tr>
-                    }
-
-                </tbody>
-
-            </table>
-        </td>
-        <td>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <td>
-                            Токен
-                        </td>
-                        <td>
-                            Имя ресурса
-                        </td>
-                        <td>
-                            Время действия
-                        </td>
-                    </tr>
-                </thead>
-
-                @foreach (var res in Model.ResourceTokens)
-                {
-                    <tr>
-                        <td>
-                            <a href="@Url.Action("Index", "Resources", new RouteValueDictionary {{"id", res.Id}})">@res.Id</a>
-                        </td>
-                        <td>
-                            @res.ResourceName
-                        </td>
-                        <td>
-                            @res.Lifetime
-                        </td>
-                    </tr>
-                }
-
-            </table>
-            
-            <form method="POST" action="@Url.Action("AddStorageItem")">
-                <input type="hidden" name="pluginId" value="@Model.Id" />
-                <input type="text" name="name" placeholder="Имя " />
-                <input type="text" name="value" placeholder="Значение " />
-                <input type="submit" value="Добавить элемент в хранилище" class="btn btn-primary" />
-            </form>
-
-        </td>
-    </tr>
+    </tbody>
 </table>
+<hr/>
 
+@if (Model.Enity.StorageItems.Count != 0)
+{
+    <h1>Локальное хранилище</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Имя</td>
+                <td>Значение</td>
+                <td>Действия</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Enity.StorageItems)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Value</td>
+                    <td>
+                        <a class="btn btn-danger" href="@Url.Action("DeleteStorageItem", new RouteValueDictionary() {{"pluginId", Model.Enity.Id}, {"name", item.Name}})">Удалить</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h2>Элементы в локальном хранилище не найдены</h2>
+
+<hr>
+
+@if (Model.Enity.ResourceTokens.Count != 0)
+{
+
+    <h1>Токены доступа</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Токен</td>
+                <td>Имя ресурса</td>
+                <td>Время действия</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var token in Model.Enity.ResourceTokens)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Index", "Resources", new RouteValueDictionary() {{"id", token.Id}})"></a>
+                    </td>
+                    <td>@token.ResourcePath</td>
+                    <td>@token.Lifetime</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>Токены доступа не найдены</h2>
+}

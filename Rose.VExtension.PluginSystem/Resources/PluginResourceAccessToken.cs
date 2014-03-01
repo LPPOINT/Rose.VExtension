@@ -6,9 +6,9 @@ namespace Rose.VExtension.PluginSystem.Resources
 {
     public class PluginResourceAccessToken
     {
-        public PluginResourceAccessToken(string token, TimeSpan duration, DateTime validBefore, string resourceName)
+        public PluginResourceAccessToken(string token, TimeSpan duration, DateTime validBefore, string resourcePath)
         {
-            ResourceName = resourceName;
+            ResourcePath = resourcePath;
             if (duration != TimeSpan.Zero || validBefore > DateTime.Now)
             {
                 ValidBefore = validBefore;
@@ -53,7 +53,7 @@ namespace Rose.VExtension.PluginSystem.Resources
         public string Token { get;  set; }
         public TimeSpan Duration { get;  set; }
         public DateTime ValidBefore { get;  set; }
-        public string ResourceName { get;  set; }
+        public string ResourcePath { get;  set; }
 
         public string Url { get; set; }
 

@@ -52,7 +52,15 @@ namespace Rose.VExtension.Server.Controllers
             var plugin = repository.PluginContext.GetEntity(pluginId);
             if (plugin == null)
                 return HttpNotFound();
-            return View(plugin);
+
+            var connection = PluginConnection.GetConnection(pluginId);
+            if (connection == null)
+            {
+                transactor.Sync(new PluginsPhysicalStatusProvider(repository, collection));
+                connection = PluginConnection.GetConnection(pluginId);
+            }
+
+            return View(new PluginViewModel(connection.ControlPlugin, connection.PluginEntity, connection));
         }
 
         public ActionResult AddStorageItem(string pluginId, string name, string value)

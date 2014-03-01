@@ -204,6 +204,7 @@
     <Compile Include="Models\DbInteraction\Automation\RepositoryPackageController.cs" />
     <Compile Include="Models\DbInteraction\Automation\RepositoryPluginController.cs" />
     <Compile Include="Models\DbInteraction\Automation\RepositoryStorageController.cs" />
+    <Compile Include="Models\DbInteraction\Automation\RepositoryUserController.cs" />
     <Compile Include="Models\DbInteraction\BrowserExtensionType.cs">
       <DependentUpon>Plugins.tt</DependentUpon>
     </Compile>
@@ -250,6 +251,9 @@
     <Compile Include="Models\DbInteraction\Transaction.cs">
       <DependentUpon>Plugins.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DbInteraction\User.cs">
+      <DependentUpon>Plugins.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Middleware\IFileSystemMiddleware.cs" />
     <Compile Include="Models\Middleware\IPackageMiddleware.cs" />
     <Compile Include="Models\Middleware\IPluginComponentMiddleware.cs" />
@@ -258,9 +262,11 @@
     <Compile Include="Models\IPluginsExecutor.cs" />
     <Compile Include="Models\IPluginsPhysicalStatusProvider.cs" />
     <Compile Include="Models\DbInteraction\IPluginsRepository.cs" />
+    <Compile Include="Models\PluginArgumentsSource.cs" />
     <Compile Include="Models\PluginViewModel.cs" />
+    <Compile Include="Models\Responsing\IPluginResponseAction.cs" />
     <Compile Include="Models\Transactions\IPluginTransactor.cs" />
-    <Compile Include="Models\IRequestResutBuilder.cs" />
+    <Compile Include="Models\Responsing\IRequestResutBuilder.cs" />
     <Compile Include="Models\PluginConnection.cs" />
     <Compile Include="Models\Middleware\PluginFileSystemProvider.cs" />
     <Compile Include="Models\PluginFileSystemResourcesProvider.cs" />
@@ -278,7 +284,7 @@
     <Compile Include="Models\Transactions\PluginTransactionResult.cs" />
     <Compile Include="Models\Transactions\PluginTransactor.cs" />
     <Compile Include="Models\Transactions\PluginTransactorExtensions.cs" />
-    <Compile Include="Models\RequestResultBuilder.cs" />
+    <Compile Include="Models\Responsing\RequestResultBuilder.cs" />
     <Compile Include="Models\SettingsVisualization\ISettingsControlVisualizer.cs" />
     <Compile Include="Models\SettingsVisualization\ISettingsVisualizatorsInitializer.cs" />
     <Compile Include="Models\SettingsVisualization\SettingsControlVisualizer.cs" />

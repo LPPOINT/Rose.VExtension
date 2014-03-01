@@ -1,8 +1,8 @@
-﻿using Rose.VExtension.PluginSystem.Javascript.Wrappers;
+﻿
 
 namespace Rose.VExtension.PluginSystem.Javascript.Log
 {
-    [NotWrapped]
+
     public interface IJavascriptLogger
     {
         void Trace(string message);

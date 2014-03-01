@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/23/2014 22:38:04
+-- Date Created: 02/28/2014 17:26:39
 -- Generated from EDMX file: C:\Users\Sasha\documents\visual studio 2013\Projects\Rose.VExtension\Rose.VExtension.Server\Models\DbInteraction\Plugins.edmx
 -- --------------------------------------------------
 
@@ -31,6 +31,12 @@ IF OBJECT_ID(N'[dbo].[FK_PluginPluginPackage]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_PluginTransaction]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TransactionSet] DROP CONSTRAINT [FK_PluginTransaction];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserPlugin_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserPlugin] DROP CONSTRAINT [FK_UserPlugin_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserPlugin_Plugin]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserPlugin] DROP CONSTRAINT [FK_UserPlugin_Plugin];
 GO
 IF OBJECT_ID(N'[dbo].[FK_LocalPluginFileSystem_inherits_PluginFileSystem]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PluginFileSystems_LocalPluginFileSystem] DROP CONSTRAINT [FK_LocalPluginFileSystem_inherits_PluginFileSystem];
@@ -67,6 +73,9 @@ GO
 IF OBJECT_ID(N'[dbo].[TransactionSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[TransactionSet];
 GO
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
 IF OBJECT_ID(N'[dbo].[PluginFileSystems_LocalPluginFileSystem]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PluginFileSystems_LocalPluginFileSystem];
 GO
@@ -75,6 +84,9 @@ IF OBJECT_ID(N'[dbo].[PluginPackages_LocalStoragePluginPackage]', 'U') IS NOT NU
 GO
 IF OBJECT_ID(N'[dbo].[PluginPackages_StreamPackage]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PluginPackages_StreamPackage];
+GO
+IF OBJECT_ID(N'[dbo].[UserPlugin]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserPlugin];
 GO
 
 -- --------------------------------------------------
@@ -94,7 +106,7 @@ GO
 CREATE TABLE [dbo].[ResourceTokens] (
     [Id] nvarchar(16)  NOT NULL,
     [PluginId] nvarchar(16)  NOT NULL,
-    [ResourceName] nvarchar(max)  NOT NULL,
+    [ResourcePath] nvarchar(max)  NOT NULL,
     [Lifetime] datetime  NOT NULL
 );
 GO
@@ -139,6 +151,13 @@ CREATE TABLE [dbo].[TransactionSet] (
 );
 GO
 
+-- Creating table 'Users'
+CREATE TABLE [dbo].[Users] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [VkId] nvarchar(max)  NOT NULL
+);
+GO
+
 -- Creating table 'PluginFileSystems_LocalPluginFileSystem'
 CREATE TABLE [dbo].[PluginFileSystems_LocalPluginFileSystem] (
     [RootFolder] nvarchar(max)  NOT NULL,
@@ -157,6 +176,13 @@ GO
 CREATE TABLE [dbo].[PluginPackages_StreamPackage] (
     [StreamFileUri] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'UserPlugin'
+CREATE TABLE [dbo].[UserPlugin] (
+    [UserPlugin_Plugin_Id] int  NOT NULL,
+    [Plugins_Id] nvarchar(16)  NOT NULL
 );
 GO
 
@@ -206,6 +232,12 @@ ADD CONSTRAINT [PK_TransactionSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'Users'
+ALTER TABLE [dbo].[Users]
+ADD CONSTRAINT [PK_Users]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- Creating primary key on [Id] in table 'PluginFileSystems_LocalPluginFileSystem'
 ALTER TABLE [dbo].[PluginFileSystems_LocalPluginFileSystem]
 ADD CONSTRAINT [PK_PluginFileSystems_LocalPluginFileSystem]
@@ -222,6 +254,12 @@ GO
 ALTER TABLE [dbo].[PluginPackages_StreamPackage]
 ADD CONSTRAINT [PK_PluginPackages_StreamPackage]
     PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [UserPlugin_Plugin_Id], [Plugins_Id] in table 'UserPlugin'
+ALTER TABLE [dbo].[UserPlugin]
+ADD CONSTRAINT [PK_UserPlugin]
+    PRIMARY KEY CLUSTERED ([UserPlugin_Plugin_Id], [Plugins_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -296,6 +334,29 @@ ADD CONSTRAINT [FK_PluginTransaction]
 CREATE INDEX [IX_FK_PluginTransaction]
 ON [dbo].[TransactionSet]
     ([PluginId]);
+GO
+
+-- Creating foreign key on [UserPlugin_Plugin_Id] in table 'UserPlugin'
+ALTER TABLE [dbo].[UserPlugin]
+ADD CONSTRAINT [FK_UserPlugin_User]
+    FOREIGN KEY ([UserPlugin_Plugin_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Plugins_Id] in table 'UserPlugin'
+ALTER TABLE [dbo].[UserPlugin]
+ADD CONSTRAINT [FK_UserPlugin_Plugin]
+    FOREIGN KEY ([Plugins_Id])
+    REFERENCES [dbo].[Plugins]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserPlugin_Plugin'
+CREATE INDEX [IX_FK_UserPlugin_Plugin]
+ON [dbo].[UserPlugin]
+    ([Plugins_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'PluginFileSystems_LocalPluginFileSystem'

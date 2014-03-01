@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Rose.VExtension.PluginSystem.Runtime;
 
-namespace Rose.VExtension.Server.Models
+namespace Rose.VExtension.Server.Models.Responsing
 {
 
     /// <summary>

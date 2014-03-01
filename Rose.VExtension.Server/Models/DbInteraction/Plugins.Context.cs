@@ -33,5 +33,6 @@ namespace Rose.VExtension.Server.Models.DbInteraction
         public virtual DbSet<PluginFileSystem> PluginFileSystems { get; set; }
         public virtual DbSet<PluginPackage> PluginPackages { get; set; }
         public virtual DbSet<Transaction> TransactionSet { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

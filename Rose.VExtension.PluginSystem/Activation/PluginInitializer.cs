@@ -78,6 +78,7 @@ namespace Rose.VExtension.PluginSystem.Activation
 
                 var order = new ActivationOrder(
                     ActivationStepName.NameActivation,
+                    ActivationStepName.PermissionsActivation,
                     ActivationStepName.StorageActivation,
                     ActivationStepName.ReservationActivation,
                     ActivationStepName.SettingsActivation,

@@ -102,6 +102,7 @@
     <Compile Include="Activation\PluginCoreStepProvider.cs" />
     <Compile Include="Common\Check.cs" />
     <Compile Include="Common\ExceptionExtensions.cs" />
+    <Compile Include="Common\LoggerExtensions.cs" />
     <Compile Include="Configuration\ConfigItemNotFoundException.cs" />
     <Compile Include="Configuration\IConfigurationItemParser.cs" />
     <Compile Include="Console\ConsoleCommand.cs" />
@@ -117,8 +118,13 @@
     <Compile Include="Packing\LocalStoragePackageProvider.cs" />
     <Compile Include="Packing\StreamPackageProvider.cs" />
     <Compile Include="Packing\StreamPluginPackage.cs" />
+    <Compile Include="Permissions\PermissionException.cs" />
+    <Compile Include="Permissions\PluginPermission.cs" />
+    <Compile Include="Permissions\PluginPersmissionCollection.cs" />
     <Compile Include="Resources\IPluginLogoProvider.cs" />
+    <Compile Include="Runtime\IPluginResponseInjector.cs" />
     <Compile Include="Runtime\JavascriptDomain.cs" />
+    <Compile Include="Runtime\PluginResponseInjector.cs" />
     <Compile Include="Runtime\RequestHandeling\FilterTemplates\AllRequestsFilterTemplate.cs" />
     <Compile Include="Runtime\RequestHandeling\FilterTemplates\FilterTemplateAttribute.cs" />
     <Compile Include="Runtime\RequestHandeling\FilterTemplates\FilterTemplatesDiscoverer.cs" />
@@ -165,12 +171,6 @@
     <Compile Include="Javascript\Log\JavascriptLogManager.cs" />
     <Compile Include="Javascript\JavascriptModule.cs" />
     <Compile Include="Javascript\Log\JavascriptNLogger.cs" />
-    <Compile Include="Javascript\Wrappers\IJavascriptWrapper.cs" />
-    <Compile Include="Javascript\Wrappers\NotWrappedAttribute.cs" />
-    <Compile Include="Javascript\Wrappers\PluginWrapper.cs" />
-    <Compile Include="Javascript\Wrappers\RequestWrapper.cs" />
-    <Compile Include="Javascript\Wrappers\ResponseWrapper.cs" />
-    <Compile Include="Javascript\Wrappers\WrapperAttribute.cs" />
     <Compile Include="Packing\IPluginPackage.cs" />
     <Compile Include="Packing\IPluginPackageFileSystem.cs" />
     <Compile Include="Packing\IPluginPackageService.cs" />
@@ -180,11 +180,12 @@
     <Compile Include="Activation\PluginInitializer.cs" />
     <Compile Include="Activation\PluginFactory.cs" />
     <Compile Include="Activation\PluginFactoryModule.cs" />
-    <Compile Include="Permissions\IPluginPermissions.cs" />
+    <Compile Include="Permissions\IPluginPermission.cs" />
     <Compile Include="Reservation\PluginReservationManager.cs" />
     <Compile Include="Common\SerializableDictionary.cs" />
-    <Compile Include="Javascript\JavascriptInjector.cs" />
     <Compile Include="Runtime\RequestHandeling\IPluginRequestController.cs" />
+    <Compile Include="Runtime\RequestHandeling\IRequestArgument.cs" />
+    <Compile Include="Runtime\RequestHandeling\RequestArguments\CurrentDateProvider.cs" />
     <Compile Include="Storage\IPluginStorage.cs" />
     <Compile Include="Storage\IPluginStorageItem.cs" />
     <Compile Include="Plugin.cs" />
@@ -221,15 +222,19 @@
     <Compile Include="Activation\InitializationModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Manifest.xml" />
-    <Content Include="Permissions\PermissionSection.xml" />
+    <Content Include="PluginPackageContent\Manifest.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="PluginPackageContent\script.js" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

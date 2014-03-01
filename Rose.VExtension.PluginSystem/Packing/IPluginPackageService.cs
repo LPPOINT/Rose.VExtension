@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Rose.VExtension.PluginSystem.Common;
 using Rose.VExtension.PluginSystem.FileSystem;
 
 namespace Rose.VExtension.PluginSystem.Packing
@@ -15,6 +16,10 @@ namespace Rose.VExtension.PluginSystem.Packing
     {
         public static Stream UnpackXMLManifest(this IPluginPackageService service, Stream archiveStream)
         {
+
+            Check.NotNull(service);
+            Check.NotNull(archiveStream);
+
             return service.UnpackFile("Manifest.xml", archiveStream);
         }
     }
