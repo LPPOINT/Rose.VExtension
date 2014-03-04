@@ -38,12 +38,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="app\background - копия.js" />
     <Content Include="app\background.js" />
     <Content Include="app\content.js" />
     <Content Include="app\img\icon.png" />
     <Content Include="app\jquery.js" />
     <Content Include="app\popup.html" />
     <Content Include="app\popup.js" />
+    <Content Include="app\vkapi.js" />
     <Content Include="Properties\build\lib\Ionic.Zip.DLL" />
     <Content Include="Properties\build\lib\MSBuild.ExtensionPack.dll" />
     <Content Include="screenshots\screenshot.png" />

@@ -1,11 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 using HtmlAgilityPack;
 using Rose.VExtension.PluginSystem.Runtime;
 using Rose.VExtension.Server.Models.DbInteraction;
 
 namespace Rose.VExtension.Server.Models
 {
+
+    public class RequestParsingException : Exception
+    {
+        public RequestParsingException()
+        {
+        }
+
+        public RequestParsingException(string message) : base(message)
+        {
+        }
+
+        public RequestParsingException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected RequestParsingException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+    }
+
 
     /// <summary>
     /// Представляет запрос передаваемый от клиентского расширения браузера к серверу
@@ -111,6 +134,28 @@ namespace Rose.VExtension.Server.Models
             return result;
         }
 
+
+        public static PluginRequestModel ParseXml(string xml)
+        {
+            var doc = XDocument.Parse(xml);
+
+            if (doc.Root.Name != "PluginRequestModel")
+            {
+                doc.Root.Name = "PluginRequestModel";
+            }
+
+            var serializer = new XmlSerializer(typeof (PluginRequestModel));
+            var requestModel = serializer.Deserialize(doc.CreateReader());
+            return requestModel as PluginRequestModel;
+
+        }
+
+        public PluginRequestModel Parse(string inputBody, string contentType)
+        {
+            if (contentType.ToLower() == "text/xml" || contentType.ToLower() == "text/html")
+                return ParseXml(inputBody);
+            throw new RequestParsingException("Неопознанный contentType");
+        }
 
         public static PluginRequestModel CreateDefault()
         {

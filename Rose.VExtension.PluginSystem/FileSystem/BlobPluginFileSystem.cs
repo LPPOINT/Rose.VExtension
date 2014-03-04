@@ -59,5 +59,10 @@ namespace Rose.VExtension.PluginSystem.FileSystem
         {
             throw new System.NotImplementedException();
         }
+
+        public void Dispose()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

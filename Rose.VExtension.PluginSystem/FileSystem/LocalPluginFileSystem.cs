@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using NLog;
 
 namespace Rose.VExtension.PluginSystem.FileSystem
 {
@@ -92,6 +93,18 @@ namespace Rose.VExtension.PluginSystem.FileSystem
             if(!Directory.Exists(dn))
                 Directory.CreateDirectory(dn);
             SaveStreamToFile(fileUri, fileStream);
+        }
+
+        public void Dispose()
+        {
+            try
+            {
+                Directory.Delete(RootFolder, true);
+            }
+            catch (Exception e)
+            {
+                LogManager.GetCurrentClassLogger().ErrorException("Не удалось удалить папку плагина по пути " + RootFolder, e);
+            }
         }
     }
 }

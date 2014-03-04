@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using NLog;
-using NLog.Targets;
+using HtmlAgilityPack;
 using Noesis.Javascript;
-using Rose.VExtension.PluginSystem.Activation;
 using Rose.VExtension.PluginSystem.Activation.RuntimeActivation;
 using Rose.VExtension.PluginSystem.Javascript;
 using Rose.VExtension.PluginSystem.Javascript.Log;
@@ -42,7 +40,6 @@ namespace Rose.VExtension.PluginSystem.Runtime
             {
 
                 var response = new PluginResponse();
-
                 var sourceProvider = new JavascriptSourceProvider();
                 var script = sourceProvider.GetSources(Plugin, Platform as JSPluginPlatform);
 

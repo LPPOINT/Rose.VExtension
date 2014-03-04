@@ -44,6 +44,8 @@ namespace Rose.VExtension.Server.Models
         /// </summary>
         void Drop();
 
+        void Drop(ConnectionDropOptions options);
+
         /// <summary>
         /// Синхронизиреут плагин с его представлением на сервере
         /// </summary>

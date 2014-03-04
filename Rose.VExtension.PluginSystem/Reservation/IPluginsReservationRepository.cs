@@ -11,6 +11,8 @@ namespace Rose.VExtension.PluginSystem.Reservation
     public interface IPluginsReservationRepository
     {
 
+
+        void RemoveReservationById(string str);
         /// <summary>
         /// Ассоциирует строку и идентификатором плагина
         /// </summary>
@@ -57,7 +59,12 @@ namespace Rose.VExtension.PluginSystem.Reservation
             this.collection = collection;
         }
 
-        public readonly Dictionary<string, string> collection; 
+        public readonly Dictionary<string, string> collection;
+
+        public void RemoveReservationById(string str)
+        {
+            collection.Remove(str);
+        }
 
         public void AssociatePluginString(string str, string id)
         {

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Rose.VExtension.PluginSystem.FileSystem
 {
-    public interface IPluginFileSystem
+    public interface IPluginFileSystem : IDisposable
     {
         bool IsExist { get; }
 

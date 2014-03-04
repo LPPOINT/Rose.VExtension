@@ -199,6 +199,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ConnectionDropOptions.cs" />
     <Compile Include="Models\DbInteraction\Automation\IRepositoryEntityController.cs" />
     <Compile Include="Models\DbInteraction\Automation\RepositoryFileSystemController.cs" />
     <Compile Include="Models\DbInteraction\Automation\RepositoryPackageController.cs" />
@@ -264,7 +265,8 @@
     <Compile Include="Models\DbInteraction\IPluginsRepository.cs" />
     <Compile Include="Models\PluginArgumentsSource.cs" />
     <Compile Include="Models\PluginViewModel.cs" />
-    <Compile Include="Models\Responsing\IPluginResponseAction.cs" />
+    <Compile Include="Models\Responsing\HtmlPartEditing.cs" />
+    <Compile Include="Models\Responsing\IResponseMessager.cs" />
     <Compile Include="Models\Transactions\IPluginTransactor.cs" />
     <Compile Include="Models\Responsing\IRequestResutBuilder.cs" />
     <Compile Include="Models\PluginConnection.cs" />

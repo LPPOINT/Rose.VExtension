@@ -120,7 +120,13 @@ namespace Rose.VExtension.Server.Models
 
         public void Drop()
         {
-            DropConnection(ControlPlugin, Repository);
+            Drop(ConnectionDropOptions.Default);
+
+        }
+
+        public void Drop(ConnectionDropOptions options)
+        {
+            DropConnection(ControlPlugin, Repository, options);
             LogManager.GetCurrentClassLogger().Info("Сброшено соединение с плагином " + ControlPlugin.Id);
         }
 
@@ -213,27 +219,55 @@ namespace Rose.VExtension.Server.Models
 
         }
 
-        public static void DropConnection(PluginSystem.Plugin plugin, IPluginsRepository repository)
+        public static void DropConnection(PluginSystem.Plugin plugin, IPluginsRepository repository, ConnectionDropOptions options)
         {
-            DropConnection(plugin.Id, repository);
+            DropConnection(plugin.Id, repository, options);
 
         }
 
-        public static void DropConnection(Plugin entity, IPluginsRepository repository)
+        public static void DropConnection(Plugin entity, IPluginsRepository repository, ConnectionDropOptions options)
         {
-            DropConnection(entity.Id, repository);
+            DropConnection(entity.Id, repository, options);
         }
 
-        public static void DropConnection(string pluginId, IPluginsRepository repository)
+        public static void DropConnection(string pluginId, IPluginsRepository repository, ConnectionDropOptions options)
         {
             try
             {
+
+                if (options.DeleteFileSystem)
+                {
+                    try
+                    {
+                        var fsEntity = repository.FileSystemContext.GetEntitiesByPluginId(pluginId).FirstOrDefault();
+
+                        if (fsEntity != null)
+                        {
+                            var fsm = new FileSystemMiddleware();
+                            var fs = fsm.CreateBase(fsEntity);
+                            fs.Dispose();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
+
+                //TODO: Add options.DeletePackage handler
+
+                if(options.DeleteReservation)
+                    repository.RemoveReservationById(pluginId);
+
                 repository.ResourceAccessTokenContext.RemoveEntitiesByPluginId(pluginId);
                 repository.FileSystemContext.RemoveEntitiesByPluginId(pluginId);
                 repository.PackageContext.RemoveEntitiesByPluginId(pluginId);
-                repository.StorageContext.RemoveEntitiesByPluginId(pluginId);
+
+                if(options.DeleteStorageItems)
+                    repository.StorageContext.RemoveEntitiesByPluginId(pluginId);
 
                 repository.PluginContext.RemoveEntity(pluginId);
+
                 RemoveConnection(pluginId);
             }
             catch (Exception e)

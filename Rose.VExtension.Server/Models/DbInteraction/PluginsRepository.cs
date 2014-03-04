@@ -32,6 +32,16 @@ namespace Rose.VExtension.Server.Models.DbInteraction
 
         #region IPluginsRepository Implementation
 
+        public void RemoveReservationById(string str)
+        {
+            var entity = db.PluginAssociationSet.FirstOrDefault(association => association.PluginId == str);
+            if (entity != null)
+            {
+                db.PluginAssociationSet.Remove(entity);
+                db.SaveChanges();
+            }
+        }
+
         public void AssociatePluginString(string str, string id)
         {
 

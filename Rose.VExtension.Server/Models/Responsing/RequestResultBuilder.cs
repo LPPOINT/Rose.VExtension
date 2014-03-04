@@ -23,11 +23,29 @@ namespace Rose.VExtension.Server.Models.Responsing
             responses.Add(response);
         }
 
+        private ContentResult XmlResult(string xml)
+        {
+            return new ContentResult { Content = xml, ContentType = "text/xml" };
+        }
+
         public ActionResult GetResult()
         {
-            var service = new PluginResponseXml();
-            var xml = service.Create(responses.First());
-            return new ContentResult(){Content = xml.ToString()};
+            var service = new XmlResponseMessager();
+
+            try
+            {
+
+                if (responses.Count == 0)
+                    return XmlResult(service.CreateEmpty());
+
+                var xml = service.Create(responses.First());
+                return XmlResult(xml);
+            }
+            catch (Exception e)
+            {
+                return XmlResult(service.CreateException(e));
+            }
+
         }
 
         public void AddMissedResponse(Exception missException)

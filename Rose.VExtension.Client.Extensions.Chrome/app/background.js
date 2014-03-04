@@ -1,90 +1,8 @@
 ﻿
-var authTabId = undefined;
-var isAuthTabDidOpened = false;
-var activeVkTabId = undefined;
+/// Содержит вспомогательные методы
+var Utils = function () { };
 
-
-function VKTabDetected(tab) {
-
-    chrome.storage.sync.get('access_info', function (result) {
-
-        console.groupCollapsed("Получение данных из хранилища");
-        console.log("Полученные данные по запросу 'access_info':");
-        console.log(result);
-        console.groupEnd();
-
-        if (result == {} || result == [] || result == undefined || isEmptyObject(result)) {
-            //if (isAuthTabDidOpened)
-            //    return;
-            //isAuthTabDidOpened = true;
-            getAccessToken(function (accessInfo) {
-
-                var accessInfoResult = accessInfo.access_info;
-
-                getTabHtml(tab.id, function (html) {
-                    sendRequest(accessInfoResult['access_token'], accessInfoResult['user_id'], "HomePage", html);
-                });
-            });
-
-        } else {
-
-            getTabHtml(tab.id, function(html) {
-                sendRequest(result.access_info['access_token'], result.access_info['user_id'], "HomePage", html);
-            });
-        }
-    });
-}
-
-chrome.tabs.onUpdated.addListener(function (id, info) {
-    if (info.url == undefined || info.url.indexOf("vk.com") == -1 || info.url.indexOf("oauth") != -1)
-        return;
-
-    activeVkTabId = id;
-    chrome.tabs.get(id, function(tab) {
-        VKTabDetected(tab);
-    });
-
-});
-
-chrome.tabs.onCreated.addListener(function (tab) {
-    if (tab.url == undefined || tab.url.indexOf("vk.com") == -1 || tab.url.indexOf("oauth") != -1)
-        return;
-    activeVkTabId = tab.id;
-    VKTabDetected(tab);
-});
-
-chrome.tabs.onReplaced.addListener(function (newTabId, oldTabId) {
-    chrome.tabs.get(newTabId, function(tab) {
-        if (tab.url == undefined || tab.url.indexOf("vk.com") == -1 || tab.url.indexOf("oauth") != -1)
-            return;
-        activeVkTabId = tab.id;
-        VKTabDetected(tab);
-    });
-});
-
-chrome.tabs.onActivated.addListener(function(info) {
-});
-
-function getTabHtml(tabId, callback) {
-    chrome.tabs.getSelected(null, function (tab) {
-        chrome.tabs.sendRequest(tab.id, { method: "getText" }, function (response) {
-            if (response == undefined || response.method == undefined) {
-                callback("undefined html");
-            }
-            else if (response.method == "getText") {
-                callback(response.data);
-            }
-        });
-    });
-}
-
-function getAccessInfo(callback) {
-    chrome.storage.sync.get("access_info", function(result) {
-        callback(result);
-    });
-}
-
-function getUrlParameterValue(url, parameterName) {
+Utils.getUrlParameterValue = function (url, parameterName) {
     "use strict";
 
     var urlParameters = url.substr(url.indexOf("#") + 1),
@@ -103,61 +21,8 @@ function getUrlParameterValue(url, parameterName) {
     }
 
     return parameterValue;
-}
-
-function getAccessToken(callback) {
-    var authUrl = "https://oauth.vk.com/authorize?client_id=4126850&scope=docs,offline&redirect_uri=http://oauth.vk.com/blank.html&display=page&response_type=token";
-    chrome.tabs.create({ url: authUrl, selected: true }, function (tab) {
-        authTabId = tab.id;
-        chrome.tabs.onUpdated.addListener(function (tabId, info) {
-            if (tabId == authTabId && info.url != undefined && info.status == "loading" ) {
-
-                var vkAccessToken = getUrlParameterValue(info.url, 'access_token');
-                var expiries = getUrlParameterValue(info.url, 'expires_in');
-                var userId = getUrlParameterValue(info.url, 'user_id');
-
-                console.groupCollapsed("Данные авторизации");
-
-                console.log("access_token: " + vkAccessToken);
-                console.log("user_id: " + userId);
-                console.log("expiries_in: " + expiries);
-
-                var authSave = {};
-
-                authSave['access_token'] = vkAccessToken;
-                authSave['user_id'] = userId;
-                authSave['expiries_in'] = expiries;
-                authSave['access_info'] = {};
-
-                authSave['access_info']['access_token'] = vkAccessToken;
-                authSave['access_info']['user_id'] = userId;
-                authSave['access_info']['expiries_in'] = expiries;
-
-
-
-                chrome.storage.sync.set(authSave, function () {
-                    chrome.tabs.remove(tabId);
-                    console.log("Сохраненный массив данных авторизации:");
-                    console.log(authSave);
-                    console.groupEnd();
-
-                    if (callback != undefined) {
-                        callback(authSave);
-                    }
-
-                });
-            }
-        });
-    });
-}
-
-function writeAccessToken() {
-    chrome.storage.sync.get('access_token', function (token) {
-        console.log(token);
-    });
-}
-
-function getXmlHttp() {
+};
+Utils.getHtmlHttp = function () {
     var xmlhttp;
     try {
         xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
@@ -172,67 +37,212 @@ function getXmlHttp() {
         xmlhttp = new XMLHttpRequest();
     }
     return xmlhttp;
-}
-
-function isEmptyObject(obj) {
+};
+Utils.isEmptyObject = function (obj) {
     for (var i in obj) {
         return false;
     }
     return true;
-}
+};
+Utils.getUrlDomain = function (url) {
+    var a = document.createElement('a');
+    a.href = url;
+    return a.hostname;
+};
 
-function setTabHtml(tabId, html) {
+/// Содержит методы для взаимодействия с локальным хранилищем
+var LocalStorage = function () { };
+/// Содержит методы для разбора данных страницы ВКонтакте
+var VKPage = function (tabId) {
+    this.tabId = tabId;
+
+    this.isVKPage = function (callback) {
+        TabInteraction.getTabUrl(tabId, function (url) {
+            var result = Utils.getUrlDomain(url) == "vk.com";
+            callback(result);
+        });
+    };
+
+};
+
+var VKPageHandler = function () { };
+
+VKPageHandler.onPageOpenned = function (callback) {
+    chrome.tabs.onCreated.addListener(function (tab) {
+        var page = new VKPage(tab.id);
+        page.isVKPage(function (isVkPage) {
+            if (isVkPage) {
+                callback(tab.id, null);
+            }
+        });
+    });
+    chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+        if (changeInfo.status == "complete") {
+
+            var page = new VKPage(tab.id);
+            page.isVKPage(function(isVkPage) {
+                if (isVkPage) {
+                    callback(tab.id, null);
+                }
+            });
+        }
+    });
+};
+VKPageHandler.onPageClosed = function (callback) {
+
+};
+VKPageHandler.onPageUpdated = function (callback) {
+    chrome.tabs.onUpdated.addListener(function (id, info, tab) {
+        var page = new VKPage(id);
+        if (page.isVKPage()) {
+            callback(id, info, tab);
+        }
+    });
+};
+
+/// Содержит методы для формирования запроса к серверу от страницы ВКонтакте
+var ServerRequestBuilder = function (vkPage) {
+    this.page = vkPage;
+    var localPage = this.page;
+    this.buildRequest = function (callback) {
+
+        TabInteraction.getTabUrl(this.page.tabId, function (url) {
+
+            TabInteraction.getTabHtml(localPage.tabId, function (html) {
+
+                var buffer = "<request><Url>" + url + "</Url><Html></Html></request>";
+                var parser = new DOMParser();
+                var xmlDoc = parser.parseFromString(buffer, "text/xml");
+                var htmlNode = xmlDoc.getElementsByTagName("Html")[0];
+                htmlNode.textContent = html;
+                callback(xmlDoc);
+
+            });
+        });
+    };
+
+};
+
+/// Содержит методы для взаимодействия с вкладками
+var TabInteraction = function () { };
+
+TabInteraction.getTab = function (tabId, callback) {
+    chrome.tabs.get(tabId, callback);
+};
+TabInteraction.setTabHtml = function (tabId, html) {
     chrome.tabs.get(tabId, function (tab) {
         chrome.tabs.sendRequest(tab.id, { method: "setHtml", html: html }, function (response) {
         });
     });
-}
-
-function createRequestUri(currentTab, accessTinfo) {
-    
-}
-
-function setTabHtmlNode(tabId, nodeId, html) {
-    chrome.tabs.get(activeVkTabId, function (tab) {
-        chrome.tabs.sendRequest(tab.id, { method: "setNodeHtml", html: html, node: nodeId }, function (response) {
+};
+TabInteraction.getTabHtml = function (tabId, callback) {
+    chrome.tabs.get(tabId, function (tab) {
+        chrome.tabs.sendRequest(tab.id, { method: "getText" }, function (response) {
+            if (response == undefined || response.method == undefined) {
+                callback("undefined html");
+            } else if (response.method == "getText") {
+                callback(response.data);
+            }
         });
     });
-}
+};
+TabInteraction.getTabUrl = function (tabId, callback) {
+    chrome.tabs.get(tabId, function (tab) {
+        callback(tab.url);
+    });
+};
 
-function parseRespose(response) {
+/// Содержит методы для взаимодействия с сервером
+var ServerInteraction = function (serverUrl) {
+    this.serverUrl = serverUrl;
+    this.timeout = 60 * 10;
 
-    console.groupCollapsed("Получен ответ от сервера");
-    console.log(response);
-    console.groupEnd();
+    this.query = function (request, callback) {
+        debugger;
+        var text = request.childNodes[0].outerHTML;
+        debugger;
+        try {
 
-    setTabHtmlNode(activeVkTabId, "wrap1", response);
-}
+            console.log("Идет отправка запроса на сервер");
 
-function sendRequest(access_token, id, requestString, html, exp) {
-
-    console.groupCollapsed("Посылка запроса");
-    console.log("access_token: " + access_token);
-    console.log("id: " + id);
-    console.log("requestString: " + requestString);
-    console.log("html: " + html);
-    console.log("exp: " + exp);
-    console.groupEnd();
-
-    var xmlhttp = getXmlHttp();
-    var params = "UserToken=" + access_token + "&RequestString=" + requestString;
-    //var params = JSON.stringify({ UserToken: access_token, RequestString: requestString, Html: "<html></html>", Timeout: 1488 });
-    xmlhttp.open('POST', 'http://localhost:19945/query', true);
-    xmlhttp.setRequestHeader("Content-type", "text/html");
-    //xmlhttp.setRequestHeader("Content-length", params.length);
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4) {
-            if (xmlhttp.status == 200) {;
-                var data = xmlhttp.responseXML;
-                console.log(data);
-                parseRespose(data);
-            }
+            var xmlhttp = Utils.getHtmlHttp();
+            xmlhttp.open('POST', 'http://localhost:19945/query', true);
+            xmlhttp.setRequestHeader("Content-type", "text/html");
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        debugger;
+                        var data = xmlhttp.responseXML;
+                        callback(data);
+                    }
+                }
+            };
+            xmlhttp.send(text);
+        } catch (e) {
+            console.log(e);
+            callback(undefined);
         }
-    };
-    xmlhttp.send(params);
 
-}
+    };
+
+};
+
+/// Содержит методы для внедрения ответа от сервера в страницу ВКонтакте
+var ServerAnswerParser = function (tabId, answer) {
+    this.tabId = tabId;
+    this.answer = answer;
+
+    this.isErrorAnswer = function () {
+        return false;
+    };
+    this.isEmptyAnswer = function () {
+        return false;
+    };
+
+    this.injectAnswer = function () {
+        debugger;
+        var codeNode = this.answer.getElementsByTagName("code")[0];
+        debugger;
+        if (codeNode.innerHTML == "1") { // Html
+            debugger;
+            var htmlNode = this.answer.getElementsByTagName("html")[0];
+            debugger;
+            var htmlNodeHtml = htmlNode.textContent;
+            debugger;
+            TabInteraction.setTabHtml(this.tabId, htmlNodeHtml);
+            debugger;
+        }
+        debugger;
+    };
+
+};
+
+/// Содержит методы управления клиентским расширением
+var VExtensionClient = function () {
+
+    this.UpdatePage = function (tabId) {
+        var page = new VKPage(tabId);
+        var requestBuilder = new ServerRequestBuilder(page);
+
+        requestBuilder.buildRequest(function (request) {
+            console.log("Сформирован запрос: " + request);
+            var serverInteraction = new ServerInteraction("http://localhost:19945/");
+            debugger;
+            serverInteraction.query(request, function (response) {
+                debugger;
+                var parser = new ServerAnswerParser(tabId, response);
+                parser.injectAnswer();
+
+
+            });
+        });
+
+    };
+
+};
+
+
+VKPageHandler.onPageOpenned(function (tabId, info) {
+    var client = new VExtensionClient();
+    client.UpdatePage(tabId);
+});

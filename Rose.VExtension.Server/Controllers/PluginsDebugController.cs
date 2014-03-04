@@ -37,7 +37,7 @@ namespace Rose.VExtension.Server.Controllers
 
         public ActionResult RemovePlugin(string pluginId)
         {
-            PluginConnection.DropConnection(pluginId, repository);
+            PluginConnection.DropConnection(pluginId, repository, ConnectionDropOptions.Default);
             return RedirectToAction("Index");
         }
 

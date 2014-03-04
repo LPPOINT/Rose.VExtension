@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using HtmlAgilityPack;
 using Rose.VExtension.PluginSystem.FileSystem;
 using Rose.VExtension.Server.Models;
 using Rose.VExtension.Server.Models.Middleware;

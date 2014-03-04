@@ -1,4 +1,5 @@
 ﻿using Rose.VExtension.PluginSystem.Common;
+using Rose.VExtension.PluginSystem.Permissions;
 
 namespace Rose.VExtension.PluginSystem.Runtime.RequestHandeling
 {
@@ -13,7 +14,15 @@ namespace Rose.VExtension.PluginSystem.Runtime.RequestHandeling
         /// </summary>
         IPluginRequestFilter Filter { get; }
 
+        /// <summary>
+        /// Аргументы, который требуется передать деятельности при выполнении
+        /// </summary>
         RequestArgumentsCollection Arguments { get; }
+
+        /// <summary>
+        /// Метод воздействия деятельности на страницу
+        /// </summary>
+        PageEditingMethod Method { get; }
 
         /// <summary>
         /// Activity, выполняемое для заданного фильтра
@@ -36,6 +45,7 @@ namespace Rose.VExtension.PluginSystem.Runtime.RequestHandeling
 
         public IPluginRequestFilter Filter { get; private set; }
         public RequestArgumentsCollection Arguments { get; private set; }
+        public PageEditingMethod Method { get; private set; }
         public IPluginActivity Activity { get; private set; }
     }
 

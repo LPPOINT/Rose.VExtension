@@ -19,6 +19,7 @@
    "background": {
     "scripts": [  
 	  "jquery.js",
+	  "vkapi.js",
       "background.js"
     ]
   },

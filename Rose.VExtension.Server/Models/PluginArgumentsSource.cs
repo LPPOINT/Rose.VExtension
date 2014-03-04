@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using Rose.VExtension.PluginSystem;
 using Rose.VExtension.PluginSystem.Runtime;
+using Rose.VExtension.PluginSystem.Runtime.Popups;
 using Rose.VExtension.PluginSystem.Runtime.RequestHandeling;
 
 namespace Rose.VExtension.Server.Models
@@ -22,15 +23,25 @@ namespace Rose.VExtension.Server.Models
 
         public IRequestArgument GetRequestArgument(string definition)
         {
-
-            if (NameTable[definition] == RequestArgumentNameTable.Values.Html)
+            switch (NameTable[definition])
             {
-                var html = new HtmlDocument();
-                html.LoadHtml(RequestModel.Html);
-                return new RequestArgument(definition, html);
+                case RequestArgumentNameTable.Values.Html:
+                {
+                    var html = new HtmlDocument();
+                    html.LoadHtml(RequestModel.Html);
+                    return new RequestArgument(definition, html);
+                }
+                case RequestArgumentNameTable.Values.NotificationPopup:
+                    return new RequestArgument(definition, new NotificationPopup());
+                case RequestArgumentNameTable.Values.WindowPopup:
+                    return new RequestArgument(definition, new WindowPopup());
             }
-
             return new RequestArgument("hello", "world");
+        }
+
+        public object GetRequestArgumentValue(string definition)
+        {
+            return GetRequestArgument(definition).ArgumentValue;
         }
     }
 }

@@ -19,7 +19,9 @@
     </Filter>
     <Args>
       <Include>CurrentDate</Include>
+      <Include>Html</Include>
     </Args>
+    <Method>FullHtml</Method>
     <Activity> <!--Деятельность плагина, выполняемая, когда придет запрос, завалидированный фильтром родительского обработчика-->
       <Name>Simple activity</Name> <!--Имя деятельности. Можно не указывать-->
       <Type>JS</Type> <!--Имя платформы деятельности (CS, JS, Razor)-->

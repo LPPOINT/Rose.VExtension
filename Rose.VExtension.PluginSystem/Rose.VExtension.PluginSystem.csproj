@@ -118,6 +118,7 @@
     <Compile Include="Packing\LocalStoragePackageProvider.cs" />
     <Compile Include="Packing\StreamPackageProvider.cs" />
     <Compile Include="Packing\StreamPluginPackage.cs" />
+    <Compile Include="Permissions\PageEditingMethod.cs" />
     <Compile Include="Permissions\PermissionException.cs" />
     <Compile Include="Permissions\PluginPermission.cs" />
     <Compile Include="Permissions\PluginPersmissionCollection.cs" />
@@ -125,6 +126,9 @@
     <Compile Include="Runtime\IPluginResponseInjector.cs" />
     <Compile Include="Runtime\JavascriptDomain.cs" />
     <Compile Include="Runtime\PluginResponseInjector.cs" />
+    <Compile Include="Runtime\Popups\INotificationPopup.cs" />
+    <Compile Include="Runtime\Popups\IPopup.cs" />
+    <Compile Include="Runtime\Popups\IWindowPopup.cs" />
     <Compile Include="Runtime\RequestHandeling\FilterTemplates\AllRequestsFilterTemplate.cs" />
     <Compile Include="Runtime\RequestHandeling\FilterTemplates\FilterTemplateAttribute.cs" />
     <Compile Include="Runtime\RequestHandeling\FilterTemplates\FilterTemplatesDiscoverer.cs" />
