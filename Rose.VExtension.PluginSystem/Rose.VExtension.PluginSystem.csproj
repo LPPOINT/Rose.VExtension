@@ -112,6 +112,8 @@
     <Compile Include="Console\ConsoleResponse.cs" />
     <Compile Include="Console\IConsolableDomain.cs" />
     <Compile Include="Console\IConsoleCommandParser.cs" />
+    <Compile Include="Helpers\IHtmlInjector.cs" />
+    <Compile Include="Helpers\IHtmlTemplateBuilder.cs" />
     <Compile Include="Javascript\JavascriptSourceProvider.cs" />
     <Compile Include="Packing\ExtractionException.cs" />
     <Compile Include="Packing\IPluginPackageProvider.cs" />

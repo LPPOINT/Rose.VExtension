@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.XPath;
 using HtmlAgilityPack;
 
 namespace Rose.VExtension.Server.Models.Responsing
@@ -54,7 +57,22 @@ namespace Rose.VExtension.Server.Models.Responsing
 
         public void SerializeToXml(XElement parent)
         {
-            
+            // parent.CreateNavigator().BaseURI
+        }
+
+        private static bool IsNodeEdited(XNode node)
+        {
+            if (node is XElement)
+            {
+                var e = node as XElement;
+                return e.Elements().Any(IsNodeEdited);
+            }
+            return false;
+        }
+
+        private static XNode GetEditedNodes(XNode before, XNode after)
+        {
+            return null;
         }
 
         /// <summary>

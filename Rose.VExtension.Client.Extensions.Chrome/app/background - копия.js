@@ -89,49 +89,7 @@ function getUrlParameterValue(url, parameterName) {
 }
 
 function getAccessToken(callback) {
-    var authUrl = "https://oauth.vk.com/authorize?client_id=4126850&scope=docs,offline&redirect_uri=http://oauth.vk.com/blank.html&display=page&response_type=token";
-    chrome.tabs.create({ url: authUrl, selected: true }, function (tab) {
-        authTabId = tab.id;
-        chrome.tabs.onUpdated.addListener(function (tabId, info) {
-            if (tabId == authTabId && info.url != undefined && info.status == "loading") {
 
-                var vkAccessToken = getUrlParameterValue(info.url, 'access_token');
-                var expiries = getUrlParameterValue(info.url, 'expires_in');
-                var userId = getUrlParameterValue(info.url, 'user_id');
-
-                console.groupCollapsed("Данные авторизации");
-
-                console.log("access_token: " + vkAccessToken);
-                console.log("user_id: " + userId);
-                console.log("expiries_in: " + expiries);
-
-                var authSave = {};
-
-                authSave['access_token'] = vkAccessToken;
-                authSave['user_id'] = userId;
-                authSave['expiries_in'] = expiries;
-                authSave['access_info'] = {};
-
-                authSave['access_info']['access_token'] = vkAccessToken;
-                authSave['access_info']['user_id'] = userId;
-                authSave['access_info']['expiries_in'] = expiries;
-
-
-
-                chrome.storage.sync.set(authSave, function () {
-                    chrome.tabs.remove(tabId);
-                    console.log("Сохраненный массив данных авторизации:");
-                    console.log(authSave);
-                    console.groupEnd();
-
-                    if (callback != undefined) {
-                        callback(authSave);
-                    }
-
-                });
-            }
-        });
-    });
 }
 
 function writeAccessToken() {

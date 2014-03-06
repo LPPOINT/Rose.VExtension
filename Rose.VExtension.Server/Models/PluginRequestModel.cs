@@ -88,7 +88,7 @@ namespace Rose.VExtension.Server.Models
         /// <summary>
         /// Токен авторизации пользователя ВКонтакте
         /// </summary>
-        public string UserToken { get; set; }
+        public string AccessToken { get; set; }
 
         public string RequestString { get; set; }
 
@@ -168,7 +168,7 @@ namespace Rose.VExtension.Server.Models
                               RequestString = "TestPluginName/TestPluginAction/OtherComponents",
                               Timeout = "10000",
                               UserId = "244325243",
-                              UserToken = Guid.NewGuid().ToString()
+                              AccessToken = Guid.NewGuid().ToString()
                           };
 
             return request;

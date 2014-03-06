@@ -1,0 +1,73 @@
+﻿@model Rose.VExtension.Server.Models.PluginScriptEditingModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>title</title>
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script src="~/Scripts/bootstrap.js"></script>
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <script src="~/Scripts/require.js"></script>
+        <link href="~/Content/editor.css" rel="stylesheet" />
+        <style type="text/css" media="screen">
+            #editor {
+                position: absolute;
+                top: 60px;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <script>
+                require.config({
+                    paths: {
+                        'ace': 'http://localhost:19945/Scripts/ace'
+                    }
+                });
+
+                var aceLocal;
+
+                function getScript() {
+                    var editor = aceLocal.edit("editor");
+                    var code = editor.getSession().getValue();
+                    return code;
+                }
+
+                function setScriptInputValue() {
+                    console.log("getting script value");
+                    var script = getScript();
+                    console.log("script value: " + script);
+                    $("#scriptInput").val(script);
+                    console.log("value setted");
+                }
+
+                require(['ace/ace'], function (ace) {
+                    // Set up the editor
+                    aceLocal = ace;
+                    var editor = ace.edit('editor');
+                    editor.setTheme('ace/theme/dreamweaver');
+                    editor.getSession().setMode('ace/mode/javascript');
+                });
+            </script>
+            <div id="editor">@Model.Script</div>
+            <div>
+                <form method="POST" action="@Url.Action("Save")">
+                    <input type="hidden" name="pluginId" value="@Model.PluginId"/>
+                    <input type="hidden" name="jsFileName" value="@Model.ScriptUri"/>
+                    <input id="scriptInput" type="hidden" name="script"/>
+                    
+                    <input class="btn btn-primary" type="submit" onclick="setScriptInputValue()"/>
+
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

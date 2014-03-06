@@ -49,9 +49,73 @@ Utils.getUrlDomain = function (url) {
     a.href = url;
     return a.hostname;
 };
+Utils.getIdByUrl = function(url) {
+
+};
 
 /// Содержит методы для взаимодействия с локальным хранилищем
 var LocalStorage = function () { };
+
+
+LocalStorage.getAccessToken = function (callback) {
+
+    chrome.storage.sync.get("access_info", function (object) {
+        debugger;
+        if (object == undefined || Utils.isEmptyObject(object)) {
+            var authUrl = "https://oauth.vk.com/authorize?client_id=4126850&scope=docs,offline&redirect_uri=http://oauth.vk.com/blank.html&display=page&response_type=token";
+            chrome.tabs.create({ url: authUrl, selected: true }, function(tab) {
+                var authTabId = tab.id;
+                chrome.tabs.onUpdated.addListener(function(tabId, info) {
+                    if (tabId == authTabId && info.url != undefined && info.status == "loading") {
+
+                        var vkAccessToken = Utils.getUrlParameterValue(info.url, 'access_token');
+                        var expiries = Utils.getUrlParameterValue(info.url, 'expires_in');
+                        var userId = Utils.getUrlParameterValue(info.url, 'user_id');
+
+                        var authSave = {};
+
+                        authSave['access_token'] = vkAccessToken;
+                        authSave['user_id'] = userId;
+                        authSave['expiries_in'] = expiries;
+                        authSave['access_info'] = {};
+
+                        authSave['access_info']['access_token'] = vkAccessToken;
+                        authSave['access_info']['user_id'] = userId;
+                        authSave['access_info']['expiries_in'] = expiries;
+                        chrome.storage.sync.set(authSave, function() {
+                            chrome.tabs.remove(tabId);
+                            console.groupEnd();
+
+                            if (callback != undefined) {
+                                callback(authSave);
+                            }
+
+                        });
+                    }
+                });
+            });
+        } else {
+            callback(object.access_info);
+        }
+        return null;
+    });
+};
+
+var VKPageType = function () { };
+
+VKPageType.MyPage = 1;
+VKPageType.Page = 2;
+VKPageType.MyFrends = 3;
+VKPageType.MyPhotos = 4;
+VKPageType.MyVideos = 5;
+VKPageType.MyAudios = 6;
+VKPageType.Messages = 7;
+VKPageType.MyGroups = 8;
+VKPageType.News = 9;
+VKPageType.Settings = 10;
+VKPageType.Other = 11;
+VKPageType.Undefined = undefined;
+
 /// Содержит методы для разбора данных страницы ВКонтакте
 var VKPage = function (tabId) {
     this.tabId = tabId;
@@ -107,15 +171,18 @@ var ServerRequestBuilder = function (vkPage) {
     this.buildRequest = function (callback) {
 
         TabInteraction.getTabUrl(this.page.tabId, function (url) {
-
+            debugger;
             TabInteraction.getTabHtml(localPage.tabId, function (html) {
-
-                var buffer = "<request><Url>" + url + "</Url><Html></Html></request>";
-                var parser = new DOMParser();
-                var xmlDoc = parser.parseFromString(buffer, "text/xml");
-                var htmlNode = xmlDoc.getElementsByTagName("Html")[0];
-                htmlNode.textContent = html;
-                callback(xmlDoc);
+                debugger;
+                LocalStorage.getAccessToken(function (accessToken) {
+                    debugger;
+                    var buffer = "<request><Url>" + url + "</Url><Html></Html><UserId>" + accessToken.user_id + "</UserId><AccessToken>" +accessToken.access_token+ "</AccessToken></request>";
+                    var parser = new DOMParser();
+                    var xmlDoc = parser.parseFromString(buffer, "text/xml");
+                    var htmlNode = xmlDoc.getElementsByTagName("Html")[0];
+                    htmlNode.textContent = html;
+                    callback(xmlDoc);
+                });
 
             });
         });

@@ -4,6 +4,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using NLog;
+using RazorEngine;
+using Encoding = System.Text.Encoding;
 
 namespace Rose.VExtension.PluginSystem.FileSystem
 {
@@ -70,7 +72,13 @@ namespace Rose.VExtension.PluginSystem.FileSystem
         public void SaveStreamToFile(string filename, Stream stream)
         {
 
-                using (var fileStream = File.Create(filename))
+            try
+            {
+
+                if(File.Exists(filename))
+                    File.Delete(filename);
+
+                using (var fileStream = new FileStream(filename, FileMode.OpenOrCreate))
                 {
 
                     if (stream is DeflateStream)
@@ -79,12 +87,23 @@ namespace Rose.VExtension.PluginSystem.FileSystem
                     }
                     else
                     {
-                        var data = new byte[stream.Length];
+                        stream.Seek(0, SeekOrigin.Begin);
+                        var reader = new StreamReader(stream);
+                        var text = reader.ReadToEnd();
 
+                        var data = new byte[stream.Length];
+                        stream.Seek(0, SeekOrigin.Begin);
                         stream.Read(data, 0, data.Length);
+                        stream.Seek(0, SeekOrigin.Begin);
                         fileStream.Write(data, 0, data.Length);
+                        stream.Seek(0, SeekOrigin.Begin);
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e);
+            }
         }
 
         private void WriteFile(Stream fileStream, string fileUri)
