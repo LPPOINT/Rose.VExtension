@@ -133,6 +133,7 @@ var VKPageHandler = function () { };
 
 VKPageHandler.onPageOpenned = function (callback) {
     chrome.tabs.onCreated.addListener(function (tab) {
+        console.log("entryNewTab");
         var page = new VKPage(tab.id);
         page.isVKPage(function (isVkPage) {
             if (isVkPage) {
@@ -142,7 +143,7 @@ VKPageHandler.onPageOpenned = function (callback) {
     });
     chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
         if (changeInfo.status == "complete") {
-
+            console.log("entryUpdate");
             var page = new VKPage(tab.id);
             page.isVKPage(function(isVkPage) {
                 if (isVkPage) {
@@ -198,16 +199,18 @@ TabInteraction.getTab = function (tabId, callback) {
 };
 TabInteraction.setTabHtml = function (tabId, html) {
     chrome.tabs.get(tabId, function (tab) {
-        chrome.tabs.sendRequest(tab.id, { method: "setHtml", html: html }, function (response) {
+        chrome.tabs.sendMessage(tab.id, { method: "setHtml", html: html }, function (response) {
         });
     });
 };
 TabInteraction.getTabHtml = function (tabId, callback) {
     chrome.tabs.get(tabId, function (tab) {
-        chrome.tabs.sendRequest(tab.id, { method: "getText" }, function (response) {
-            if (response == undefined || response.method == undefined) {
+        debugger;
+        chrome.tabs.sendMessage(tab.id, { method: "getHtml" }, function (response) {
+            debugger;
+            if (response == undefined ) {
                 callback("undefined html");
-            } else if (response.method == "getText") {
+            } else if (response.method == "getHtml") {
                 callback(response.data);
             }
         });

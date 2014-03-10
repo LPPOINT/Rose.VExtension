@@ -10,10 +10,11 @@ using System.Web.Mvc;
 using HtmlAgilityPack;
 using Ninject;
 using Rose.VExtension.PluginSystem.Runtime;
+using Rose.VExtension.Server.DbInteraction;
 using Rose.VExtension.Server.Models;
 using Rose.VExtension.Server.Models.DbInteraction;
-using Rose.VExtension.Server.Models.Responsing;
-using Rose.VExtension.Server.Models.Transactions;
+using Rose.VExtension.Server.Responsing;
+using Rose.VExtension.Server.Transactions;
 
 namespace Rose.VExtension.Server.Controllers
 {

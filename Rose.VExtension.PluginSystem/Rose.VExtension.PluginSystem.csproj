@@ -112,8 +112,17 @@
     <Compile Include="Console\ConsoleResponse.cs" />
     <Compile Include="Console\IConsolableDomain.cs" />
     <Compile Include="Console\IConsoleCommandParser.cs" />
-    <Compile Include="Helpers\IHtmlInjector.cs" />
+    <Compile Include="Helpers\IHtmlReader.cs" />
+    <Compile Include="Helpers\IHtmlWriter.cs" />
     <Compile Include="Helpers\IHtmlTemplateBuilder.cs" />
+    <Compile Include="Helpers\VKElements\IVKPageElement.cs" />
+    <Compile Include="Helpers\VKElements\VKSideBar.cs" />
+    <Compile Include="Helpers\VKElements\VKSidebarTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VKSidebarTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\VKElements\VKSidebarTemplateModel.cs" />
     <Compile Include="Javascript\JavascriptSourceProvider.cs" />
     <Compile Include="Packing\ExtractionException.cs" />
     <Compile Include="Packing\IPluginPackageProvider.cs" />
@@ -231,12 +240,17 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Helpers\VKElements\VKSidebarTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>VKSidebarTemplate.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Helpers\VKElements\XMLFile1.xml" />
     <Content Include="PluginPackageContent\Manifest.xml">
       <SubType>Designer</SubType>
     </Content>

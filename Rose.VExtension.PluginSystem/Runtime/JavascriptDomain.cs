@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 using HtmlAgilityPack;
 using Noesis.Javascript;
 using Rose.VExtension.PluginSystem.Activation.RuntimeActivation;
+using Rose.VExtension.PluginSystem.Helpers;
 using Rose.VExtension.PluginSystem.Javascript;
 using Rose.VExtension.PluginSystem.Javascript.Log;
 
@@ -47,6 +48,7 @@ namespace Rose.VExtension.PluginSystem.Runtime
                 {
                     throw new JavascriptDomainException("Не удалось составить javascript-код плагина");
                 }
+
 
                 var platform = Platform as JSPluginPlatform;
                 var logger = JavascriptLogManager.GetCurrentLogger();

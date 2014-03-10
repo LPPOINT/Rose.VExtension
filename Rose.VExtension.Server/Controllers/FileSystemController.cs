@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Rose.VExtension.PluginSystem.FileSystem;
 using Rose.VExtension.Server.Models;
-using Rose.VExtension.Server.Models.Transactions;
+using Rose.VExtension.Server.Transactions;
 
 namespace Rose.VExtension.Server.Controllers
 {
